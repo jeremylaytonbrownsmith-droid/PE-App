@@ -11,6 +11,7 @@ import { PacingListPage } from './pages/PacingListPage';
 import { PacingGuidePage } from './pages/PacingGuidePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AdaptivePEPage } from './pages/AdaptivePEPage';
+import { ClassTimerPage } from './pages/ClassTimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="library/:id/timer" element={<ClassTimerPage />} />
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />
           <Route path="library" element={<LibraryPage />} />

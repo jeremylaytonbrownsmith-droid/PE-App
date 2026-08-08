@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Pencil, Copy, Trash2 } from 'lucide-react';
+import { Pencil, Copy, Trash2, Timer } from 'lucide-react';
 import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
 import { getLesson, deleteLesson, duplicateLesson, saveLesson } from '../lib/lessonStore';
@@ -44,6 +44,9 @@ export function LessonDetailPage() {
         back
         actions={
           <>
+            <Button onClick={() => navigate(`/library/${lesson.id}/timer`)}>
+              <Timer size={16} /> Start Class Timer
+            </Button>
             <PrintButton />
             <Button
               variant="secondary"

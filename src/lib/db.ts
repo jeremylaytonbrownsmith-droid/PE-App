@@ -3,9 +3,10 @@ import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
 import type { PacingGuide } from '../types/pacing';
 import type { ScheduleSettings } from '../types/schedule';
+import type { AssessmentTally } from '../types/assessment';
 
 const DB_NAME = 'pe-planner';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export const STORE = {
   lessons: 'lessons',
@@ -13,6 +14,7 @@ export const STORE = {
   pacingGuides: 'pacingGuides',
   settings: 'settings',
   meta: 'meta',
+  assessmentTallies: 'assessmentTallies',
 } as const;
 
 interface Schema {
@@ -21,6 +23,7 @@ interface Schema {
   [STORE.pacingGuides]: PacingGuide;
   [STORE.settings]: ScheduleSettings;
   [STORE.meta]: { key: string; value: unknown };
+  [STORE.assessmentTallies]: AssessmentTally;
 }
 
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
@@ -43,6 +46,9 @@ export function getDb(): Promise<IDBPDatabase<Schema>> {
         }
         if (!db.objectStoreNames.contains(STORE.meta)) {
           db.createObjectStore(STORE.meta, { keyPath: 'key' });
+        }
+        if (!db.objectStoreNames.contains(STORE.assessmentTallies)) {
+          db.createObjectStore(STORE.assessmentTallies, { keyPath: 'lessonId' });
         }
       },
     });
