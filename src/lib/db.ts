@@ -4,9 +4,10 @@ import type { WarmUp } from '../types/warmup';
 import type { PacingGuide } from '../types/pacing';
 import type { ScheduleSettings } from '../types/schedule';
 import type { AssessmentTally } from '../types/assessment';
+import type { SubHandbook, SubResource } from '../types/subHandbook';
 
 const DB_NAME = 'pe-planner';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 export const STORE = {
   lessons: 'lessons',
@@ -15,6 +16,8 @@ export const STORE = {
   settings: 'settings',
   meta: 'meta',
   assessmentTallies: 'assessmentTallies',
+  subHandbook: 'subHandbook',
+  subResources: 'subResources',
 } as const;
 
 interface Schema {
@@ -24,6 +27,8 @@ interface Schema {
   [STORE.settings]: ScheduleSettings;
   [STORE.meta]: { key: string; value: unknown };
   [STORE.assessmentTallies]: AssessmentTally;
+  [STORE.subHandbook]: SubHandbook;
+  [STORE.subResources]: SubResource;
 }
 
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
@@ -49,6 +54,12 @@ export function getDb(): Promise<IDBPDatabase<Schema>> {
         }
         if (!db.objectStoreNames.contains(STORE.assessmentTallies)) {
           db.createObjectStore(STORE.assessmentTallies, { keyPath: 'lessonId' });
+        }
+        if (!db.objectStoreNames.contains(STORE.subHandbook)) {
+          db.createObjectStore(STORE.subHandbook, { keyPath: 'id' });
+        }
+        if (!db.objectStoreNames.contains(STORE.subResources)) {
+          db.createObjectStore(STORE.subResources, { keyPath: 'id' });
         }
       },
     });

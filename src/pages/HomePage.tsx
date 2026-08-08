@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Wand2, CalendarRange, Accessibility } from 'lucide-react';
+import { BookOpen, Wand2, CalendarRange, Accessibility, ClipboardList, ArrowRight } from 'lucide-react';
 import { listLessons } from '../lib/lessonStore';
 import { listWarmUps } from '../lib/warmupStore';
 import { listPacingGuides } from '../lib/pacingStore';
@@ -21,6 +21,22 @@ export function HomePage() {
 
   return (
     <div className="space-y-8">
+      <Link
+        to="/sub-handbook"
+        className="flex items-center gap-4 rounded-xl border-2 border-brand-300 bg-brand-50 p-4 hover:border-brand-400 hover:shadow-md transition"
+      >
+        <span className="rounded-lg bg-brand-600 text-white p-2.5 shrink-0">
+          <ClipboardList size={22} />
+        </span>
+        <span className="flex-1">
+          <span className="block font-semibold text-gray-900">Covering this class? Start here.</span>
+          <span className="block text-sm text-gray-600">
+            Substitute Handbook: welcome notes, daily routines, schedule, coverage plan, and reference documents.
+          </span>
+        </span>
+        <ArrowRight size={18} className="text-brand-600 shrink-0" />
+      </Link>
+
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Welcome back, coach 👋</h1>
         <p className="text-gray-500 mt-1">

@@ -11,6 +11,7 @@ import { PacingListPage } from './pages/PacingListPage';
 import { PacingGuidePage } from './pages/PacingGuidePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AdaptivePEPage } from './pages/AdaptivePEPage';
+import { SubHandbookPage } from './pages/SubHandbookPage';
 import { ClassTimerPage } from './pages/ClassTimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="pacing/:id" element={<PacingGuidePage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="adaptive-pe" element={<AdaptivePEPage />} />
+          <Route path="sub-handbook" element={<SubHandbookPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

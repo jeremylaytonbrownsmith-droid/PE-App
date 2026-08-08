@@ -3,24 +3,29 @@ import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
 import type { PacingGuide } from '../types/pacing';
 import type { ScheduleSettings } from '../types/schedule';
+import type { SubHandbook, SubResource } from '../types/subHandbook';
 
 export interface ExportBundle {
-  version: 1;
+  version: 1 | 2;
   exportedAt: number;
   lessons: Lesson[];
   warmups: WarmUp[];
   pacingGuides: PacingGuide[];
   schedule: ScheduleSettings[];
+  subHandbook?: SubHandbook[];
+  subResources?: SubResource[];
 }
 
 export async function exportAllData(): Promise<ExportBundle> {
-  const [lessons, warmups, pacingGuides, schedule] = await Promise.all([
+  const [lessons, warmups, pacingGuides, schedule, subHandbook, subResources] = await Promise.all([
     getAll(STORE.lessons),
     getAll(STORE.warmups),
     getAll(STORE.pacingGuides),
     getAll(STORE.settings),
+    getAll(STORE.subHandbook),
+    getAll(STORE.subResources),
   ]);
-  return { version: 1, exportedAt: Date.now(), lessons, warmups, pacingGuides, schedule };
+  return { version: 2, exportedAt: Date.now(), lessons, warmups, pacingGuides, schedule, subHandbook, subResources };
 }
 
 export function downloadExport(bundle: ExportBundle, filename = 'pe-planner-backup.json'): void {
@@ -40,6 +45,10 @@ export async function importAllData(bundle: ExportBundle): Promise<void> {
   if (bundle.schedule?.length) {
     for (const s of bundle.schedule) await putOne(STORE.settings, s);
   }
+  if (bundle.subHandbook?.length) {
+    for (const h of bundle.subHandbook) await putOne(STORE.subHandbook, h);
+  }
+  if (bundle.subResources?.length) await putMany(STORE.subResources, bundle.subResources);
 }
 
 export function parseImportFile(file: File): Promise<ExportBundle> {
