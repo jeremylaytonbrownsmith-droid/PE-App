@@ -1,5 +1,11 @@
 import type { Grade, GymSpace } from './common';
 
+export interface StandardsForGrade {
+  grade: Grade;
+  /** Full NC standard codes, e.g. "PE.3.MS.1.2" */
+  codes: string[];
+}
+
 export interface TimedActivity {
   id: string;
   name: string;
@@ -44,6 +50,7 @@ export interface Lesson {
   closure: string[];
   needsMusic?: boolean;
   diagramNotes?: string;
+  standardsByGrade?: StandardsForGrade[];
   tags: string[];
   source: 'seed' | 'custom';
   createdAt: number;

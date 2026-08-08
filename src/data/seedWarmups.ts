@@ -122,4 +122,18 @@ export const SEED_WARMUPS: WarmUp[] = [
     suggestedMinutes: 10,
     source: 'seed',
   },
+  {
+    id: 'warmup-freeze-dance',
+    name: 'Freeze Dance',
+    type: 'non-tag',
+    description: 'A rhythmic, personal-space warm-up that doubles as an intro to moving to a beat - great lead-in for the Rhythm & Dance unit.',
+    rules: [
+      'Students find their own personal space (a poly spot works well).',
+      'While the music plays, students move using different locomotor and non-locomotor movements (travel, sway, reach, shake).',
+      'When the music stops, everyone freezes like a statue until the music starts again.',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
 ];

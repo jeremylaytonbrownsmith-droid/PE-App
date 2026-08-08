@@ -12,6 +12,7 @@ import { TimeCheckTable } from './TimeCheckTable';
 import { ScheduleTable } from './ScheduleTable';
 import { HalfGymAlert } from './HalfGymAlert';
 import { SpecialCircumstanceNote } from './SpecialCircumstanceNote';
+import { NCStandardsPanel } from './NCStandardsPanel';
 
 interface LessonViewProps {
   lesson: Lesson;
@@ -60,6 +61,8 @@ export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
           <span className="font-semibold">Gym Space:</span> {lesson.gymSpace === 'half' ? 'Half Gym' : 'Full Gym'}
         </p>
       </section>
+
+      <NCStandardsPanel standards={lesson.standardsByGrade} />
 
       <EquipmentList items={lesson.equipment} />
 

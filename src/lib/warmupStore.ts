@@ -1,11 +1,14 @@
-import { STORE, getAll, getOne, putOne, deleteOne, putMany, countAll, newId } from './db';
+import { STORE, getAll, getOne, putOne, deleteOne, putMany, newId } from './db';
 import type { WarmUp } from '../types/warmup';
 import { SEED_WARMUPS } from '../data/seedWarmups';
 
+/** Adds any seed warm-ups the device doesn't already have yet, keyed by id. */
 export async function ensureWarmUpsSeeded(): Promise<void> {
-  const count = await countAll(STORE.warmups);
-  if (count === 0) {
-    await putMany(STORE.warmups, SEED_WARMUPS);
+  const existing = await getAll(STORE.warmups);
+  const existingIds = new Set(existing.map((w) => w.id));
+  const missing = SEED_WARMUPS.filter((w) => !existingIds.has(w.id));
+  if (missing.length) {
+    await putMany(STORE.warmups, missing);
   }
 }
 

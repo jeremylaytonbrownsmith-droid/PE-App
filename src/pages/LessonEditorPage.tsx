@@ -10,6 +10,7 @@ import { ActivityListEditor } from '../components/forms/ActivityListEditor';
 import { EquipmentEditor } from '../components/forms/EquipmentEditor';
 import { GradeModEditor } from '../components/forms/GradeModEditor';
 import { WarmUpPicker } from '../components/forms/WarmUpPicker';
+import { StandardsEditor } from '../components/forms/StandardsEditor';
 import { Button } from '../components/ui/Button';
 
 export function LessonEditorPage() {
@@ -102,6 +103,14 @@ export function LessonEditorPage() {
             placeholder="Optional note"
             value={lesson.specialCircumstances ?? ''}
             onChange={(e) => patch({ specialCircumstances: e.target.value })}
+          />
+        </FormSection>
+
+        <FormSection title="NC Standards" description="Tag the NC Standard Course of Study codes this lesson addresses, per grade.">
+          <StandardsEditor
+            gradeLevels={lesson.gradeLevels}
+            standards={lesson.standardsByGrade ?? []}
+            onChange={(standardsByGrade) => patch({ standardsByGrade })}
           />
         </FormSection>
 

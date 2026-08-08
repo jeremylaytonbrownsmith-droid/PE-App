@@ -1,12 +1,19 @@
-import { STORE, getAll, getOne, putOne, deleteOne, putMany, countAll, newId } from './db';
+import { STORE, getAll, getOne, putOne, deleteOne, putMany, newId } from './db';
 import type { Lesson } from '../types/lesson';
 import { STANDARD_ARRIVAL_SETUP, STANDARD_CLOSURE } from '../types/lesson';
 import { SEED_LESSONS } from '../data/seedLessons';
 
+/**
+ * Adds any seed lessons the device doesn't already have, keyed by id, without touching
+ * existing rows - so a future app update can ship new starter lessons without clobbering
+ * a teacher's own edits to the lessons they already have.
+ */
 export async function ensureLessonsSeeded(): Promise<void> {
-  const count = await countAll(STORE.lessons);
-  if (count === 0) {
-    await putMany(STORE.lessons, SEED_LESSONS);
+  const existing = await getAll(STORE.lessons);
+  const existingIds = new Set(existing.map((l) => l.id));
+  const missing = SEED_LESSONS.filter((l) => !existingIds.has(l.id));
+  if (missing.length) {
+    await putMany(STORE.lessons, missing);
   }
 }
 

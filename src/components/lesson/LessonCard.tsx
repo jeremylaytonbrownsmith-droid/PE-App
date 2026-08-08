@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BadgeCheck } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import { gradeLabel } from '../../types/common';
 
@@ -18,6 +19,11 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
       <p className="text-xs text-gray-500 mt-2">
         {lesson.gradeLevels.map(gradeLabel).join(', ') || 'All grades'}
       </p>
+      {lesson.standardsByGrade && lesson.standardsByGrade.length > 0 && (
+        <p className="flex items-center gap-1 text-xs text-brand-700 mt-1.5">
+          <BadgeCheck size={13} /> NC Standards Aligned
+        </p>
+      )}
       {lesson.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-2">
           {lesson.tags.slice(0, 4).map((tag) => (
