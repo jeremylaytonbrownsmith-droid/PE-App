@@ -44,3 +44,21 @@ export function rhythmStandards(grades: Grade[]): StandardsForGrade[] {
 export function fitnessStandards(grades: Grade[]): StandardsForGrade[] {
   return build(grades, () => ['HF.3.1', 'HF.3.2', ...universal()]);
 }
+
+/** Cooperative/team-building units - leans on the Personal/Social Responsibility strand. */
+export function cooperativeStandards(grades: Grade[]): StandardsForGrade[] {
+  return build(grades, () => ['PR.4.1', 'PR.4.2', ...universal()]);
+}
+
+/** Unions two standards sets grade-by-grade, deduping codes - for units that cross categories. */
+export function mergeStandards(...sets: StandardsForGrade[][]): StandardsForGrade[] {
+  const byGrade = new Map<Grade, Set<string>>();
+  for (const set of sets) {
+    for (const { grade, codes } of set) {
+      const existing = byGrade.get(grade) ?? new Set<string>();
+      codes.forEach((code) => existing.add(code));
+      byGrade.set(grade, existing);
+    }
+  }
+  return Array.from(byGrade.entries()).map(([grade, codes]) => ({ grade, codes: Array.from(codes) }));
+}
