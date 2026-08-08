@@ -1,4 +1,4 @@
-import type { AccommodationCategory, Grade, GymSpace } from './common';
+import type { AcademicSubject, AccommodationCategory, Grade, GymSpace } from './common';
 
 export interface StandardsForGrade {
   grade: Grade;
@@ -9,6 +9,11 @@ export interface StandardsForGrade {
 export interface Accommodation {
   category: AccommodationCategory;
   note: string;
+}
+
+export interface CrossCurricularLink {
+  subject: AcademicSubject;
+  connection: string;
 }
 
 export interface TimedActivity {
@@ -57,6 +62,7 @@ export interface Lesson {
   diagramNotes?: string;
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
+  crossCurricular?: CrossCurricularLink[];
   /**
    * True if this lesson needs no PE-specific coaching, skill feedback, or specialized safety
    * supervision - safe to hand to a substitute with the printed plan and nothing else.

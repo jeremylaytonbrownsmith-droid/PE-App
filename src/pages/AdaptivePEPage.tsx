@@ -1,7 +1,7 @@
 import { Accessibility, Eye, Ear, Brain } from 'lucide-react';
 import type { AccommodationCategory } from '../types/common';
 import { ACCOMMODATION_LABEL } from '../types/common';
-import { ADAPTIVE_PE_SECTIONS, UDL_PRINCIPLES } from '../data/adaptivePE';
+import { ADAPTIVE_PE_SECTIONS, UDL_PRINCIPLES, LEGAL_BASICS } from '../data/adaptivePE';
 import { PageHeader } from '../components/layout/PageHeader';
 
 const CATEGORY_ICON: Record<AccommodationCategory, typeof Accessibility> = {
@@ -61,6 +61,15 @@ export function AdaptivePEPage() {
             </div>
           );
         })}
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white p-5 space-y-2">
+        <h2 className="font-semibold text-gray-900">Legal Basics</h2>
+        <ul className="list-disc pl-5 text-sm space-y-1.5 text-gray-700">
+          {LEGAL_BASICS.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
       </div>
 
       <p className="text-xs text-gray-400">

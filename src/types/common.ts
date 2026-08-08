@@ -32,3 +32,14 @@ export const ACCOMMODATION_LABEL: Record<AccommodationCategory, string> = {
   sensory: 'Autism / Sensory & Behavioral',
   cognitive: 'Intellectual / Cognitive',
 };
+
+export type AcademicSubject = 'math' | 'science' | 'social-studies' | 'english';
+
+export const ACADEMIC_SUBJECTS: AcademicSubject[] = ['math', 'science', 'social-studies', 'english'];
+
+export const ACADEMIC_SUBJECT_LABEL: Record<AcademicSubject, string> = {
+  math: 'Math',
+  science: 'Science',
+  'social-studies': 'Social Studies',
+  english: 'English / Language Arts',
+};

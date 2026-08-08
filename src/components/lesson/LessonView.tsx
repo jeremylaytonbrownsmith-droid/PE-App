@@ -14,6 +14,8 @@ import { HalfGymAlert } from './HalfGymAlert';
 import { SpecialCircumstanceNote } from './SpecialCircumstanceNote';
 import { NCStandardsPanel } from './NCStandardsPanel';
 import { AdaptationsPanel } from './AdaptationsPanel';
+import { CrossCurricularPanel } from './CrossCurricularPanel';
+import { AssessmentPanel } from './AssessmentPanel';
 
 interface LessonViewProps {
   lesson: Lesson;
@@ -62,10 +64,6 @@ export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
           <span className="font-semibold">Gym Space:</span> {lesson.gymSpace === 'half' ? 'Half Gym' : 'Full Gym'}
         </p>
       </section>
-
-      <NCStandardsPanel standards={lesson.standardsByGrade} />
-
-      <AdaptationsPanel accommodations={lesson.accommodations} />
 
       <EquipmentList items={lesson.equipment} />
 
@@ -162,6 +160,16 @@ export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
       <section>
         <TimeCheckTable rows={timeCheckRows} totalMinutes={totalMinutes} />
       </section>
+
+      <div className="pt-4 border-t-2 border-dashed border-gray-200 space-y-6">
+        <p className="text-xs uppercase tracking-wide text-gray-400 font-semibold">
+          Beyond the lesson plan - standards, inclusion &amp; assessment
+        </p>
+        <NCStandardsPanel standards={lesson.standardsByGrade} />
+        <AdaptationsPanel accommodations={lesson.accommodations} />
+        <CrossCurricularPanel links={lesson.crossCurricular} />
+        <AssessmentPanel lesson={lesson} />
+      </div>
     </article>
   );
 }

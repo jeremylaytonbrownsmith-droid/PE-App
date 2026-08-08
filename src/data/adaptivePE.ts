@@ -83,3 +83,10 @@ export const UDL_PRINCIPLES = [
   'Talk with the whole class about inclusion and how to be a good teammate/peer buddy - the goal is that every student in the room helps make the activity work for everyone.',
   'Adjust the rule, not the student’s presence - almost any elementary PE activity has a version every student in the class can do together.',
 ];
+
+export const LEGAL_BASICS = [
+  'IDEA (the Individuals with Disabilities Education Act) guarantees eligible students a Free Appropriate Public Education, including physical education - PE is a required service, not an optional extra.',
+  'A student’s IEP (Individualized Education Program) or 504 Plan may name specific PE accommodations - always check it rather than guessing, and follow it the same way a classroom teacher would.',
+  'LRE (Least Restrictive Environment) means students with disabilities should be included in general PE alongside peers whenever appropriate, with separate/adapted PE used only when the general setting genuinely can’t meet their needs - inclusion is the starting assumption, not the exception.',
+  'If a student seems to need more support than general PE accommodations can provide, that’s a conversation for the school’s adapted PE specialist or special education team, not a decision to make alone.',
+];
