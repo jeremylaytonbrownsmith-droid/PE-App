@@ -6,6 +6,8 @@ import { listPacingGuides, savePacingGuide, deletePacingGuide, createPacingGuide
 import { PageHeader } from '../components/layout/PageHeader';
 import { EmptyState } from '../components/layout/EmptyState';
 import { Button } from '../components/ui/Button';
+import { ScrollReveal } from '../components/ui/ScrollReveal';
+import { ProgressRing } from '../components/ui/ProgressRing';
 
 const currentSchoolYear = (() => {
   const now = new Date();
@@ -105,28 +107,34 @@ export function PacingListPage() {
 
       {guides.length ? (
         <div className="grid sm:grid-cols-2 gap-4">
-          {guides.map((guide) => (
-            <div key={guide.id} className="rounded-xl border border-gray-200 bg-white p-4 flex items-start justify-between gap-2">
-              <Link to={`/pacing/${guide.id}`} className="flex-1">
-                <h3 className="font-semibold text-gray-900">{guide.name}</h3>
-                <p className="text-sm text-gray-500">
-                  {guide.grade} · {guide.schoolYear} · {guide.weeks.length} weeks
-                </p>
-              </Link>
-              <button
-                onClick={async () => {
-                  if (confirm('Delete this pacing guide?')) {
-                    await deletePacingGuide(guide.id);
-                    setGuides(await listPacingGuides());
-                  }
-                }}
-                className="text-gray-400 hover:text-red-600"
-                aria-label="Delete pacing guide"
-              >
-                <Trash2 size={16} />
-              </button>
-            </div>
-          ))}
+          {guides.map((guide, i) => {
+            const completedWeeks = guide.weeks.filter((w) => w.completed).length;
+            return (
+              <ScrollReveal key={guide.id} index={i}>
+                <div className="rounded-xl border border-gray-200 bg-white p-4 flex items-center gap-3">
+                  <ProgressRing value={completedWeeks} max={guide.weeks.length} size={48} strokeWidth={5} />
+                  <Link to={`/pacing/${guide.id}`} className="flex-1">
+                    <h3 className="font-semibold text-gray-900">{guide.name}</h3>
+                    <p className="text-sm text-gray-500">
+                      {guide.grade} · {guide.schoolYear} · {completedWeeks}/{guide.weeks.length} weeks taught
+                    </p>
+                  </Link>
+                  <button
+                    onClick={async () => {
+                      if (confirm('Delete this pacing guide?')) {
+                        await deletePacingGuide(guide.id);
+                        setGuides(await listPacingGuides());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-red-600"
+                    aria-label="Delete pacing guide"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       ) : (
         !showForm && <EmptyState title="No pacing guides yet" description="Create one to plan your school year, week by week." />

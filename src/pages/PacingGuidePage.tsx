@@ -7,6 +7,7 @@ import { listLessons } from '../lib/lessonStore';
 import { PageHeader } from '../components/layout/PageHeader';
 import { Button } from '../components/ui/Button';
 import { PrintButton } from '../components/ui/PrintButton';
+import { ProgressRing } from '../components/ui/ProgressRing';
 
 function formatWeekDate(iso: string): string {
   const d = new Date(`${iso}T00:00:00`);
@@ -59,6 +60,13 @@ export function PacingGuidePage() {
         }
       />
 
+      <div className="no-print flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4">
+        <ProgressRing value={guide.weeks.filter((w) => w.completed).length} max={guide.weeks.length} size={48} strokeWidth={5} />
+        <p className="text-sm text-gray-600">
+          {guide.weeks.filter((w) => w.completed).length} of {guide.weeks.length} weeks marked taught
+        </p>
+      </div>
+
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
         <table className="w-full text-sm border-collapse">
           <thead>
@@ -68,11 +76,12 @@ export function PacingGuidePage() {
               <th className="border border-brand-200 px-2 py-2">Unit</th>
               <th className="border border-brand-200 px-2 py-2 no-print">Linked Lesson</th>
               <th className="border border-brand-200 px-2 py-2">Notes</th>
+              <th className="border border-brand-200 px-2 py-2 no-print w-16 text-center">Taught</th>
             </tr>
           </thead>
           <tbody>
             {guide.weeks.map((week) => (
-              <tr key={week.weekNumber}>
+              <tr key={week.weekNumber} className={week.completed ? 'bg-brand-50' : undefined}>
                 <td className="border border-brand-200 px-2 py-1 text-center text-gray-500">{week.weekNumber}</td>
                 <td className="border border-brand-200 px-2 py-1 whitespace-nowrap text-gray-600">{formatWeekDate(week.startDate)}</td>
                 <td className="border border-brand-200 px-2 py-1">
@@ -102,6 +111,14 @@ export function PacingGuidePage() {
                     className="w-full min-w-[8rem] border-none focus:outline-none focus:ring-1 focus:ring-brand-400 rounded px-1"
                     value={week.notes ?? ''}
                     onChange={(e) => updateWeek(week.weekNumber, { notes: e.target.value })}
+                  />
+                </td>
+                <td className="border border-brand-200 px-2 py-1 no-print text-center">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(week.completed)}
+                    onChange={(e) => updateWeek(week.weekNumber, { completed: e.target.checked })}
+                    aria-label={`Mark week ${week.weekNumber} taught`}
                   />
                 </td>
               </tr>

@@ -1,6 +1,8 @@
 import type { StandardsForGrade } from '../../types/lesson';
-import { describeStandard, strandOf, STRAND_LABEL } from '../../data/ncStandards';
+import { describeStandard, strandOf, STRAND_LABEL, STRAND_COLOR, type Strand } from '../../data/ncStandards';
 import { gradeLabel } from '../../types/common';
+
+const ALL_STRANDS: Strand[] = ['MS', 'MC', 'HF', 'PR'];
 
 export function NCStandardsPanel({ standards }: { standards?: StandardsForGrade[] }) {
   if (!standards || standards.length === 0) return null;
@@ -9,6 +11,16 @@ export function NCStandardsPanel({ standards }: { standards?: StandardsForGrade[
     <section className="space-y-2">
       <h2 className="text-lg font-semibold border-b pb-1">NC Standards Addressed</h2>
       <p className="text-xs text-gray-500">NC Standard Course of Study, K-12 Physical Education (2024)</p>
+
+      <div className="flex flex-wrap gap-3 text-xs text-gray-500">
+        {ALL_STRANDS.map((strand) => (
+          <span key={strand} className="flex items-center gap-1.5">
+            <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ backgroundColor: STRAND_COLOR[strand] }} />
+            {STRAND_LABEL[strand]}
+          </span>
+        ))}
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4">
         {standards.map((entry) => (
           <div key={entry.grade}>
@@ -17,9 +29,13 @@ export function NCStandardsPanel({ standards }: { standards?: StandardsForGrade[
               {entry.codes.map((code) => {
                 const info = describeStandard(code);
                 const strand = strandOf(code);
+                const color = strand ? STRAND_COLOR[strand] : '#9ca3af';
                 return (
                   <li key={code} className="flex gap-2">
-                    <span className="shrink-0 rounded bg-brand-100 text-brand-800 text-xs font-mono px-1.5 py-0.5 h-fit whitespace-nowrap">
+                    <span
+                      className="shrink-0 rounded text-xs font-mono px-1.5 py-0.5 h-fit whitespace-nowrap text-white"
+                      style={{ backgroundColor: color }}
+                    >
                       {code.replace('PE.', '')}
                     </span>
                     <span className="text-gray-600">

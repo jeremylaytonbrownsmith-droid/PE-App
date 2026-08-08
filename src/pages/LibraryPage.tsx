@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Search, Accessibility, ArrowRight } from 'lucide-react';
+import { ScrollReveal } from '../components/ui/ScrollReveal';
 import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
 import { ALL_GRADES, gradeLabel, type Grade } from '../types/common';
@@ -125,8 +126,10 @@ export function LibraryPage() {
       {tab === 'lessons' ? (
         filteredLessons.length ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredLessons.map((lesson) => (
-              <LessonCard key={lesson.id} lesson={lesson} />
+            {filteredLessons.map((lesson, i) => (
+              <ScrollReveal key={lesson.id} index={i % 9}>
+                <LessonCard lesson={lesson} />
+              </ScrollReveal>
             ))}
           </div>
         ) : (

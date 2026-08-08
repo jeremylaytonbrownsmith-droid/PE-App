@@ -4,6 +4,7 @@ export interface PacingWeek {
   unit?: string;
   lessonId?: string;
   notes?: string;
+  completed?: boolean;
 }
 
 export interface PacingGuide {

@@ -9,6 +9,14 @@ export const STRAND_LABEL: Record<Strand, string> = {
   PR: 'Personal/Social Responsibility',
 };
 
+/** A stable color per strand, used for chips/borders wherever standards are shown. */
+export const STRAND_COLOR: Record<Strand, string> = {
+  MS: '#e63946',
+  MC: '#457b9d',
+  HF: '#2a9d8f',
+  PR: '#f4a261',
+};
+
 interface StandardEntry {
   code: string;
   description: string;
