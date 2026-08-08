@@ -60,6 +60,8 @@ export interface Lesson {
   closure: string[];
   needsMusic?: boolean;
   diagramNotes?: string;
+  /** Selects a data-driven inline SVG to accompany diagramNotes - no external images. */
+  diagramType?: 'goals' | 'court' | 'endzone' | 'stations';
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
   crossCurricular?: CrossCurricularLink[];

@@ -44,6 +44,7 @@ export const SEED_LESSONS: Lesson[] = [
     ],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Gym rectangle with WALL at top and STAGE at bottom. 4 goals (blue U-shapes) on the perimeter, teacher in the center. Two games run at the same time (left side & right side). Label teams Team A/B on the left, Team C/D on the right.',
+    diagramType: 'goals',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'invasion'),
     subFriendly: true,
     accommodations: [
@@ -140,6 +141,7 @@ export const SEED_LESSONS: Lesson[] = [
     ],
     closure: STANDARD_CLOSURE,
     diagramNotes: '2 jump ropes on the floor as net lines, 4 teams total (2 per court), one team on each side of the rope. Two games run at the same time.',
+    diagramType: 'court',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'net-field'),
     subFriendly: true,
     accommodations: [
@@ -238,6 +240,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Knockout', description: 'A quick-elimination shooting game at one hoop if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: '4 hoop/target stations around the gym perimeter, teacher in the center. Two 3v3 games run at the same time (left side & right side).',
+    diagramType: 'goals',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'invasion'),
     accommodations: [
       { category: 'mobility', note: 'Lower the target further or allow shooting from a seated position/wheelchair; a ramp can help release the ball with more distance.' },
@@ -344,6 +347,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Quarterback Challenge', description: 'An accuracy contest throwing at targets if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Two end zones marked with cones on each end of the gym, teacher at midfield. Students split into throwing/catching teams on each half.',
+    diagramType: 'endzone',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'net-field'),
     subFriendly: true,
     accommodations: [
@@ -456,6 +460,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Beat Your Best', description: 'Repeat a favorite station and try to improve if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: '6-8 stations arranged in a circuit around the gym perimeter. Teacher calls out rotation time from the center.',
+    diagramType: 'stations',
     standardsByGrade: fitnessStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [
@@ -508,6 +513,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Scoring Streaks', description: 'See how many goals your team can score in a row if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: '4 goals on the perimeter, teacher in the center, same layout as the Soccer unit. Two games run at the same time.',
+    diagramType: 'goals',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'invasion'),
     accommodations: [
       { category: 'mobility', note: 'Let the student play from a seated position with a shorter stick, or serve as a stationary goalie who can use hands.' },
@@ -558,6 +564,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Rally Counting Challenge', description: 'How many hits in a row can your pair get? Try to beat your best.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: '2-4 short courts using jump ropes as net lines, similar to the Volleyball unit.',
+    diagramType: 'court',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'net-field'),
     accommodations: [
       { category: 'mobility', note: 'Use a lighter paddle or a hand paddle (no handle) if gripping is difficult, and allow the student to play seated.' },
@@ -607,6 +614,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Disc Golf Challenge', description: 'Throw at target stations around the gym if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Two end zones marked with cones, similar setup to the Football Throw & Catch unit.',
+    diagramType: 'endzone',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'net-field'),
     subFriendly: true,
     accommodations: [
@@ -659,6 +667,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Field Day Challenge', description: 'Try to beat your own personal best at any station if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Stations set up around the gym perimeter (sprint lane, jump zone, throw zone, relay lane). Teacher rotates groups through each station.',
+    diagramType: 'stations',
     standardsByGrade: mergeStandards(locomotorStandards(ALL_GRADES), manipulativeSkillStandards(ALL_GRADES, 'net-field')),
     accommodations: [
       { category: 'mobility', note: 'Every station has a seated or wheelchair version - seated throws for distance, a wheelchair "race" lane, and a partner-assisted long jump attempt.' },
@@ -709,6 +718,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Showcase', description: 'Groups perform their sequence for the class if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Mats spread out with space between them, one student per mat/station at a time. Teacher circulates to spot and coach.',
+    diagramType: 'stations',
     standardsByGrade: locomotorStandards(ALL_GRADES),
     accommodations: [
       { category: 'mobility', note: 'Offer seated balance and stretching versions of each station; a student using a wheelchair can practice upper-body balance/weight transfer instead of floor rolls.' },
@@ -802,6 +812,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Beat Your Group’s Best', description: 'Repeat a favorite challenge and try to improve if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Stations spread across the gym, small groups of four or less rotate through together.',
+    diagramType: 'stations',
     standardsByGrade: cooperativeStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [
@@ -905,6 +916,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Scooter Tag', description: 'Gentle, seated tag with a designated safe zone, if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Cone course laid out across the gym floor, relay lanes marked with poly spots.',
+    diagramType: 'stations',
     standardsByGrade: locomotorStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [
@@ -957,6 +969,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Around the World', description: 'Scoop and pass the ball around a circle if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: '4 goals on the perimeter, teacher in the center, same layout as the Soccer and Floor Hockey units.',
+    diagramType: 'goals',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'invasion'),
     accommodations: [
       { category: 'mobility', note: 'Let the student use a plastic scoop/catch toy (already the K-1 modification) regardless of grade if a full stick is hard to control, and allow play from a seated position.' },
@@ -1305,6 +1318,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Musical Hoops Replay', description: 'One more round of Musical Hoops if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Hoops and cones spread out with room to move between stations.',
+    diagramType: 'stations',
     standardsByGrade: locomotorStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [

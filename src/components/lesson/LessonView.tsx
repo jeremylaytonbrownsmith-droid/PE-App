@@ -16,6 +16,7 @@ import { NCStandardsPanel } from './NCStandardsPanel';
 import { AdaptationsPanel } from './AdaptationsPanel';
 import { CrossCurricularPanel } from './CrossCurricularPanel';
 import { AssessmentPanel } from './AssessmentPanel';
+import { DiagramSVG } from './DiagramSVG';
 
 interface LessonViewProps {
   lesson: Lesson;
@@ -140,6 +141,7 @@ export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
       {lesson.diagramNotes && (
         <section className="space-y-1">
           <h2 className="text-lg font-semibold border-b pb-1">Setup / Diagram Notes</h2>
+          {lesson.diagramType && <DiagramSVG variant={lesson.diagramType} />}
           <p className="text-sm text-gray-700">{lesson.diagramNotes}</p>
         </section>
       )}

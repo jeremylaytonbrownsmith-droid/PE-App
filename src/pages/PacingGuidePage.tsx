@@ -67,6 +67,29 @@ export function PacingGuidePage() {
         </p>
       </div>
 
+      <div className="no-print space-y-1.5">
+        <p className="text-xs text-gray-400">Tap a week to mark it taught - scroll for the whole year.</p>
+        <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 md:-mx-8 md:px-8">
+          {guide.weeks.map((week) => (
+            <button
+              key={week.weekNumber}
+              onClick={() => updateWeek(week.weekNumber, { completed: !week.completed })}
+              className={`shrink-0 snap-start w-32 rounded-xl border p-2.5 text-left transition-colors ${
+                week.completed ? 'border-brand-400 bg-brand-50' : 'border-gray-200 bg-white'
+              }`}
+            >
+              <p className="text-xs font-semibold text-gray-500">
+                Wk {week.weekNumber} · {formatWeekDate(week.startDate)}
+              </p>
+              <p className="text-sm font-medium text-gray-900 truncate mt-0.5">{week.unit || '—'}</p>
+              <p className={`text-xs mt-1 ${week.completed ? 'text-brand-700 font-medium' : 'text-gray-400'}`}>
+                {week.completed ? '✓ Taught' : 'Not yet'}
+              </p>
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
         <table className="w-full text-sm border-collapse">
           <thead>
