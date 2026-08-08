@@ -1,0 +1,147 @@
+import type { Lesson } from '../types/lesson';
+import { STANDARD_ARRIVAL_SETUP, STANDARD_CLOSURE } from '../types/lesson';
+
+const SEEDED_AT = 1_700_000_000_000;
+
+export const SEED_LESSONS: Lesson[] = [
+  {
+    id: 'lesson-soccer-goal-games',
+    title: 'Soccer / Handball Goal Games',
+    unit: 'Soccer',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'full',
+    equipment: [
+      { id: 'eq-1', name: 'Soft gator balls', warning: 'We are NOT using regular soccer balls. Use SOFT GATOR BALLS only.' },
+      { id: 'eq-2', name: '4 blue mats', note: 'Corners turned up to form goals. Two mats together make a larger goal.' },
+      { id: 'eq-3', name: '8 cones', note: 'Set up with a ball at each for skill stations.' },
+      { id: 'eq-4', name: 'Pump', note: 'There is a pump inside the cart if the balls go flat.' },
+    ],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K', '1'], note: 'Simpler rules, more demonstration. Play in smaller groups with a helper goalie.' },
+      { id: 'gm-2', grades: ['2', '3', '4', '5'], note: 'Can handle full 4-goal competitive small-sided games with team rotation.' },
+    ],
+    techniqueCues: ['Use the inside of your foot to pass.', 'Small touches to dribble - keep the ball close.', 'Keep your eyes up to see the field.'],
+    numberOneRule: 'No slide tackles and no kicking at ankles - always play the ball, not the player.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-super-chicken',
+    warmUpMinutes: 10,
+    mainActivities: [
+      { id: 'ma-1', name: 'Dribbling stations', description: 'Students rotate through 8 cone stations dribbling around cones in groups of four or less.', minutes: 5 },
+      { id: 'ma-2', name: 'Goalie rules & setup', description: 'Explain the 4-goal setup and goalie rules: goalies CAN use hands or feet to block, and if a goalie catches the ball they hand it to a teammate.', minutes: 3 },
+      { id: 'ma-3', name: '4-goal small-sided games', description: 'Play for a couple minutes, then rotate teams. Rotate goalies every couple minutes so everyone gets a turn.', minutes: 15 },
+    ],
+    optionalActivities: [
+      { id: 'oa-1', name: '6-goal variation', description: 'There is an extra set of mats in the middle if you need 6 goals rather than 4. This helps keep the numbers lower and gives kids more activity.', minutes: 5 },
+    ],
+    closure: STANDARD_CLOSURE,
+    diagramNotes: 'Gym rectangle with WALL at top and STAGE at bottom. 4 goals (blue U-shapes) on the perimeter, teacher in the center. Two games run at the same time (left side & right side). Label teams Team A/B on the left, Team C/D on the right.',
+    tags: ['soccer', 'handball', 'paddle soccer', 'goal games', 'full gym'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+  {
+    id: 'lesson-jump-rope',
+    title: 'Jump Rope',
+    unit: 'Jump Rope',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'full',
+    equipment: [
+      { id: 'eq-1', name: 'Jump ropes (assorted lengths)', note: 'Longest: Red/White/Blue, Black/Green. Medium: Blue/White, Yellow/White, Dark Purple/White. Shortest (K): Red/White, Blue/Red.' },
+      { id: 'eq-2', name: 'Hula hoops', note: 'Used as rest zones during the warm-up.' },
+      { id: 'eq-3', name: 'Pool noodles', note: 'For the Jump Tag warm-up game.' },
+    ],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K'], note: 'Use the shortest ropes (Red/White, Blue/Red). Keep goals simple: "Can you get 5? Can you get 10?"' },
+      { id: 'gm-2', grades: ['1'], note: 'Use shorter/medium ropes and simpler challenge goals than 2nd-5th.' },
+    ],
+    techniqueCues: ['TURN it.', 'SEE it.', 'JUMP it.'],
+    numberOneRule: 'Keep your rope in your own personal space - don’t swing it near others.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-jump-tag',
+    warmUpMinutes: 10,
+    mainActivities: [
+      { id: 'ma-1', name: 'Rope matching & basic turning', description: 'Match each student to the right rope length, then practice the 3-step cue: TURN it, SEE it, JUMP it.', minutes: 5 },
+      { id: 'ma-2', name: 'Practice cycle', description: 'Practice (2 minutes) -> Break -> Challenge -> Repeat.', minutes: 10 },
+      { id: 'ma-3', name: 'Challenge round', description: 'Draw a number with your rope. Draw a letter with your rope. Draw the first letter of your best friend’s name. Draw the first letter of your mom or dad’s name.', minutes: 8 },
+    ],
+    optionalActivities: [
+      { id: 'oa-1', name: 'Group challenge: Make a word!', description: 'In groups of four or less, use ropes to form the letters of a word together.', minutes: 5 },
+    ],
+    closure: STANDARD_CLOSURE,
+    tags: ['jump rope', 'full gym'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+  {
+    id: 'lesson-volleyball',
+    title: 'Volleyball',
+    unit: 'Volleyball',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'full',
+    equipment: [
+      { id: 'eq-1', name: '2 jump ropes', note: 'Laid on the floor as "net" lines.' },
+      { id: 'eq-2', name: 'Soft volleyball trainer balls' },
+    ],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K', '1'], note: 'Use "Keep It Up" instead of competitive games: goal of 10 touches before the ball hits the ground. Challenge: can you beat 10? Try 15 or 20!' },
+    ],
+    techniqueCues: [
+      'BUMP: arms together, hit with your forearms, keep arms straight.',
+      'SET: hands above your head in a triangle, push with your fingertips.',
+      'SERVE: hold the ball in one hand, hit it with the other hand.',
+    ],
+    numberOneRule: 'Call the ball loudly before you hit it so teammates don’t collide.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-blob-tag',
+    warmUpMinutes: 10,
+    mainActivities: [
+      { id: 'ma-1', name: 'Skill introduction', description: 'Demonstrate and practice bump, set, and serve with a partner in groups of four or less.', minutes: 10 },
+      { id: 'ma-2', name: '4-team court games', description: 'Set up 2 courts using jump ropes as net lines, 2 teams per court. Rotate teams every couple minutes.', minutes: 15 },
+    ],
+    optionalActivities: [
+      { id: 'oa-1', name: 'Keep It Up challenge', description: 'Goal: 10 touches before the ball hits the ground. Challenge: can you beat 10? Try 15 or 20!', minutes: 5 },
+    ],
+    closure: STANDARD_CLOSURE,
+    diagramNotes: '2 jump ropes on the floor as net lines, 4 teams total (2 per court), one team on each side of the rope. Two games run at the same time.',
+    tags: ['volleyball', 'full gym'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+  {
+    id: 'lesson-games-movement-half-gym',
+    title: 'Games & Movement',
+    unit: 'Games & Movement',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'half',
+    halfGymReason: 'The stage/other half of the gym is in use for a school event or rehearsal.',
+    equipment: [
+      { id: 'eq-1', name: 'Hula hoops' },
+      { id: 'eq-2', name: 'Cones', note: 'Used to label the four corners for Four Corners.' },
+    ],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K'], note: 'Teacher leads Simon Says.' },
+      { id: 'gm-2', grades: ['1', '2', '3', '4', '5'], note: 'A student leads Simon Says.' },
+    ],
+    techniqueCues: [],
+    numberOneRule: 'Stay aware of the smaller space - no running through the middle where others are playing.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-non-tag-small-space',
+    warmUpMinutes: 5,
+    mainActivities: [
+      { id: 'ma-1', name: 'Simon Says', description: 'Kindergarten: teacher leads. 1st-5th grade: a student leads.', minutes: 8 },
+      { id: 'ma-2', name: 'Four Corners', description: 'Label corners 1-4. "It" calls a number, and that corner sits out for the round.', minutes: 8 },
+      { id: 'ma-3', name: 'Musical Hoops', description: 'Multiple students can share a hoop when the music stops - no one is ever fully eliminated.', minutes: 8 },
+    ],
+    optionalActivities: [
+      { id: 'oa-1', name: 'Rock Paper Scissors Tournament', description: '4 lines of hoops, hop through, play RPS when meeting in the middle.', minutes: 8 },
+    ],
+    closure: STANDARD_CLOSURE,
+    tags: ['games', 'movement', 'half gym', 'small space'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+];

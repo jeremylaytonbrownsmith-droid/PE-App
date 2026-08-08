@@ -1,0 +1,125 @@
+import type { WarmUp } from '../types/warmup';
+import { HULA_HOOP_REST_ZONE_RULE } from '../types/warmup';
+
+export const SEED_WARMUPS: WarmUp[] = [
+  {
+    id: 'warmup-super-chicken',
+    name: 'Super Chicken Freeze Tag',
+    type: 'tag',
+    description:
+      'A freeze tag variant with two roles: Tigers freeze players, Super Chickens unfreeze them. Keeps everyone moving and gives kids a chance to help each other out.',
+    rules: [
+      '2 Tigers (taggers) and 2 Super Chickens (unfreezers) are chosen to start.',
+      'Tagged players freeze in place. A Super Chicken tags a frozen player to unfreeze them.',
+      'The Super Chicken role passes to the student who was just unfrozen.',
+    ],
+    restZoneRule: HULA_HOOP_REST_ZONE_RULE,
+    minGymSpace: 'full',
+    suggestedMinutes: 10,
+    reminderQuote: 'Pass the chicken! We want to help as many people as we can!',
+    source: 'seed',
+  },
+  {
+    id: 'warmup-jump-tag',
+    name: 'Jump Tag',
+    type: 'tag',
+    description:
+      'A tag game for the Jump Rope unit using pool noodles instead of hands. Great lead-in for jumping practice.',
+    rules: [
+      '3 taggers each hold a pool noodle.',
+      'Noodles stay on the ground at ALL times - taggers slide the noodle to touch a student’s foot.',
+      'Students can jump over noodles to avoid being tagged.',
+      'If tagged: freeze, then call "Jump off!" - the student jumps 5 times in place, then rejoins.',
+    ],
+    restZoneRule: HULA_HOOP_REST_ZONE_RULE,
+    minGymSpace: 'full',
+    suggestedMinutes: 10,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-blob-tag',
+    name: 'Blob Tag',
+    type: 'tag',
+    description:
+      'A growing-group tag game. Great warm-up before partner or team activities like volleyball since it gets kids used to moving together.',
+    rules: [
+      '2 students start holding hands - this is "the blob."',
+      'Tagged students join the blob by holding hands. The blob must stay connected as it moves.',
+      'If the blob grows to 8 or more, it can split into two smaller blobs.',
+    ],
+    restZoneRule: HULA_HOOP_REST_ZONE_RULE,
+    minGymSpace: 'full',
+    suggestedMinutes: 10,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-non-tag-small-space',
+    name: 'Non-Tag Warm-Up (Small Space)',
+    type: 'non-tag',
+    description: 'A personal-space warm-up for when gym space is limited and tag games would be too crowded.',
+    rules: [
+      'Running in place: 3 sets x 30 seconds.',
+      'Push-ups: 3 sets x 10 seconds.',
+      'Both are done in personal space - no need to move around the gym.',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 5,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-simon-says',
+    name: 'Simon Says',
+    type: 'small-space',
+    description: 'Classic Simon Says, scaled by grade level for leadership practice.',
+    rules: [
+      'Kindergarten: teacher leads the game.',
+      '1st-5th grade: a student leads the game.',
+      'Only follow instructions that start with "Simon says" - otherwise, freeze!',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-four-corners',
+    name: 'Four Corners',
+    type: 'small-space',
+    description: 'A quiet, low-space elimination game that works well in a half gym.',
+    rules: [
+      'Label each corner of the space 1, 2, 3, and 4.',
+      'One student is "It" and closes their eyes while everyone picks a corner.',
+      '"It" calls out a number - that corner sits out for the round.',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-musical-hoops',
+    name: 'Musical Hoops',
+    type: 'small-space',
+    description: 'A musical-chairs style game using hula hoops - multiple students can share a hoop, so no one is ever fully eliminated.',
+    rules: [
+      'Students move around the hoops while music plays.',
+      'When the music stops, everyone finds a hoop to stand in.',
+      'Multiple students can share a hoop, so keep it friendly and inclusive.',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
+  {
+    id: 'warmup-rps-tournament',
+    name: 'Rock Paper Scissors Tournament',
+    type: 'small-space',
+    description: 'A hopping + Rock Paper Scissors bracket game for small spaces.',
+    rules: [
+      'Set up 4 lines of hoops across the space.',
+      'Students hop through their line of hoops toward the middle.',
+      'When two students meet in the middle, they play Rock Paper Scissors - the winner continues on, the other joins the back of a line.',
+    ],
+    minGymSpace: 'half',
+    suggestedMinutes: 10,
+    source: 'seed',
+  },
+];
