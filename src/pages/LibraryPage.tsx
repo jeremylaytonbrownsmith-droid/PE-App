@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Search } from 'lucide-react';
+import { Plus, Search, Accessibility, ArrowRight } from 'lucide-react';
 import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
 import { ALL_GRADES, gradeLabel, type Grade } from '../types/common';
@@ -72,6 +72,13 @@ export function LibraryPage() {
           )
         }
       />
+
+      <Link
+        to="/adaptive-pe"
+        className="inline-flex items-center gap-1.5 text-sm text-brand-700 hover:underline"
+      >
+        <Accessibility size={15} /> Inclusion & Adaptive PE Toolkit <ArrowRight size={13} />
+      </Link>
 
       <div className="flex gap-1 border-b border-gray-200">
         <TabButton active={tab === 'lessons'} onClick={() => setTab('lessons')} label={`Lessons (${lessons.length})`} />

@@ -21,3 +21,14 @@ export type BoxColor = 'green' | 'yellow' | 'orange' | 'blue' | 'purple' | 'red'
 export type DayLetter = 'A' | 'B' | 'C' | 'D';
 
 export const DAY_LETTERS: DayLetter[] = ['A', 'B', 'C', 'D'];
+
+export type AccommodationCategory = 'mobility' | 'visual' | 'sensory' | 'cognitive';
+
+export const ACCOMMODATION_CATEGORIES: AccommodationCategory[] = ['mobility', 'visual', 'sensory', 'cognitive'];
+
+export const ACCOMMODATION_LABEL: Record<AccommodationCategory, string> = {
+  mobility: 'Physical / Mobility',
+  visual: 'Visual Impairment',
+  sensory: 'Autism / Sensory & Behavioral',
+  cognitive: 'Intellectual / Cognitive',
+};

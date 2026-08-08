@@ -13,6 +13,7 @@ import { ScheduleTable } from './ScheduleTable';
 import { HalfGymAlert } from './HalfGymAlert';
 import { SpecialCircumstanceNote } from './SpecialCircumstanceNote';
 import { NCStandardsPanel } from './NCStandardsPanel';
+import { AdaptationsPanel } from './AdaptationsPanel';
 
 interface LessonViewProps {
   lesson: Lesson;
@@ -63,6 +64,8 @@ export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
       </section>
 
       <NCStandardsPanel standards={lesson.standardsByGrade} />
+
+      <AdaptationsPanel accommodations={lesson.accommodations} />
 
       <EquipmentList items={lesson.equipment} />
 

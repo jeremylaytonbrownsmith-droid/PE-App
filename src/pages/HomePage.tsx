@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Wand2, CalendarRange, Dumbbell } from 'lucide-react';
+import { BookOpen, Wand2, CalendarRange, Accessibility } from 'lucide-react';
 import { listLessons } from '../lib/lessonStore';
 import { listWarmUps } from '../lib/warmupStore';
 import { listPacingGuides } from '../lib/pacingStore';
@@ -51,10 +51,10 @@ export function HomePage() {
           description="Lay out your whole year, week by week, grade by grade."
         />
         <QuickLink
-          to="/library"
-          icon={Dumbbell}
-          title="Warm-Ups & Games"
-          description="Tag games, small-space games, and rest-zone rules ready to use."
+          to="/adaptive-pe"
+          icon={Accessibility}
+          title="Inclusion & Adaptive PE Toolkit"
+          description="Strategies and equipment ideas for including students with disabilities in every unit."
         />
       </div>
     </div>

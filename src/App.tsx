@@ -10,6 +10,7 @@ import { GeneratorPage } from './pages/GeneratorPage';
 import { PacingListPage } from './pages/PacingListPage';
 import { PacingGuidePage } from './pages/PacingGuidePage';
 import { SettingsPage } from './pages/SettingsPage';
+import { AdaptivePEPage } from './pages/AdaptivePEPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="pacing" element={<PacingListPage />} />
           <Route path="pacing/:id" element={<PacingGuidePage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="adaptive-pe" element={<AdaptivePEPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

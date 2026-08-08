@@ -1,9 +1,14 @@
-import type { Grade, GymSpace } from './common';
+import type { AccommodationCategory, Grade, GymSpace } from './common';
 
 export interface StandardsForGrade {
   grade: Grade;
   /** Full NC standard codes, e.g. "PE.3.MS.1.2" */
   codes: string[];
+}
+
+export interface Accommodation {
+  category: AccommodationCategory;
+  note: string;
 }
 
 export interface TimedActivity {
@@ -51,6 +56,7 @@ export interface Lesson {
   needsMusic?: boolean;
   diagramNotes?: string;
   standardsByGrade?: StandardsForGrade[];
+  accommodations?: Accommodation[];
   tags: string[];
   source: 'seed' | 'custom';
   createdAt: number;
