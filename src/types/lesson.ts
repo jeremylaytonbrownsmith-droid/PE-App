@@ -57,6 +57,13 @@ export interface Lesson {
   diagramNotes?: string;
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
+  /**
+   * True if this lesson needs no PE-specific coaching, skill feedback, or specialized safety
+   * supervision - safe to hand to a substitute with the printed plan and nothing else.
+   * Skill/equipment-heavy units (stick sports, racket skills, spotting-based gymnastics,
+   * multi-station meets) are left false/undefined since they're genuinely hard to run cold.
+   */
+  subFriendly?: boolean;
   tags: string[];
   source: 'seed' | 'custom';
   createdAt: number;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BadgeCheck } from 'lucide-react';
+import { BadgeCheck, GraduationCap } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import { gradeLabel } from '../../types/common';
 
@@ -11,9 +11,14 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
     >
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold text-gray-900">{lesson.title}</h3>
-        {lesson.gymSpace === 'half' && (
-          <span className="shrink-0 rounded-full bg-red-100 text-red-700 text-xs px-2 py-0.5">Half Gym</span>
-        )}
+        <div className="flex flex-col items-end gap-1 shrink-0">
+          {lesson.gymSpace === 'half' && (
+            <span className="rounded-full bg-red-100 text-red-700 text-xs px-2 py-0.5">Half Gym</span>
+          )}
+          {lesson.subFriendly && (
+            <span className="rounded-full bg-brand-100 text-brand-700 text-xs px-2 py-0.5">Sub-Friendly</span>
+          )}
+        </div>
       </div>
       <p className="text-sm text-brand-700 font-medium mt-0.5">{lesson.unit}</p>
       <p className="text-xs text-gray-500 mt-2">
@@ -22,6 +27,11 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
       {lesson.standardsByGrade && lesson.standardsByGrade.length > 0 && (
         <p className="flex items-center gap-1 text-xs text-brand-700 mt-1.5">
           <BadgeCheck size={13} /> NC Standards Aligned
+        </p>
+      )}
+      {lesson.accommodations && lesson.accommodations.length > 0 && (
+        <p className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+          <GraduationCap size={13} /> Adaptive PE notes included
         </p>
       )}
       {lesson.tags.length > 0 && (

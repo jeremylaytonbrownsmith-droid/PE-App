@@ -23,6 +23,7 @@ export function GeneratorPage() {
   const [warmUp, setWarmUp] = useState<WarmUp | undefined>(undefined);
   const [schedule, setSchedule] = useState<ScheduleSettings | null>(null);
   const [specialNote, setSpecialNote] = useState('');
+  const [subFriendlyOnly, setSubFriendlyOnly] = useState(true);
 
   useEffect(() => {
     listLessons().then(setLessons);
@@ -33,9 +34,10 @@ export function GeneratorPage() {
     return lessons.filter((lesson) => {
       const matchesGrade = grade === 'all' || lesson.gradeLevels.includes(grade);
       const matchesGym = gymSpace === 'all' || lesson.gymSpace === gymSpace;
-      return matchesGrade && matchesGym;
+      const matchesSubFriendly = !subFriendlyOnly || lesson.subFriendly;
+      return matchesGrade && matchesGym && matchesSubFriendly;
     });
-  }, [lessons, grade, gymSpace]);
+  }, [lessons, grade, gymSpace, subFriendlyOnly]);
 
   function pick(lesson: Lesson) {
     setSelected(lesson);
@@ -80,6 +82,11 @@ export function GeneratorPage() {
             </select>
           </label>
         </div>
+        <label className="flex items-center gap-2 text-sm text-gray-700">
+          <input type="checkbox" checked={subFriendlyOnly} onChange={(e) => setSubFriendlyOnly(e.target.checked)} />
+          Sub-friendly only
+          <span className="text-gray-400">- hide units that need real PE coaching/safety experience to run</span>
+        </label>
       </div>
 
       {!selected ? (
@@ -92,7 +99,14 @@ export function GeneratorPage() {
             ))}
           </div>
         ) : (
-          <EmptyState title="No lessons match" description="Try a different grade or gym space, or add a lesson to your library." />
+          <EmptyState
+            title="No lessons match"
+            description={
+              subFriendlyOnly
+                ? 'Try a different grade/gym space, or turn off "Sub-friendly only" to see every unit in the library.'
+                : 'Try a different grade or gym space, or add a lesson to your library.'
+            }
+          />
         )
       ) : (
         <div className="space-y-4">
@@ -136,7 +150,12 @@ export function GeneratorPage() {
 function LessonCardStatic({ lesson }: { lesson: Lesson }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 hover:border-brand-300 hover:shadow-md transition h-full">
-      <h3 className="font-semibold text-gray-900">{lesson.title}</h3>
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="font-semibold text-gray-900">{lesson.title}</h3>
+        {lesson.subFriendly && (
+          <span className="shrink-0 rounded-full bg-brand-100 text-brand-700 text-xs px-2 py-0.5">Sub-Friendly</span>
+        )}
+      </div>
       <p className="text-sm text-brand-700 font-medium mt-0.5">{lesson.unit}</p>
       <p className="text-xs text-gray-500 mt-2">{lesson.gradeLevels.map(gradeLabel).join(', ') || 'All grades'}</p>
     </div>

@@ -1,5 +1,16 @@
-import { STORE, getAll, getOne, putOne, deleteOne, newId } from './db';
+import { STORE, getAll, getOne, putOne, putMany, deleteOne, newId } from './db';
 import type { PacingGuide, PacingWeek } from '../types/pacing';
+import { SEED_PACING_GUIDES } from '../data/seedPacingGuides';
+
+/** Adds the sample pacing guide the first time, without touching one a teacher has already edited. */
+export async function ensurePacingGuidesSeeded(): Promise<void> {
+  const existing = await getAll(STORE.pacingGuides);
+  const existingIds = new Set(existing.map((g) => g.id));
+  const missing = SEED_PACING_GUIDES.filter((g) => !existingIds.has(g.id));
+  if (missing.length) {
+    await putMany(STORE.pacingGuides, missing);
+  }
+}
 
 export async function listPacingGuides(): Promise<PacingGuide[]> {
   const guides = await getAll(STORE.pacingGuides);
