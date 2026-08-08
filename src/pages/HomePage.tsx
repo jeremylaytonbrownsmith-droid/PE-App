@@ -62,23 +62,23 @@ export function HomePage() {
         </ScrollReveal>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <ScrollReveal index={0}>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 items-stretch">
+        <ScrollReveal index={0} className="h-full">
           <StatCard label="Lessons" value={counts.lessons} />
         </ScrollReveal>
-        <ScrollReveal index={1}>
+        <ScrollReveal index={1} className="h-full">
           <StatCard label="Warm-Ups" value={counts.warmups} />
         </ScrollReveal>
-        <ScrollReveal index={2}>
+        <ScrollReveal index={2} className="h-full">
           <StatCard label="Pacing Guides" value={counts.pacingGuides} />
         </ScrollReveal>
-        <ScrollReveal index={3}>
+        <ScrollReveal index={3} className="h-full">
           <StatCard label="Storage" value="On this device" isText />
         </ScrollReveal>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <ScrollReveal index={0}>
+      <div className="grid sm:grid-cols-2 gap-4 items-stretch">
+        <ScrollReveal index={0} className="h-full">
           <QuickLink
             to="/generator"
             icon={Wand2}
@@ -86,7 +86,7 @@ export function HomePage() {
             description="Pick a unit, grade, and gym space - get a ready-to-print sub lesson in seconds."
           />
         </ScrollReveal>
-        <ScrollReveal index={1}>
+        <ScrollReveal index={1} className="h-full">
           <QuickLink
             to="/library"
             icon={BookOpen}
@@ -94,7 +94,7 @@ export function HomePage() {
             description="Full lesson plans for soccer, jump rope, volleyball, and more."
           />
         </ScrollReveal>
-        <ScrollReveal index={2}>
+        <ScrollReveal index={2} className="h-full">
           <QuickLink
             to="/pacing"
             icon={CalendarRange}
@@ -102,7 +102,7 @@ export function HomePage() {
             description="Lay out your whole year, week by week, grade by grade."
           />
         </ScrollReveal>
-        <ScrollReveal index={3}>
+        <ScrollReveal index={3} className="h-full">
           <QuickLink
             to="/adaptive-pe"
             icon={Accessibility}
@@ -117,7 +117,7 @@ export function HomePage() {
 
 function StatCard({ label, value, isText }: { label: string; value: number | string; isText?: boolean }) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4">
+    <div className="h-full flex flex-col justify-center rounded-xl border border-gray-200 bg-white p-4">
       <p className={isText ? 'text-sm font-semibold text-gray-700' : 'text-2xl font-bold text-brand-700'}>{value}</p>
       <p className="text-xs text-gray-500 mt-0.5">{label}</p>
     </div>
@@ -138,7 +138,7 @@ function QuickLink({
   return (
     <Link
       to={to}
-      className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-brand-300 hover:shadow-md transition"
+      className="h-full flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-brand-300 hover:shadow-md transition"
     >
       <span className="rounded-lg bg-brand-100 text-brand-700 p-2 shrink-0">
         <Icon size={20} />
