@@ -332,4 +332,22 @@ export const SEED_WARMUPS: WarmUp[] = [
     suggestedMinutes: 8,
     source: 'seed',
   },
+  {
+    id: 'warmup-dead-bugs',
+    name: 'Dead Bugs',
+    type: 'tag',
+    description:
+      'A cooperative tag game that mixes locomotor movement practice with teamwork - "bugs" can only be rescued when two students work together.',
+    rules: [
+      '2 "exterminators" each hold a pool noodle. Everyone else is a bug.',
+      'Bugs travel around using a called locomotor movement (skip, gallop, slide, or walk only - no running).',
+      'If an exterminator tags a bug, that bug lies on their back like a dead bug.',
+      'Two students must team up, roll a hula hoop over the dead bug, and help them stand back up to rejoin the game.',
+      'Switch exterminators every five minutes so everyone gets a turn.',
+    ],
+    restZoneRule: HULA_HOOP_REST_ZONE_RULE,
+    minGymSpace: 'full',
+    suggestedMinutes: 10,
+    source: 'seed',
+  },
 ];
