@@ -36,6 +36,32 @@ export function AssessmentPanel({ lesson }: { lesson: Lesson }) {
     <section className="space-y-3">
       <h2 className="text-lg font-semibold border-b pb-1">Quick Assessment Ideas</h2>
 
+      {lesson.customRubric && (
+        <div className="space-y-1.5">
+          <p className="text-sm font-semibold text-gray-800">{lesson.customRubric.title}</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-brand-100 text-left">
+                  <th className="border border-brand-200 px-2 py-1 w-12 text-center">Score</th>
+                  <th className="border border-brand-200 px-2 py-1 w-32">Level</th>
+                  <th className="border border-brand-200 px-2 py-1">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lesson.customRubric.levels.map((level) => (
+                  <tr key={level.score}>
+                    <td className="border border-brand-200 px-2 py-1 text-center font-semibold">{level.score}</td>
+                    <td className="border border-brand-200 px-2 py-1 font-semibold">{level.label}</td>
+                    <td className="border border-brand-200 px-2 py-1">{level.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {hasCues && (
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">

@@ -16,6 +16,17 @@ export interface CrossCurricularLink {
   connection: string;
 }
 
+export interface RubricLevel {
+  score: number;
+  label: string;
+  description: string;
+}
+
+export interface Rubric {
+  title: string;
+  levels: RubricLevel[];
+}
+
 export interface TimedActivity {
   id: string;
   name: string;
@@ -65,6 +76,7 @@ export interface Lesson {
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
   crossCurricular?: CrossCurricularLink[];
+  customRubric?: Rubric;
   /**
    * True if this lesson needs no PE-specific coaching, skill feedback, or specialized safety
    * supervision - safe to hand to a substitute with the printed plan and nothing else.

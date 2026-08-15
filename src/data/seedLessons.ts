@@ -9,6 +9,7 @@ import {
   cooperativeStandards,
   mergeStandards,
 } from '../lib/standardsPresets';
+import { LOCOMOTOR_SKILLS_RUBRIC } from './rubrics';
 
 const SEEDED_AT = 1_700_000_000_000;
 
@@ -202,6 +203,7 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'english', connection: 'Simon Says builds listening comprehension and following multi-step directions - the same skill used in reading comprehension.' },
       { subject: 'social-studies', connection: 'Talk about how playground games like these have been played by kids for generations, passed down without ever being written in a book.' },
     ],
+    customRubric: LOCOMOTOR_SKILLS_RUBRIC,
     tags: ['games', 'movement', 'half gym', 'small space'],
     source: 'seed',
     createdAt: SEEDED_AT,
@@ -437,6 +439,8 @@ export const SEED_LESSONS: Lesson[] = [
     techniqueCues: [
       'Move at your own pace - fitness is personal, not a competition.',
       'Breathe, and keep good form over speed.',
+      'Push-up: hands shoulder width, fingers point forward, keep your back straight! Modified - on knees or hold push-up position.',
+      'Crunch/sit-up: knees bent, hands above knees, exhale on the effort, pause, then lower with control.',
     ],
     numberOneRule: 'Land softly and keep control - no crashing into equipment or classmates at a station.',
     arrivalSetup: STANDARD_ARRIVAL_SETUP,
@@ -1503,6 +1507,141 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'social-studies', connection: 'Running is one of the oldest and most universal physical activities across cultures - the marathon itself comes from an ancient Greek running messenger.' },
     ],
     tags: ['running', 'fitness', 'track', 'laps', 'sub-friendly', 'full gym'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+  {
+    id: 'lesson-locomotor-relay-races',
+    title: 'Locomotor Relay Races',
+    unit: 'Locomotor Relay Races',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'full',
+    equipment: [{ id: 'eq-1', name: 'Cones', note: 'Used to mark the two lines students travel between.' }],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K', '1'], note: 'Use fewer movement types and more demonstration before each round.' },
+      { id: 'gm-2', grades: ['2', '3', '4', '5'], note: 'Work through the full movement list and rotate faster.' },
+    ],
+    techniqueCues: [],
+    numberOneRule: 'No sliding, and don’t touch the cones - if you’re doing a backwards movement, look over your shoulder first.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-super-chicken',
+    warmUpMinutes: 8,
+    mainActivities: [
+      {
+        id: 'ma-1',
+        name: 'Relay Team Setup',
+        description: 'Break students into 5-6 teams behind the starting line. Explain that today is all about trying lots of fun movements down and back.',
+        minutes: 5,
+      },
+      {
+        id: 'ma-2',
+        name: 'Movement Relay Rounds',
+        description:
+          'One at a time, each student travels from the starting line to the far line and back using the called movement, then the next teammate goes. Rotate through: power walking, skipping, galloping, hopping, sliding, walking backwards (look over your shoulder!), bear crawl, crab walk, giraffe walk (arms up like a neck), bird (flap your arms), high knees, zombie walk, air boxing, and running.',
+        minutes: 20,
+      },
+      {
+        id: 'ma-3',
+        name: 'Stretch Break in Line',
+        description: 'While waiting in line for their turn, students practice stretches called out by the teacher.',
+        minutes: 5,
+      },
+    ],
+    optionalActivities: [{ id: 'oa-1', name: 'Team Movement Vote', description: 'Let each team vote on their favorite movement from today and do one more round of it, if time allows.', minutes: 5 }],
+    closure: STANDARD_CLOSURE,
+    diagramNotes: 'Two lines of cones facing each other across the gym - teams line up behind one cone and travel to the opposite cone and back.',
+    standardsByGrade: locomotorStandards(ALL_GRADES),
+    subFriendly: true,
+    accommodations: [
+      { category: 'mobility', note: 'Every movement has a wheelchair or seated version - rolling/wheeling down and back works for power walking and running, and upper-body-only versions work for bear crawl, crab walk, and bird.' },
+      { category: 'visual', note: 'Use a guide rope along the lane or a sighted partner, and call out each movement clearly before the student’s turn.' },
+      { category: 'sensory', note: 'The waiting-in-line structure is naturally predictable - keep the same team order each round, and offer a hula hoop break spot if needed.' },
+      { category: 'cognitive', note: 'Demonstrate each movement right before that team’s turn, and stick with 3-4 movements in a row before introducing something new.' },
+    ],
+    crossCurricular: [
+      { subject: 'science', connection: 'Compare movements to how real animals move - a bear crawl mimics a bear’s gait, a crab walk mimics a crab’s sideways scuttle, a bird flap mimics wing movement.' },
+      { subject: 'english', connection: 'Practice descriptive action vocabulary (gallop, scuttle, stalk, flap) - can students describe how each animal movement looks in a full sentence?' },
+      { subject: 'math', connection: 'Count how many relay rounds each team completes, or time a full rotation and compare across teams.' },
+    ],
+    customRubric: LOCOMOTOR_SKILLS_RUBRIC,
+    tags: ['relay', 'locomotor movement', 'sub-friendly', 'full gym'],
+    source: 'seed',
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  },
+  {
+    id: 'lesson-pe-expectations-team-building',
+    title: 'PE Expectations & Team Building',
+    unit: 'PE Expectations & Team Building',
+    gradeLevels: ['K', '1', '2', '3', '4', '5'],
+    gymSpace: 'full',
+    equipment: [
+      { id: 'eq-1', name: 'Hula hoops', note: 'Used for the Hoop Builder challenge.' },
+      { id: 'eq-2', name: 'Poly spots', note: 'Used for Cross the River - each group needs one more spot than its number of students.' },
+    ],
+    gradeModifications: [
+      { id: 'gm-1', grades: ['K', '1'], note: 'Spend extra time on lining up and personal space before moving into team challenges. Keep Hoop Builder to Level 1-2.' },
+      { id: 'gm-2', grades: ['2', '3', '4', '5'], note: 'Move through the expectations talk more quickly and spend more time on Hoop Builder Levels 3-4 and Cross the River.' },
+    ],
+    techniqueCues: [],
+    numberOneRule: 'Don’t talk while the teacher is talking - every time we stop for quiet, we lose class time together.',
+    arrivalSetup: STANDARD_ARRIVAL_SETUP,
+    warmUpId: 'warmup-non-tag-small-space',
+    warmUpMinutes: 5,
+    mainActivities: [
+      {
+        id: 'ma-1',
+        name: 'Class Expectations Talk',
+        description:
+          'Introduce your class expectations framework - for example, four simple words like Self-control, Own your actions, Accept everyone, and Respect. Turn-and-talk: ask students for examples of what each one looks like in PE.',
+        minutes: 8,
+      },
+      {
+        id: 'ma-2',
+        name: 'Practice Lining Up & Personal Space',
+        description: 'Practice walking in and lining up on the line, and talk about what personal space looks like in the gym.',
+        minutes: 5,
+      },
+      {
+        id: 'ma-3',
+        name: 'Secret Handshake',
+        description:
+          'Pick two students to start. Each makes up a secret handshake with 3 distinct parts (e.g. high-five, fist bump, regular handshake) - give them 30 seconds to invent it. On "go," each teaches their handshake to one other person, who joins their team and stands up. Pairs then split up and each goes to invite someone else, teaching them the handshake to join. Keep going until everyone is standing and on a team. Count team sizes - the bigger team wins! Wrap up by talking about how everyone had to be invited, and had to learn and repeat the handshake to join.',
+        minutes: 10,
+      },
+      {
+        id: 'ma-4',
+        name: 'Hoop Builder Team Challenge',
+        description:
+          'Teams work together to build a "hoop castle" out of hula hoops on the center line. Level 1: build the castle. Level 2: build it, then everyone crawls through it. Level 3: build it, then work together to pick it up and move it from one blue line to the other without it falling apart (if it falls apart, start over!). Level 4: build a double-decker castle.',
+        minutes: 12,
+      },
+    ],
+    optionalActivities: [
+      {
+        id: 'oa-1',
+        name: 'Cross the River',
+        description:
+          'Teams of 4, 5, or 6 get one more poly spot than their group number. Using only those spots as stepping stones, the team must cross the "river" without anyone falling off. First team to reach the island wins, if time allows.',
+        minutes: 8,
+      },
+    ],
+    closure: STANDARD_CLOSURE,
+    standardsByGrade: cooperativeStandards(ALL_GRADES),
+    subFriendly: true,
+    accommodations: [
+      { category: 'mobility', note: 'Every activity already has a seated or wheelchair-friendly role - directing teammates, holding a hoop steady, or joining Secret Handshake with an adapted handshake gesture.' },
+      { category: 'visual', note: 'Pair with a peer buddy who narrates the group’s progress, and use brightly colored or textured hoops and poly spots.' },
+      { category: 'sensory', note: 'These are naturally cooperative, lower-chaos activities - a good fit as-is. Preview the day’s activities with a simple visual list.' },
+      { category: 'cognitive', note: 'Break each challenge into its simplest version first (Hoop Builder Level 1, a 3-spot river) before adding levels or complexity.' },
+    ],
+    crossCurricular: [
+      { subject: 'english', connection: 'Secret Handshake requires teaching a 3-step sequence to someone else - the same clear, ordered instructions used in how-to writing.' },
+      { subject: 'math', connection: 'Cross the River’s "one more spot than your group number" rule and counting Hoop Builder team sizes are both real counting and comparison practice.' },
+      { subject: 'social-studies', connection: 'Talk about classroom community and respect - how a group of individuals becomes a team that looks out for each other.' },
+    ],
+    tags: ['team building', 'cooperative games', 'beginning of year', 'expectations', 'sub-friendly', 'full gym'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
