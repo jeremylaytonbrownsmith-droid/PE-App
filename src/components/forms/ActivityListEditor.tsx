@@ -19,7 +19,7 @@ export function ActivityListEditor({ activities, onChange, showMinutes = true }:
         <div key={activity.id} className="rounded-lg border border-gray-200 p-3 space-y-2">
           <div className="flex gap-2">
             <input
-              className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium"
+              className="flex-1 min-w-0 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium"
               placeholder="Activity name"
               value={activity.name}
               onChange={(e) => update(activity.id, { name: e.target.value })}

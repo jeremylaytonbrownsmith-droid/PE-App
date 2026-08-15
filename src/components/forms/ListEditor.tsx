@@ -13,7 +13,7 @@ export function ListEditor({ items, onChange, placeholder = 'Add an item...', ad
       {items.map((item, i) => (
         <div key={i} className="flex gap-2">
           <input
-            className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
+            className="flex-1 min-w-0 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
             value={item}
             placeholder={placeholder}
             onChange={(e) => {

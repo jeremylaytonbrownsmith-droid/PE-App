@@ -15,7 +15,7 @@ export function GradeModEditor({ mods, onChange }: { mods: GradeModification[]; 
           <GradeSelector value={mod.grades} onChange={(grades) => update(mod.id, { grades })} />
           <div className="flex gap-2">
             <textarea
-              className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
+              className="flex-1 min-w-0 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
               placeholder="Modification note"
               rows={2}
               value={mod.note}

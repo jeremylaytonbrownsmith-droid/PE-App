@@ -13,7 +13,7 @@ export function EquipmentEditor({ items, onChange }: { items: EquipmentItem[]; o
         <div key={item.id} className="rounded-lg border border-gray-200 p-3 space-y-2">
           <div className="flex gap-2">
             <input
-              className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium"
+              className="flex-1 min-w-0 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium"
               placeholder="Equipment name"
               value={item.name}
               onChange={(e) => update(item.id, { name: e.target.value })}

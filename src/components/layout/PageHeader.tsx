@@ -53,7 +53,7 @@ export function PageHeader({ title, subtitle, back, actions }: PageHeaderProps) 
           </p>
         )}
       </div>
-      {actions && <div className="flex gap-2 shrink-0">{actions}</div>}
+      {actions && <div className="flex flex-wrap gap-2 shrink-0 w-full sm:w-auto">{actions}</div>}
     </div>
   );
 }

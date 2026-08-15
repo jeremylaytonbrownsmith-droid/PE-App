@@ -23,7 +23,7 @@ export function WarmUpPicker({ warmUpId, customName, customDescription, minutes,
     <div className="space-y-2">
       <div className="flex gap-2">
         <select
-          className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
+          className="flex-1 min-w-0 rounded-lg border border-gray-300 px-3 py-1.5 text-sm"
           value={warmUpId ?? ''}
           onChange={(e) => onChange({ warmUpId: e.target.value || undefined })}
         >
