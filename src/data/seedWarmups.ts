@@ -383,4 +383,20 @@ export const SEED_WARMUPS: WarmUp[] = [
     suggestedMinutes: 10,
     source: 'seed',
   },
+  {
+    id: 'warmup-scarf-partner-tag',
+    name: 'Scarf Partner Tag',
+    type: 'tag',
+    description: 'A partner warm-up that mixes tossing practice with a sprint-and-chase finish - a great lead-in for a juggling or scarf-skills lesson.',
+    rules: [
+      'Partner up - one scarf per pair, with an extra scarf tucked in a pocket or waistband as a backup.',
+      'While music plays, partners toss the scarf back and forth to each other.',
+      'When the music stops, whoever is holding the scarf turns and runs straight toward the wall.',
+      'The other partner chases and tries to tag them before they touch the wall.',
+      'Do a practice run first, emphasizing running straight to the wall so no one collides with another pair.',
+    ],
+    minGymSpace: 'full',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
 ];
