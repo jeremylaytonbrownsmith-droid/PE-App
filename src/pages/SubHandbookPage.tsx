@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Upload, Trash2, Download, ArrowRight } from 'lucide-react';
+import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert } from 'lucide-react';
 import type { SubHandbook, SubResource } from '../types/subHandbook';
 import type { PacingGuide } from '../types/pacing';
 import type { Lesson } from '../types/lesson';
@@ -56,11 +56,14 @@ export function SubHandbookPage() {
     .filter((w) => inRange(w.startDate, handbook.coverageStart, handbook.coverageEnd))
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
 
+  const isUnfilled =
+    !handbook.welcomeMessage && !handbook.importantContacts && !handbook.emergencyProcedures && !handbook.equipmentNotes && !handbook.coverageStart;
+
   return (
     <div className="space-y-8">
       <PageHeader
         title="Substitute Handbook"
-        subtitle="Everything a long-term substitute needs to pick up your PE classes with confidence."
+        subtitle="Everything a substitute needs to pick up your PE classes with confidence."
         actions={
           <>
             <PrintButton />
@@ -70,6 +73,14 @@ export function SubHandbookPage() {
           </>
         }
       />
+
+      {isUnfilled && (
+        <InfoBox color="orange" title="Set this up once, then forget about it" className="no-print">
+          Fill in the sections below - your welcome note, emergency procedures, and coverage dates. Once it's saved,
+          this becomes the one link you hand to any substitute: everything they need is on this single page, in the
+          order they need it.
+        </InfoBox>
+      )}
 
       <div className="rounded-xl border border-brand-200 bg-brand-50 p-4 space-y-2">
         <h2 className="font-semibold text-gray-900">Welcome Message</h2>
@@ -85,54 +96,70 @@ export function SubHandbookPage() {
         />
       </div>
 
-      <section className="space-y-3">
-        <h2 className="font-semibold text-gray-900">Every Class, Every Day</h2>
-        <p className="text-sm text-gray-500">
-          This routine is built into every single lesson in the library, so it never changes no matter what unit
-          you're teaching.
+      <section className="space-y-2">
+        <h2 className="flex items-center gap-1.5 font-semibold text-gray-900">
+          <ShieldAlert size={18} className="text-red-600" /> Important Contacts &amp; Emergency Procedures
+        </h2>
+        <p className="text-xs text-gray-500 no-print">
+          The first thing a substitute should read - who to call, and what to do for a fire drill, lockdown/intruder,
+          severe weather, or an injury.
         </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div className="rounded-xl border border-gray-200 bg-white p-4">
-            <p className="text-sm font-semibold text-gray-800 mb-1.5">Arrival and Setup</p>
-            <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
-              {STANDARD_ARRIVAL_SETUP.map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-xl border border-gray-200 bg-white p-4">
-            <p className="text-sm font-semibold text-gray-800 mb-1.5">Closure and Dismissal</p>
-            <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
-              {STANDARD_CLOSURE.map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-          </div>
+        <label className="text-sm space-y-1 block">
+          <span className="font-medium text-gray-700">Contacts (front office, nurse, PE department, behavior referral)</span>
+          <textarea
+            className="w-full rounded-lg border border-gray-300 px-3 py-2"
+            rows={3}
+            value={handbook.importantContacts}
+            onChange={(e) => setHandbook({ ...handbook, importantContacts: e.target.value })}
+          />
+        </label>
+        <label className="text-sm space-y-1 block">
+          <span className="font-medium text-gray-700">Emergency procedures (fire drill, lockdown/intruder, severe weather/tornado, injury)</span>
+          <textarea
+            className="w-full rounded-lg border border-gray-300 px-3 py-2"
+            rows={4}
+            value={handbook.emergencyProcedures}
+            onChange={(e) => setHandbook({ ...handbook, emergencyProcedures: e.target.value })}
+          />
+        </label>
+        <label className="text-sm space-y-1 block">
+          <span className="font-medium text-gray-700">Equipment notes (where things are kept, what's off-limits)</span>
+          <textarea
+            className="w-full rounded-lg border border-gray-300 px-3 py-2"
+            rows={3}
+            value={handbook.equipmentNotes}
+            onChange={(e) => setHandbook({ ...handbook, equipmentNotes: e.target.value })}
+          />
+        </label>
+      </section>
+
+      <section className="rounded-xl border-2 border-brand-300 bg-brand-50 p-4 space-y-3">
+        <h2 className="font-semibold text-gray-900">Need a lesson right now?</h2>
+        <p className="text-sm text-gray-600">
+          If today's lesson isn't listed below, pick anything from the sub-friendly library - every one of these
+          needs no PE-specific coaching or specialized equipment know-how.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Link to="/library?subFriendly=true">
+            <Button>
+              <BookOpen size={16} /> Browse Sub-Friendly Lessons
+            </Button>
+          </Link>
+          <Link to="/generator">
+            <Button variant="secondary">
+              <Wand2 size={16} /> Generate a Sub Lesson
+            </Button>
+          </Link>
         </div>
       </section>
 
       <section className="space-y-3">
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <h2 className="font-semibold text-gray-900">Class Schedule &amp; Duty</h2>
-          <Link to="/settings" className="no-print inline-flex items-center gap-1 text-sm text-brand-700 hover:underline">
-            Edit in Settings <ArrowRight size={14} />
+          <h2 className="font-semibold text-gray-900">Today's / This Week's Plan</h2>
+          <Link to="/pacing" className="no-print inline-flex items-center gap-1 text-sm text-brand-700 hover:underline">
+            Edit the pacing guide <ArrowRight size={14} />
           </Link>
         </div>
-        {hasSchoolSchedule ? (
-          <p className="text-sm text-gray-600">
-            The full class schedule (times, grades, A/B/C/D day rotation) and duty info is set up under Settings →
-            My Schedule, and will automatically fill in whenever a sub lesson is generated.
-          </p>
-        ) : (
-          <InfoBox color="orange">
-            No class schedule has been entered yet. Go to Settings → My Schedule and fill it in before you leave -
-            it auto-fills into every generated sub lesson.
-          </InfoBox>
-        )}
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="font-semibold text-gray-900">Coverage Window</h2>
         <div className="flex flex-wrap gap-3">
           <label className="text-sm space-y-1">
             <span className="block font-medium text-gray-700">First day out</span>
@@ -187,42 +214,58 @@ export function SubHandbookPage() {
               </table>
             ) : (
               <p className="text-sm text-gray-500 p-4">
-                No pacing guide weeks fall in that date range yet - build or adjust a pacing guide under Pacing.
+                No pacing guide weeks fall in that date range yet - use "Generate a Sub Lesson" or "Browse Sub-Friendly
+                Lessons" above instead, or build a pacing guide under Pacing.
               </p>
             )}
           </div>
         )}
       </section>
 
-      <section className="space-y-2">
-        <h2 className="font-semibold text-gray-900">Important Contacts &amp; Procedures</h2>
-        <label className="text-sm space-y-1 block">
-          <span className="font-medium text-gray-700">Contacts (front office, nurse, PE department, behavior referral)</span>
-          <textarea
-            className="w-full rounded-lg border border-gray-300 px-3 py-2"
-            rows={3}
-            value={handbook.importantContacts}
-            onChange={(e) => setHandbook({ ...handbook, importantContacts: e.target.value })}
-          />
-        </label>
-        <label className="text-sm space-y-1 block">
-          <span className="font-medium text-gray-700">Emergency procedures (fire drill, lockdown, injury)</span>
-          <textarea
-            className="w-full rounded-lg border border-gray-300 px-3 py-2"
-            rows={3}
-            value={handbook.emergencyProcedures}
-            onChange={(e) => setHandbook({ ...handbook, emergencyProcedures: e.target.value })}
-          />
-        </label>
-        <label className="text-sm space-y-1 block">
-          <span className="font-medium text-gray-700">Equipment notes (where things are kept, what's off-limits)</span>
-          <textarea
-            className="w-full rounded-lg border border-gray-300 px-3 py-2"
-            rows={3}
-            value={handbook.equipmentNotes}
-            onChange={(e) => setHandbook({ ...handbook, equipmentNotes: e.target.value })}
-          />
-        </label>
+      <section className="space-y-3">
+        <h2 className="font-semibold text-gray-900">Every Class, Every Day</h2>
+        <p className="text-sm text-gray-500">
+          This routine is built into every single lesson in the library, so it never changes no matter what unit
+          you're teaching.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="rounded-xl border border-gray-200 bg-white p-4">
+            <p className="text-sm font-semibold text-gray-800 mb-1.5">Arrival and Setup</p>
+            <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
+              {STANDARD_ARRIVAL_SETUP.map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-xl border border-gray-200 bg-white p-4">
+            <p className="text-sm font-semibold text-gray-800 mb-1.5">Closure and Dismissal</p>
+            <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
+              {STANDARD_CLOSURE.map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <h2 className="font-semibold text-gray-900">Class Schedule &amp; Duty</h2>
+          <Link to="/settings" className="no-print inline-flex items-center gap-1 text-sm text-brand-700 hover:underline">
+            Edit in Settings <ArrowRight size={14} />
+          </Link>
+        </div>
+        {hasSchoolSchedule ? (
+          <p className="text-sm text-gray-600">
+            The full class schedule (times, grades, A/B/C/D day rotation) and duty info is set up under Settings →
+            My Schedule, and will automatically fill in whenever a sub lesson is generated.
+          </p>
+        ) : (
+          <InfoBox color="orange">
+            No class schedule has been entered yet. Go to Settings → My Schedule and fill it in before you leave -
+            it auto-fills into every generated sub lesson.
+          </InfoBox>
+        )}
       </section>
 
       <section className="space-y-3">

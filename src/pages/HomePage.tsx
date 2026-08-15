@@ -31,7 +31,7 @@ export function HomePage() {
         <span className="flex-1">
           <span className="block font-semibold text-gray-900">Covering this class? Start here.</span>
           <span className="block text-sm text-gray-600">
-            Substitute Handbook: welcome notes, daily routines, schedule, coverage plan, and reference documents.
+            Welcome note, emergency procedures and contacts, and a one-tap link to pick today's sub lesson.
           </span>
         </span>
         <ArrowRight size={18} className="text-brand-600 shrink-0" />

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, Search, Accessibility, ArrowRight } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Plus, Search, Accessibility, ArrowRight, BadgeCheck } from 'lucide-react';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
@@ -17,18 +17,29 @@ import { Button } from '../components/ui/Button';
 type Tab = 'lessons' | 'warmups';
 
 export function LibraryPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<Tab>('lessons');
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [warmUps, setWarmUps] = useState<WarmUp[]>([]);
   const [search, setSearch] = useState('');
   const [gradeFilter, setGradeFilter] = useState<Grade | 'all'>('all');
   const [gymFilter, setGymFilter] = useState<'all' | 'full' | 'half'>('all');
+  const [subFriendlyOnly, setSubFriendlyOnly] = useState(searchParams.get('subFriendly') === 'true');
   const [showAddWarmUp, setShowAddWarmUp] = useState(false);
 
   useEffect(() => {
     listLessons().then(setLessons);
     listWarmUps().then(setWarmUps);
   }, []);
+
+  function toggleSubFriendlyOnly() {
+    const next = !subFriendlyOnly;
+    setSubFriendlyOnly(next);
+    const params = new URLSearchParams(searchParams);
+    if (next) params.set('subFriendly', 'true');
+    else params.delete('subFriendly');
+    setSearchParams(params, { replace: true });
+  }
 
   const filteredLessons = useMemo(() => {
     return lessons.filter((lesson) => {
@@ -39,9 +50,10 @@ export function LibraryPage() {
         lesson.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
       const matchesGrade = gradeFilter === 'all' || lesson.gradeLevels.includes(gradeFilter);
       const matchesGym = gymFilter === 'all' || lesson.gymSpace === gymFilter;
-      return matchesSearch && matchesGrade && matchesGym;
+      const matchesSubFriendly = !subFriendlyOnly || lesson.subFriendly;
+      return matchesSearch && matchesGrade && matchesGym && matchesSubFriendly;
     });
-  }, [lessons, search, gradeFilter, gymFilter]);
+  }, [lessons, search, gradeFilter, gymFilter, subFriendlyOnly]);
 
   const filteredWarmUps = useMemo(() => {
     return warmUps.filter(
@@ -119,6 +131,16 @@ export function LibraryPage() {
               <option value="full">Full gym</option>
               <option value="half">Half gym</option>
             </select>
+            <button
+              onClick={toggleSubFriendlyOnly}
+              className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
+                subFriendlyOnly
+                  ? 'border-brand-400 bg-brand-100 text-brand-700'
+                  : 'border-gray-300 text-gray-600 hover:border-brand-300'
+              }`}
+            >
+              <BadgeCheck size={15} /> Sub-Friendly only
+            </button>
           </>
         )}
       </div>

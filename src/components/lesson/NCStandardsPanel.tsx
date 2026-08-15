@@ -1,6 +1,7 @@
 import type { StandardsForGrade } from '../../types/lesson';
 import { describeStandard, strandOf, STRAND_LABEL, STRAND_COLOR, type Strand } from '../../data/ncStandards';
 import { gradeLabel } from '../../types/common';
+import { PanelCard } from '../boxes/PanelCard';
 
 const ALL_STRANDS: Strand[] = ['MS', 'MC', 'HF', 'PR'];
 
@@ -21,11 +22,10 @@ export function NCStandardsPanel({ standards }: { standards?: StandardsForGrade[
         ))}
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-3">
         {standards.map((entry) => (
-          <div key={entry.grade}>
-            <p className="text-sm font-semibold text-gray-800">{gradeLabel(entry.grade)}</p>
-            <ul className="text-sm space-y-1.5 mt-1">
+          <PanelCard key={entry.grade} title={gradeLabel(entry.grade)}>
+            <ul className="space-y-1.5 mt-1">
               {entry.codes.map((code) => {
                 const info = describeStandard(code);
                 const strand = strandOf(code);
@@ -46,7 +46,7 @@ export function NCStandardsPanel({ standards }: { standards?: StandardsForGrade[
                 );
               })}
             </ul>
-          </div>
+          </PanelCard>
         ))}
       </div>
     </section>

@@ -2,7 +2,7 @@ import { Calculator, Atom, Globe, BookOpen } from 'lucide-react';
 import type { CrossCurricularLink } from '../../types/lesson';
 import type { AcademicSubject } from '../../types/common';
 import { ACADEMIC_SUBJECT_LABEL } from '../../types/common';
-import { InfoBox } from '../boxes/InfoBox';
+import { PanelCard } from '../boxes/PanelCard';
 
 const SUBJECT_ICON: Record<AcademicSubject, typeof Calculator> = {
   math: Calculator,
@@ -21,13 +21,9 @@ export function CrossCurricularPanel({ links }: { links?: CrossCurricularLink[] 
         {links.map((link, i) => {
           const Icon = SUBJECT_ICON[link.subject];
           return (
-            <InfoBox key={i} color="purple" title={
-              <span className="flex items-center gap-1.5">
-                <Icon size={14} /> {ACADEMIC_SUBJECT_LABEL[link.subject]}
-              </span>
-            }>
+            <PanelCard key={i} icon={<Icon size={15} className="text-brand-700" />} title={ACADEMIC_SUBJECT_LABEL[link.subject]}>
               {link.connection}
-            </InfoBox>
+            </PanelCard>
           );
         })}
       </div>

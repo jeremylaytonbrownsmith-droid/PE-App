@@ -3,6 +3,7 @@ import { Accessibility, Eye, Ear, Brain, ArrowRight } from 'lucide-react';
 import type { Accommodation } from '../../types/lesson';
 import type { AccommodationCategory } from '../../types/common';
 import { ACCOMMODATION_CATEGORIES, ACCOMMODATION_LABEL } from '../../types/common';
+import { PanelCard } from '../boxes/PanelCard';
 
 const CATEGORY_ICON: Record<AccommodationCategory, typeof Accessibility> = {
   mobility: Accessibility,
@@ -23,13 +24,9 @@ export function AdaptationsPanel({ accommodations }: { accommodations?: Accommod
           if (!note) return null;
           const Icon = CATEGORY_ICON[category];
           return (
-            <div key={category} className="rounded-lg border border-gray-200 p-3">
-              <p className="flex items-center gap-1.5 text-sm font-semibold text-gray-800 mb-1">
-                <Icon size={15} className="text-brand-700" />
-                {ACCOMMODATION_LABEL[category]}
-              </p>
-              <p className="text-sm text-gray-600">{note}</p>
-            </div>
+            <PanelCard key={category} icon={<Icon size={15} className="text-brand-700" />} title={ACCOMMODATION_LABEL[category]}>
+              {note}
+            </PanelCard>
           );
         })}
       </div>

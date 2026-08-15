@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, ClipboardList, ListChecks, ThumbsUp, PenLine } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import type { AssessmentLevel, AssessmentTally } from '../../types/assessment';
 import { getTally, incrementTally, resetTally } from '../../lib/assessmentTallyStore';
-import { InfoBox } from '../boxes/InfoBox';
+import { PanelCard } from '../boxes/PanelCard';
 
 const LEVELS: { key: AssessmentLevel; label: string }[] = [
   { key: 'notYet', label: 'Not Yet' },
@@ -37,10 +37,9 @@ export function AssessmentPanel({ lesson }: { lesson: Lesson }) {
       <h2 className="text-lg font-semibold border-b pb-1">Quick Assessment Ideas</h2>
 
       {lesson.customRubric && (
-        <div className="space-y-1.5">
-          <p className="text-sm font-semibold text-gray-800">{lesson.customRubric.title}</p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+        <PanelCard icon={<ClipboardList size={15} className="text-brand-700" />} title={lesson.customRubric.title}>
+          <div className="overflow-x-auto -mx-1">
+            <table className="w-full text-sm border-collapse mt-1">
               <thead>
                 <tr className="bg-brand-100 text-left">
                   <th className="border border-brand-200 px-2 py-1 w-12 text-center">Score</th>
@@ -59,26 +58,30 @@ export function AssessmentPanel({ lesson }: { lesson: Lesson }) {
               </tbody>
             </table>
           </div>
-        </div>
+        </PanelCard>
       )}
 
       {hasCues && (
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-gray-800">Skill Observation Checklist</p>
-            {hasAnyCounts && (
-              <button
-                onClick={handleReset}
-                className="no-print flex items-center gap-1 text-xs text-gray-400 hover:text-red-600"
-              >
-                <RotateCcw size={12} /> Reset counts
-              </button>
-            )}
-          </div>
-          <p className="text-xs text-gray-500">
+        <PanelCard
+          icon={<ListChecks size={15} className="text-brand-700" />}
+          title={
+            <span className="flex-1 flex items-center justify-between">
+              Skill Observation Checklist
+              {hasAnyCounts && (
+                <button
+                  onClick={handleReset}
+                  className="no-print flex items-center gap-1 text-xs font-normal text-gray-400 hover:text-red-600"
+                >
+                  <RotateCcw size={12} /> Reset counts
+                </button>
+              )}
+            </span>
+          }
+        >
+          <p className="text-xs text-gray-500 mb-1.5">
             Tap a column while students practice to tally what you see - good for a quick scan of the whole group.
           </p>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-1">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="bg-brand-100 text-left">
@@ -114,18 +117,18 @@ export function AssessmentPanel({ lesson }: { lesson: Lesson }) {
               </tbody>
             </table>
           </div>
-        </div>
+        </PanelCard>
       )}
 
       <div className="grid sm:grid-cols-2 gap-3">
-        <InfoBox color="blue" title="Student Self-Check (K-2)">
+        <PanelCard icon={<ThumbsUp size={15} className="text-brand-700" />} title="Student Self-Check (K-2)">
           Show me: 👍 if you felt like a pro today, 👉 if you're getting there, or 👎 if you want more practice at{' '}
           {lesson.unit}.
-        </InfoBox>
-        <InfoBox color="blue" title="Student Reflection (3-5)">
+        </PanelCard>
+        <PanelCard icon={<PenLine size={15} className="text-brand-700" />} title="Student Reflection (3-5)">
           Quick write or turn-and-talk: "One thing I did well today in {lesson.unit} was ___. One thing I want to
           practice more is ___."
-        </InfoBox>
+        </PanelCard>
       </div>
     </section>
   );
