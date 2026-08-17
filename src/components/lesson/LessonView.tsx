@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { ListOrdered, ArrowRight } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import type { WarmUp } from '../../types/warmup';
 import type { ScheduleSettings } from '../../types/schedule';
@@ -22,17 +24,43 @@ interface LessonViewProps {
   lesson: Lesson;
   warmUp?: WarmUp;
   schedule?: ScheduleSettings;
+  seriesLessons?: Lesson[];
 }
 
-export function LessonView({ lesson, warmUp, schedule }: LessonViewProps) {
+export function LessonView({ lesson, warmUp, schedule, seriesLessons = [] }: LessonViewProps) {
   const timeCheckRows = buildTimeCheckTable(lesson, warmUp?.name);
   const totalMinutes = totalRequiredMinutes(lesson);
+  const nextInSeries = lesson.series ? seriesLessons.find((l) => l.series?.part === lesson.series!.part + 1) : undefined;
+  const prevInSeries = lesson.series ? seriesLessons.find((l) => l.series?.part === lesson.series!.part - 1) : undefined;
 
   return (
     <article className="space-y-6 print:text-black">
       {lesson.gymSpace === 'half' && <HalfGymAlert reason={lesson.halfGymReason} />}
 
       <h1 className="text-2xl font-bold text-center text-gray-900">{lesson.title || 'Untitled Lesson'}</h1>
+
+      {lesson.series && (
+        <InfoBox color="blue">
+          <div className="flex items-center gap-1.5 font-semibold mb-1">
+            <ListOrdered size={15} /> Lesson {lesson.series.part} of {lesson.series.total}: {lesson.series.name}
+          </div>
+          <p>This unit is meant to be taught in order - teach the earlier lessons first so skills build correctly.</p>
+          {(prevInSeries || nextInSeries) && (
+            <div className="no-print flex flex-wrap gap-3 mt-1.5">
+              {prevInSeries && (
+                <Link to={`/library/${prevInSeries.id}`} className="inline-flex items-center gap-1 hover:underline">
+                  ← Part {prevInSeries.series?.part}: {prevInSeries.title}
+                </Link>
+              )}
+              {nextInSeries && (
+                <Link to={`/library/${nextInSeries.id}`} className="inline-flex items-center gap-1 hover:underline">
+                  Part {nextInSeries.series?.part}: {nextInSeries.title} <ArrowRight size={13} />
+                </Link>
+              )}
+            </div>
+          )}
+        </InfoBox>
+      )}
 
       {schedule && schedule.rows.length > 0 && (
         <section className="space-y-3">

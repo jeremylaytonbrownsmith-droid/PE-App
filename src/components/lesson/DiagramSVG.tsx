@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations';
+export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond';
 
 interface DiagramSVGProps {
   variant: DiagramVariant;
@@ -186,6 +186,159 @@ export function DiagramSVG({ variant }: DiagramSVGProps) {
           ]}
         />
         <p className="text-xs text-gray-400 text-center mt-1">Two end-zone games run at the same time (left half &amp; right half).</p>
+      </div>
+    );
+  }
+
+  if (variant === 'circle') {
+    const cx = MID_X;
+    const cy = GYM.y + GYM.height / 2;
+    const rx = GYM.width * 0.42;
+    const ry = GYM.height * 0.42;
+    const circleStudents = Array.from({ length: 14 }, (_, i) => {
+      const angle = (i / 14) * Math.PI * 2;
+      return { x: cx + rx * Math.cos(angle), y: cy + ry * Math.sin(angle) };
+    });
+    return (
+      <div>
+        <Gym>
+          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="none" stroke="#9ca3af" strokeWidth={1.5} strokeDasharray="4 4" />
+          {circleStudents.map((p, i) => (
+            <Student key={i} x={p.x - 4} y={p.y + 4} />
+          ))}
+          <Teacher />
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <circle cx={8} cy={8} r={3} fill="#7B1FA2" />, label: 'Teacher' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">Whole class forms one big circle - teacher calls the activity from the center or edge.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'personal-space') {
+    const cols = 6;
+    const rows = 3;
+    const gridStudents: { x: number; y: number }[] = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        gridStudents.push({
+          x: GYM.x + 28 + c * ((GYM.width - 56) / (cols - 1)),
+          y: GYM.y + 30 + r * ((GYM.height - 60) / (rows - 1)),
+        });
+      }
+    }
+    return (
+      <div>
+        <Gym>
+          <Teacher />
+          {gridStudents.map((p, i) => (
+            <Student key={i} x={p.x} y={p.y} />
+          ))}
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <circle cx={8} cy={8} r={3} fill="#7B1FA2" />, label: 'Teacher' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student, own space' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">Students spread out evenly, each with their own personal-space bubble and equipment.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'lanes') {
+    const laneCount = 4;
+    const laneY = Array.from({ length: laneCount }, (_, i) => GYM.y + 22 + i * ((GYM.height - 44) / (laneCount - 1)));
+    const leftX = GYM.x + 20;
+    const rightX = GYM.x + GYM.width - 20;
+    return (
+      <div>
+        <Gym>
+          <Teacher />
+          {laneY.map((y, i) => (
+            <g key={i}>
+              <line x1={leftX} y1={y} x2={rightX} y2={y} stroke="#d1d5db" strokeWidth={1} strokeDasharray="3 3" />
+              <Cone x={leftX} y={y} />
+              <Cone x={rightX} y={y} />
+              <Student x={leftX + 10} y={y + 4} />
+              <Student x={leftX + 22} y={y + 4} />
+            </g>
+          ))}
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <path d="M8 3 L13 13 L3 13 Z" fill="#FF9800" />, label: 'Cone (turnaround point)' },
+            { swatch: <circle cx={8} cy={8} r={3} fill="#7B1FA2" />, label: 'Teacher' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">Teams line up behind a cone in parallel lanes and travel to the far cone and back.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'diamond') {
+    const home = { x: MID_X, y: GYM.y + GYM.height - 20 };
+    const first = { x: MID_X + 90, y: GYM.y + GYM.height * 0.55 };
+    const second = { x: MID_X, y: GYM.y + 24 };
+    const third = { x: MID_X - 90, y: GYM.y + GYM.height * 0.55 };
+    return (
+      <div>
+        <Gym>
+          <path
+            d={`M ${home.x} ${home.y} L ${first.x} ${first.y} L ${second.x} ${second.y} L ${third.x} ${third.y} Z`}
+            fill="none"
+            stroke="#9ca3af"
+            strokeWidth={1.5}
+            strokeDasharray="4 4"
+          />
+          <Cone x={home.x} y={home.y} />
+          <Cone x={first.x} y={first.y} />
+          <Cone x={second.x} y={second.y} />
+          <Cone x={third.x} y={third.y} />
+          <Ball x={home.x} y={home.y - 16} />
+          <Student x={home.x + 8} y={home.y - 12} />
+          <Student x={first.x + 10} y={first.y} />
+          <Student x={second.x - 30} y={second.y + 20} />
+          <Student x={third.x - 10} y={third.y} />
+          <Teacher />
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <path d="M8 3 L13 13 L3 13 Z" fill="#FF9800" />, label: 'Base' },
+            { swatch: <circle cx={8} cy={8} r={3} fill="#111827" />, label: 'Tee / ball' },
+            { swatch: <circle cx={8} cy={8} r={3} fill="#7B1FA2" />, label: 'Teacher' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">Home plate and three bases laid out in a diamond, batting tee at home plate, fielders spread out.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'partners') {
+    const pairCount = 4;
+    const pairY = Array.from({ length: pairCount }, (_, i) => GYM.y + 26 + i * ((GYM.height - 52) / (pairCount - 1)));
+    const leftX = MID_X - 55;
+    const rightX = MID_X + 55;
+    return (
+      <div>
+        <Gym>
+          <Teacher />
+          {pairY.map((y, i) => (
+            <g key={i}>
+              <line x1={leftX + 10} y1={y} x2={rightX - 10} y2={y} stroke="#d1d5db" strokeWidth={1} strokeDasharray="3 3" />
+              <Student x={leftX} y={y + 4} />
+              <Student x={rightX} y={y + 4} />
+            </g>
+          ))}
+        </Gym>
+        <Legend items={[{ swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' }]} />
+        <p className="text-xs text-gray-400 text-center mt-1">Partners spread out facing each other across the gym, an arm’s length of extra room on each side.</p>
       </div>
     );
   }

@@ -42,7 +42,7 @@ export function LibraryPage() {
   }
 
   const filteredLessons = useMemo(() => {
-    return lessons.filter((lesson) => {
+    const filtered = lessons.filter((lesson) => {
       const matchesSearch =
         !search ||
         lesson.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -52,6 +52,16 @@ export function LibraryPage() {
       const matchesGym = gymFilter === 'all' || lesson.gymSpace === gymFilter;
       const matchesSubFriendly = !subFriendlyOnly || lesson.subFriendly;
       return matchesSearch && matchesGrade && matchesGym && matchesSubFriendly;
+    });
+    // Lessons that are part of a series sort together under the series name, in
+    // teaching order, so a progression like "Part 1/2/3" always lands as a group
+    // instead of scattered wherever their individual titles happen to sort.
+    return filtered.sort((a, b) => {
+      const aKey = a.series?.name ?? a.title;
+      const bKey = b.series?.name ?? b.title;
+      const keyCompare = aKey.localeCompare(bKey);
+      if (keyCompare !== 0) return keyCompare;
+      return (a.series?.part ?? 0) - (b.series?.part ?? 0);
     });
   }, [lessons, search, gradeFilter, gymFilter, subFriendlyOnly]);
 

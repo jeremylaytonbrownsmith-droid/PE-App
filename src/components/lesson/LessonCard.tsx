@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BadgeCheck, GraduationCap } from 'lucide-react';
+import { BadgeCheck, GraduationCap, ListOrdered } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import { gradeLabel } from '../../types/common';
 
@@ -21,6 +21,11 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
         </div>
       </div>
       <p className="text-sm text-brand-700 font-medium mt-0.5">{lesson.unit}</p>
+      {lesson.series && (
+        <p className="flex items-center gap-1 text-xs text-gray-500 mt-1.5">
+          <ListOrdered size={13} /> Part {lesson.series.part} of {lesson.series.total}: {lesson.series.name}
+        </p>
+      )}
       <p className="text-xs text-gray-500 mt-2">
         {lesson.gradeLevels.map(gradeLabel).join(', ') || 'All grades'}
       </p>

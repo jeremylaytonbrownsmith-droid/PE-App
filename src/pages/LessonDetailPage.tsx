@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Pencil, Copy, Trash2, Timer } from 'lucide-react';
 import type { Lesson } from '../types/lesson';
 import type { WarmUp } from '../types/warmup';
-import { getLesson, deleteLesson, duplicateLesson, saveLesson } from '../lib/lessonStore';
+import { getLesson, deleteLesson, duplicateLesson, saveLesson, listLessons } from '../lib/lessonStore';
 import { getWarmUp } from '../lib/warmupStore';
 import { PageHeader } from '../components/layout/PageHeader';
 import { LessonView } from '../components/lesson/LessonView';
@@ -15,17 +15,26 @@ export function LessonDetailPage() {
   const navigate = useNavigate();
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [warmUp, setWarmUp] = useState<WarmUp | undefined>(undefined);
+  const [seriesLessons, setSeriesLessons] = useState<Lesson[]>([]);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (!id) return;
-    getLesson(id).then((found) => {
+    getLesson(id).then(async (found) => {
       if (!found) {
         setNotFound(true);
         return;
       }
       setLesson(found);
       if (found.warmUpId) getWarmUp(found.warmUpId).then(setWarmUp);
+      if (found.series) {
+        const all = await listLessons();
+        setSeriesLessons(
+          all.filter((l) => l.series?.name === found.series?.name).sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0)),
+        );
+      } else {
+        setSeriesLessons([]);
+      }
     });
   }, [id]);
 
@@ -76,7 +85,7 @@ export function LessonDetailPage() {
         }
       />
       <div className="rounded-xl border border-gray-200 bg-white p-5 md:p-8">
-        <LessonView lesson={lesson} warmUp={warmUp} />
+        <LessonView lesson={lesson} warmUp={warmUp} seriesLessons={seriesLessons} />
       </div>
     </div>
   );

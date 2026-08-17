@@ -48,6 +48,15 @@ export interface GradeModification {
   note: string;
 }
 
+export interface LessonSeriesInfo {
+  /** Shared across every lesson in the progression, e.g. "Soccer Skills Progression". */
+  name: string;
+  /** 1-based position in the progression. */
+  part: number;
+  /** Total lessons in the progression. */
+  total: number;
+}
+
 export interface Lesson {
   id: string;
   title: string;
@@ -72,11 +81,13 @@ export interface Lesson {
   needsMusic?: boolean;
   diagramNotes?: string;
   /** Selects a data-driven inline SVG to accompany diagramNotes - no external images. */
-  diagramType?: 'goals' | 'court' | 'endzone' | 'stations';
+  diagramType?: 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond';
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
   crossCurricular?: CrossCurricularLink[];
   customRubric?: Rubric;
+  /** Set when this lesson is one part of a multi-lesson progression that should be taught in order. */
+  series?: LessonSeriesInfo;
   /**
    * True if this lesson needs no PE-specific coaching, skill feedback, or specialized safety
    * supervision - safe to hand to a substitute with the printed plan and nothing else.
