@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BadgeCheck, GraduationCap, ListOrdered } from 'lucide-react';
+import { BadgeCheck, GraduationCap, ListOrdered, Languages } from 'lucide-react';
 import type { Lesson } from '../../types/lesson';
 import { gradeLabel } from '../../types/common';
 
@@ -37,6 +37,11 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
       {lesson.accommodations && lesson.accommodations.length > 0 && (
         <p className="flex items-center gap-1 text-xs text-gray-500 mt-1">
           <GraduationCap size={13} /> Adaptive PE notes included
+        </p>
+      )}
+      {lesson.globalConnection && (
+        <p className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+          <Languages size={13} /> Spanish immersion &amp; global connection
         </p>
       )}
       {lesson.tags.length > 0 && (

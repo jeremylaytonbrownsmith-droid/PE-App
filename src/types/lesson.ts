@@ -16,6 +16,20 @@ export interface CrossCurricularLink {
   connection: string;
 }
 
+export interface SpanishVocabWord {
+  spanish: string;
+  english: string;
+}
+
+export interface GlobalConnectionNote {
+  /** Which of the magnet's global-competency gears this activity builds, e.g. "Communication", "Curiosity". */
+  competencies: string[];
+  /** Spanish vocabulary introduced or practiced during this lesson. */
+  vocabulary: SpanishVocabWord[];
+  /** How this activity builds global/intercultural connection - written to be shareable with families or admin. */
+  connection: string;
+}
+
 export interface RubricLevel {
   score: number;
   label: string;
@@ -85,6 +99,8 @@ export interface Lesson {
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
   crossCurricular?: CrossCurricularLink[];
+  /** Spanish immersion / global-connection tie-in, for magnet/dual-language programs. */
+  globalConnection?: GlobalConnectionNote;
   customRubric?: Rubric;
   /** Set when this lesson is one part of a multi-lesson progression that should be taught in order. */
   series?: LessonSeriesInfo;

@@ -17,6 +17,7 @@ import { SpecialCircumstanceNote } from './SpecialCircumstanceNote';
 import { NCStandardsPanel } from './NCStandardsPanel';
 import { AdaptationsPanel } from './AdaptationsPanel';
 import { CrossCurricularPanel } from './CrossCurricularPanel';
+import { GlobalConnectionPanel } from './GlobalConnectionPanel';
 import { AssessmentPanel } from './AssessmentPanel';
 import { DiagramSVG } from './DiagramSVG';
 
@@ -198,6 +199,7 @@ export function LessonView({ lesson, warmUp, schedule, seriesLessons = [] }: Les
         <NCStandardsPanel standards={lesson.standardsByGrade} />
         <AdaptationsPanel accommodations={lesson.accommodations} />
         <CrossCurricularPanel links={lesson.crossCurricular} />
+        <GlobalConnectionPanel note={lesson.globalConnection} />
         <AssessmentPanel lesson={lesson} />
       </div>
     </article>

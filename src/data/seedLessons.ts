@@ -402,7 +402,7 @@ export const SEED_LESSONS: Lesson[] = [
     warmUpMinutes: 8,
     mainActivities: [
       { id: 'ma-1', name: 'Locomotor movement to music', description: 'Travel around the space using different locomotor skills (walk, skip, gallop) to the beat.', minutes: 8 },
-      { id: 'ma-2', name: 'Learn a movement sequence', description: 'Teach a simple, repeatable 4-8 count sequence (e.g. step-touch, clap, turn).', minutes: 10 },
+      { id: 'ma-2', name: 'Learn the merengue basic step', description: 'Teach the basic merengue step from the Dominican Republic: march in place while shifting your weight from foot to foot in time with the beat - derecha, izquierda (right, left). Add simple hip and arm movement once the footwork feels steady.', minutes: 10 },
       { id: 'ma-3', name: 'Create your own sequence', description: 'In groups of four or less, create and practice an original short movement sequence.', minutes: 10 },
     ],
     optionalActivities: [{ id: 'oa-1', name: 'Perform for the class', description: 'Each group shows their sequence if time allows.', minutes: 5 }],
@@ -421,9 +421,21 @@ export const SEED_LESSONS: Lesson[] = [
     crossCurricular: [
       { subject: 'math', connection: 'Counting beats (4-count, 8-count sequences) is counting and pattern recognition in disguise.' },
       { subject: 'english', connection: 'Creating a sequence is like writing a story - it needs a beginning, middle, and end that flow smoothly.' },
-      { subject: 'social-studies', connection: 'Different cultures have their own traditional dances - if time allows, share a style of dance from another country or culture.' },
+      { subject: 'social-studies', connection: 'Merengue comes from the Dominican Republic, a Spanish-speaking country in the Caribbean - find it on a map, and talk about what it means for a dance to become a country’s national symbol.' },
     ],
-    tags: ['dance', 'rhythm', 'movement', 'full gym', 'half gym friendly'],
+    globalConnection: {
+      competencies: ['Intercultural Understanding', 'Valuing Differences', 'Global Connection', 'Curiosity'],
+      vocabulary: [
+        { spanish: 'Baile', english: 'Dance' },
+        { spanish: 'Paso', english: 'Step' },
+        { spanish: 'Derecha', english: 'Right' },
+        { spanish: 'Izquierda', english: 'Left' },
+        { spanish: 'La música', english: 'The music' },
+      ],
+      connection:
+        'Rather than a generic "dance from another country," students learn merengue by name and origin: the national dance of the Dominican Republic, added to UNESCO’s Intangible Cultural Heritage list in 2016. Naming the culture and the people behind a movement - paired with real Spanish vocabulary for the steps - builds authentic intercultural understanding instead of a costume-deep gesture at "diversity."',
+    },
+    tags: ['dance', 'rhythm', 'movement', 'full gym', 'half gym friendly', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -1556,7 +1568,7 @@ export const SEED_LESSONS: Lesson[] = [
         id: 'ma-2',
         name: 'Movement Relay Rounds',
         description:
-          'One at a time, each student travels from the starting line to the far line and back using the called movement, then the next teammate goes. Rotate through: power walking, skipping, galloping, hopping, sliding, walking backwards (look over your shoulder!), bear crawl, crab walk, giraffe walk (arms up like a neck), bird (flap your arms), high knees, zombie walk, air boxing, and running.',
+          'One at a time, each student travels from the starting line to the far line and back using the called movement, then the next teammate goes. Rotate through: power walking, skipping, galloping, hopping, sliding, walking backwards (look over your shoulder!), bear crawl, crab walk, giraffe walk (arms up like a neck), bird (flap your arms), high knees, zombie walk, air boxing, and running. For the final round, call each movement in Spanish instead of English and have students echo the word back before they go: ¡Caminar! (Walk!) ¡Correr! (Run!) ¡Saltar! (Jump!) ¡Galopar! (Gallop!) ¡Deslizar! (Slide!)',
         minutes: 20,
       },
       {
@@ -1584,7 +1596,19 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'math', connection: 'Count how many relay rounds each team completes, or time a full rotation and compare across teams.' },
     ],
     customRubric: LOCOMOTOR_SKILLS_RUBRIC,
-    tags: ['relay', 'locomotor movement', 'sub-friendly', 'full gym'],
+    globalConnection: {
+      competencies: ['Communication', 'Curiosity', 'Self-Awareness'],
+      vocabulary: [
+        { spanish: 'Caminar', english: 'Walk' },
+        { spanish: 'Correr', english: 'Run' },
+        { spanish: 'Saltar', english: 'Jump / Hop' },
+        { spanish: 'Galopar', english: 'Gallop' },
+        { spanish: 'Deslizar', english: 'Slide' },
+      ],
+      connection:
+        'The last relay round is called entirely in Spanish, with students echoing each command back before they move. It turns a familiar PE routine into real listening-and-speaking practice in the immersion language - the same locomotor vocabulary they already know in English, now heard and used in Spanish.',
+    },
+    tags: ['relay', 'locomotor movement', 'sub-friendly', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
