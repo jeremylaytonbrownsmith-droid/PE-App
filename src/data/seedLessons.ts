@@ -60,7 +60,35 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'science', connection: 'Talk about friction and air resistance - why a rolling ball eventually slows down and stops on its own.' },
     ],
     series: { name: 'Soccer Skills Progression', part: 3, total: 3 },
-    tags: ['soccer', 'handball', 'paddle soccer', 'goal games', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Balón / Pelota', english: 'Ball' },
+        { spanish: 'Patear', english: 'Kick' },
+        { spanish: 'Conducir el balón', english: 'Dribble (with feet)' },
+        { spanish: 'Pasar', english: 'Pass' },
+        { spanish: 'Portería', english: 'Goal', alternate: 'Arco' },
+        { spanish: 'Cancha', english: 'Field / court' },
+        { spanish: 'Equipo', english: 'Team' },
+      ],
+      routinePhrases: [
+        { spanish: 'Formen grupos de tres', english: 'Form groups of three' },
+        { spanish: 'Es tu turno', english: 'It’s your turn' },
+        { spanish: 'Cambien de equipo', english: 'Switch teams' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'Usa la parte interna del pie', english: 'Use the inside of your foot' },
+        { spanish: 'Toques suaves', english: 'Soft touches - keep the ball close' },
+        { spanish: 'Ojos arriba', english: 'Eyes up' },
+      ],
+      globalConnection:
+        'Fútbol is the most popular sport in nearly every Spanish-speaking country. The small-sided, indoor version played in this lesson is close to futsal, which was invented in Montevideo, Uruguay. The 2026 World Cup was hosted jointly by the US, Mexico, and Canada - find all three on a map.',
+      studentLanguageUse:
+        'Students call "¡Pase!" to ask for the ball during small-sided games, and each team counts their goals scored aloud in Spanish.',
+      gradeScaling:
+        'K-1: single words only (pelota, patear, gol), modeled by the teacher. 2-3: short phrases during play (pasa la pelota, buen tiro). 4-5: students narrate a play in a full sentence after a goal and discuss futsal’s Uruguayan origin and the three co-host countries of the 2026 World Cup.',
+    },
+    tags: ['soccer', 'handball', 'paddle soccer', 'goal games', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -110,7 +138,29 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'english', connection: 'The rope-drawing challenges (draw a letter or number in the air) double as letter and number formation practice.' },
     ],
     series: { name: 'Jump Rope Progression', part: 1, total: 3 },
-    tags: ['jump rope', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Cuerda para saltar', english: 'Jump rope' },
+        { spanish: 'Saltar', english: 'To jump' },
+        { spanish: 'Girar', english: 'To turn' },
+        { spanish: 'Contar', english: 'To count' },
+      ],
+      routinePhrases: [
+        { spanish: 'Busquen su espacio personal', english: 'Find your personal space' },
+        { spanish: 'Su turno', english: 'Your turn' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'Gira, mira, salta', english: 'Turn it, see it, jump it' },
+      ],
+      globalConnection:
+        'Jump rope chants and rhymes ("saltar la cuerda") are a shared tradition across the Spanish-speaking world, the same way "Teddy Bear, Teddy Bear" is in English - kids call out a rhyme while a partner turns the rope and everyone counts the jumps together.',
+      studentLanguageUse:
+        'Students count their own jumps aloud in Spanish during the practice cycle, and try a short Spanish jump-rope chant together as a class during the challenge round.',
+      gradeScaling:
+        'K-1: count jumps in Spanish up to 10 with the teacher leading. 2-3: skip-count by 2s or 5s in Spanish while jumping. 4-5: learn and recite a short Spanish jump-rope chant while a partner turns the rope.',
+    },
+    tags: ['jump rope', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -161,7 +211,32 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'social-studies', connection: 'Volleyball became an Olympic sport in 1964 - a quick tie-in to the Olympics and the countries that compete.' },
     ],
     series: { name: 'Volleyball Progression', part: 2, total: 2 },
-    tags: ['volleyball', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Balón', english: 'Ball' },
+        { spanish: 'Red', english: 'Net' },
+        { spanish: 'Golpear', english: 'To hit' },
+        { spanish: 'Cancha', english: 'Court' },
+        { spanish: 'Equipo', english: 'Team' },
+      ],
+      routinePhrases: [
+        { spanish: 'Cambien de equipo', english: 'Switch teams' },
+        { spanish: 'Es tu turno', english: 'It’s your turn' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'Antebrazos juntos', english: 'Forearms together (bump)' },
+        { spanish: 'Triángulo con las manos', english: 'Triangle with your hands (set)' },
+        { spanish: '¡Mía!', english: 'Mine! (call before hitting)' },
+      ],
+      globalConnection:
+        'Cuba’s women’s national volleyball team won three straight Olympic gold medals (1992, 1996, 2000) and is remembered as one of the most dominant teams in the sport’s history - find Cuba on a map and talk about what it takes to win three Olympics in a row.',
+      studentLanguageUse:
+        'Players call "¡Mía!" before hitting the ball to avoid collisions, and each team calls out the score in Spanish after every point.',
+      gradeScaling:
+        'K-1: count touches in Spanish during Keep It Up. 2-3: call the score in short phrases (tres puntos). 4-5: call "¡Mía!" before every hit and explain in a sentence why Cuba’s volleyball team is remembered as one of the greatest.',
+    },
+    tags: ['volleyball', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -318,7 +393,35 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'science', connection: 'A level swing sends the ball farther than a chopping swing - force and angle both matter, just like in a science experiment.' },
       { subject: 'social-studies', connection: 'Baseball has been called "America’s pastime" for over 100 years - talk about how the game has changed (and stayed the same) over generations.' },
     ],
-    tags: ['baseball', 'striking', 'fielding', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Bate', english: 'Bat' },
+        { spanish: 'Pelota', english: 'Ball' },
+        { spanish: 'Base', english: 'Base' },
+        { spanish: 'Guante', english: 'Glove' },
+        { spanish: 'Batear', english: 'To bat / hit' },
+        { spanish: 'Atrapar', english: 'To catch' },
+        { spanish: 'Lanzar', english: 'To throw' },
+      ],
+      routinePhrases: [
+        { spanish: 'Es tu turno', english: 'It’s your turn' },
+        { spanish: 'Cambien de equipo', english: 'Switch teams' },
+        { spanish: 'Con cuidado', english: 'Carefully' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'De lado, paso, lanza, termina', english: 'Side, step, throw, follow through' },
+        { spanish: 'Ojos en la pelota', english: 'Eyes on the ball' },
+        { spanish: 'Paso y golpea', english: 'Step and hit' },
+      ],
+      globalConnection:
+        'Béisbol is one of the biggest sports in the Dominican Republic, Cuba, Venezuela, Puerto Rico, and Mexico. Roberto Clemente (Puerto Rico), Juan Soto (Dominican Republic), and Mariano Rivera (Panama) are three of many Spanish-speaking players who became legends of the game - find their home countries on a map.',
+      studentLanguageUse:
+        'Students call "¡Mi turno!" when it’s their turn to bat, and the fielding team counts outs aloud in Spanish (uno, dos, tres).',
+      gradeScaling:
+        'K-1: single words only (bate, pelota, base), modeled by the teacher. 2-3: short phrases during play (batea fuerte, buena atrapada). 4-5: students introduce one of the featured athletes in a full sentence (Roberto Clemente jugaba béisbol en Puerto Rico) before the game starts.',
+    },
+    tags: ['baseball', 'striking', 'fielding', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -424,16 +527,32 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'social-studies', connection: 'Merengue comes from the Dominican Republic, a Spanish-speaking country in the Caribbean - find it on a map, and talk about what it means for a dance to become a country’s national symbol.' },
     ],
     globalConnection: {
-      competencies: ['Intercultural Understanding', 'Valuing Differences', 'Global Connection', 'Curiosity'],
       vocabulary: [
         { spanish: 'Baile', english: 'Dance' },
         { spanish: 'Paso', english: 'Step' },
         { spanish: 'Derecha', english: 'Right' },
         { spanish: 'Izquierda', english: 'Left' },
-        { spanish: 'La música', english: 'The music' },
+        { spanish: 'Música', english: 'Music' },
+        { spanish: 'Ritmo', english: 'Rhythm / beat' },
+        { spanish: 'Cadera', english: 'Hip' },
       ],
-      connection:
-        'Rather than a generic "dance from another country," students learn merengue by name and origin: the national dance of the Dominican Republic, added to UNESCO’s Intangible Cultural Heritage list in 2016. Naming the culture and the people behind a movement - paired with real Spanish vocabulary for the steps - builds authentic intercultural understanding instead of a costume-deep gesture at "diversity."',
+      routinePhrases: [
+        { spanish: 'Busquen su espacio personal', english: 'Find your personal space' },
+        { spanish: '¡Congelados!', english: 'Freeze!' },
+        { spanish: 'Formen grupos de tres', english: 'Form groups of three' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'Escuchen el ritmo', english: 'Listen to the rhythm' },
+        { spanish: 'Un pie, luego el otro', english: 'One foot, then the other' },
+        { spanish: 'Muevan la cadera suavemente', english: 'Move your hips gently' },
+      ],
+      globalConnection:
+        'Merengue - the national dance of the Dominican Republic, added to UNESCO’s Intangible Cultural Heritage list in 2016. Naming the culture and the people behind a movement, paired with real Spanish vocabulary for the steps, builds authentic intercultural understanding instead of a generic gesture at "a dance from somewhere."',
+      studentLanguageUse:
+        'Students count the beat aloud in Spanish (uno, dos, tres) as they step, and call out "derecha" or "izquierda" to a partner as they shift weight.',
+      gradeScaling:
+        'K-1: single words only (baile, paso, derecha, izquierda) with the teacher modeling every move. 2-3: short phrases (un paso a la derecha) as students copy a teacher-led sequence. 4-5: full sentences describing their own sequence (Primero damos un paso, luego...) and a short reflection on what merengue means to the people who dance it.',
     },
     tags: ['dance', 'rhythm', 'movement', 'full gym', 'half gym friendly', 'spanish immersion', 'global connection'],
     source: 'seed',
@@ -553,7 +672,32 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'science', connection: 'A push pass slides because the puck has low friction against the floor - a bumpy surface (like grass) would slow it down faster.' },
       { subject: 'social-studies', connection: 'Hockey is Canada’s national sport - a quick geography tie-in for where hockey is most popular.' },
     ],
-    tags: ['floor hockey', 'pillow polo', 'striking', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Bastón', english: 'Stick', alternate: 'Palo' },
+        { spanish: 'Disco', english: 'Puck', alternate: 'Pelota' },
+        { spanish: 'Portería', english: 'Goal', alternate: 'Arco' },
+        { spanish: 'Pase', english: 'Pass' },
+        { spanish: 'Tiro', english: 'Shot' },
+      ],
+      routinePhrases: [
+        { spanish: 'Bajen el bastón', english: 'Lower your stick' },
+        { spanish: 'Cambien de equipo', english: 'Switch teams' },
+        { spanish: 'Recojan el equipo', english: 'Clean up the equipment' },
+      ],
+      coachingCues: [
+        { spanish: 'Bastón abajo', english: 'Stick down / low' },
+        { spanish: 'Desliza el disco', english: 'Slide the puck' },
+        { spanish: 'Mantén el disco cerca', english: 'Keep the puck close' },
+      ],
+      globalConnection:
+        'This isn’t ice hockey, but the stick-handling and goal-scoring skills are shared with field hockey (hockey sobre césped), which is huge in Argentina. The women’s national team, "Las Leonas" (The Lionesses), is one of the most decorated teams in the sport’s history, with multiple Olympic medals and World Cup titles.',
+      studentLanguageUse:
+        'Students call "¡Pase!" to ask for the puck during small-sided games, and each team counts their goals aloud in Spanish.',
+      gradeScaling:
+        'K-1: single words only (bastón, disco, gol), modeled by the teacher. 2-3: short phrases during play (pasa el disco, buen tiro). 4-5: students narrate a goal in a full sentence and discuss Las Leonas’ Olympic history.',
+    },
+    tags: ['floor hockey', 'pillow polo', 'striking', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -1243,7 +1387,32 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'english', connection: 'Simon Says builds listening comprehension and following multi-step directions - the same skill used in reading comprehension.' },
       { subject: 'social-studies', connection: 'These circle games have been played by kids for generations all over the world - ask if anyone knows a different version of the rules from home.' },
     ],
-    tags: ['circle games', 'sub-friendly', 'small space', 'half gym friendly'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Gato', english: 'Cat' },
+        { spanish: 'Ratón', english: 'Mouse' },
+        { spanish: 'Círculo', english: 'Circle' },
+        { spanish: 'Aro', english: 'Hoop' },
+        { spanish: 'Pato', english: 'Duck' },
+        { spanish: 'Ganso', english: 'Goose' },
+      ],
+      routinePhrases: [
+        { spanish: 'Siéntense', english: 'Sit down' },
+        { spanish: 'Escuchen', english: 'Listen' },
+        { spanish: 'Ojos en mí', english: 'Eyes on me' },
+      ],
+      coachingCues: [
+        { spanish: 'Escuchen con atención', english: 'Listen carefully' },
+        { spanish: 'Síganme', english: 'Follow me' },
+      ],
+      globalConnection:
+        'This whole lesson is built from traditional circle games with real Spanish names, played the same way across the Spanish-speaking world: "El gato y el ratón" (Cat and Mouse), "Simón dice" (Simon Says), and the warm-up "Pato, pato, ganso" (Duck, Duck, Goose).',
+      studentLanguageUse:
+        'A student leader calls "Simón dice" commands in Spanish during Simon Says, and the class names each circle game in Spanish before it starts.',
+      gradeScaling:
+        'K-1: the teacher names each game in Spanish (el gato y el ratón, pato pato ganso) and leads with single-word commands. 2-3: a student leader calls short Simón dice phrases. 4-5: a student leader runs a full Simon Says round in Spanish and explains one game’s rules to the class.',
+    },
+    tags: ['circle games', 'sub-friendly', 'small space', 'half gym friendly', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -1283,7 +1452,31 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'math', connection: 'Four Corners uses numbers 1-4 - practice number recognition and simple probability (what are the odds your corner is called?).' },
       { subject: 'science', connection: 'Red Light, Green Light is a reaction-time game - talk about how fast the brain has to react to stop moving.' },
     ],
-    tags: ['tag games', 'listening games', 'sub-friendly', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Luz roja', english: 'Red light' },
+        { spanish: 'Luz verde', english: 'Green light' },
+        { spanish: 'Esquina', english: 'Corner' },
+        { spanish: 'Pared', english: 'Wall' },
+        { spanish: 'Tiburón', english: 'Shark' },
+      ],
+      routinePhrases: [
+        { spanish: '¡Alto!', english: 'Stop!' },
+        { spanish: '¡Ya!', english: 'Go!' },
+        { spanish: 'Busquen un número', english: 'Find a number (corner)' },
+      ],
+      coachingCues: [
+        { spanish: 'Reacciona rápido', english: 'React quickly' },
+        { spanish: 'Escuchen con atención', english: 'Listen carefully' },
+      ],
+      globalConnection:
+        'The warm-up for this lesson is "Luz roja, luz verde" - Red Light, Green Light’s Spanish name, and a game played the same way across the Spanish-speaking world long before it became globally famous.',
+      studentLanguageUse:
+        'A student leader calls "¡Luz roja!" and "¡Luz verde!" in Spanish during the warm-up, and the class echoes each call before moving or freezing.',
+      gradeScaling:
+        'K-1: the teacher calls luz roja / luz verde every round. 2-3: a student leader takes a turn calling, with the teacher supporting. 4-5: a student leader runs a full round independently and explains the rules to the class in Spanish before starting.',
+    },
+    tags: ['tag games', 'listening games', 'sub-friendly', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -1536,7 +1729,32 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'science', connection: 'Talk about how the heart beats faster and breathing speeds up during sustained running - the body sending more oxygen to working muscles.' },
       { subject: 'social-studies', connection: 'Running is one of the oldest and most universal physical activities across cultures - the marathon itself comes from an ancient Greek running messenger.' },
     ],
-    tags: ['running', 'fitness', 'track', 'laps', 'sub-friendly', 'full gym'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Correr', english: 'To run' },
+        { spanish: 'Caminar', english: 'To walk' },
+        { spanish: 'Vuelta', english: 'Lap' },
+        { spanish: 'Respirar', english: 'To breathe' },
+        { spanish: 'Ritmo', english: 'Pace / rhythm' },
+      ],
+      routinePhrases: [
+        { spanish: '¡Empiecen!', english: 'Start!' },
+        { spanish: 'Tomen agua', english: 'Get water' },
+        { spanish: 'Caminen si lo necesitan', english: 'Walk if you need to' },
+      ],
+      coachingCues: [
+        { spanish: 'Respira profundo', english: 'Breathe deeply' },
+        { spanish: 'Mantén un ritmo constante', english: 'Keep a steady pace' },
+        { spanish: 'Pasa por fuera', english: 'Pass on the outside' },
+      ],
+      globalConnection:
+        'Lorena Ramírez, a Rarámuri runner from Chihuahua, Mexico, has won major ultramarathons running in traditional sandals. The Rarámuri people are known worldwide for rarajípari, a running tradition that can cover 100+ miles - running as a core part of daily and ceremonial life, not just a sport.',
+      studentLanguageUse:
+        'Students count their own laps aloud in Spanish as they finish each one, and report their total lap count to a partner.',
+      gradeScaling:
+        'K-1: count laps in Spanish up to 5-10 with help. 2-3: count laps independently and add up class totals. 4-5: report a lap count in a full sentence (Corrí seis vueltas) and discuss Lorena Ramírez and the Rarámuri running tradition.',
+    },
+    tags: ['running', 'fitness', 'track', 'laps', 'sub-friendly', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,
@@ -1597,16 +1815,32 @@ export const SEED_LESSONS: Lesson[] = [
     ],
     customRubric: LOCOMOTOR_SKILLS_RUBRIC,
     globalConnection: {
-      competencies: ['Communication', 'Curiosity', 'Self-Awareness'],
       vocabulary: [
         { spanish: 'Caminar', english: 'Walk' },
         { spanish: 'Correr', english: 'Run' },
         { spanish: 'Saltar', english: 'Jump / Hop' },
         { spanish: 'Galopar', english: 'Gallop' },
-        { spanish: 'Deslizar', english: 'Slide' },
+        { spanish: 'Deslizarse de lado', english: 'Slide sideways' },
+        { spanish: 'Gatear', english: 'Crawl' },
+        { spanish: 'Rápido / lento', english: 'Fast / slow' },
       ],
-      connection:
-        'The last relay round is called entirely in Spanish, with students echoing each command back before they move. It turns a familiar PE routine into real listening-and-speaking practice in the immersion language - the same locomotor vocabulary they already know in English, now heard and used in Spanish.',
+      routinePhrases: [
+        { spanish: 'Hagan una fila', english: 'Line up' },
+        { spanish: 'En sus marcas, listos, ¡fuera!', english: 'Ready, set, go!' },
+        { spanish: '¡Ya!', english: 'Go!' },
+        { spanish: 'Te toca', english: 'Your turn' },
+      ],
+      coachingCues: [
+        { spanish: 'Brazos y piernas se mueven juntos', english: 'Arms and legs move together' },
+        { spanish: 'Mira hacia atrás', english: 'Look over your shoulder' },
+        { spanish: 'Con cuidado', english: 'Carefully' },
+      ],
+      globalConnection:
+        'The last relay round is called entirely in Spanish, with students echoing each command back before they go - the same call-and-response structure used in traditional games like "Simón dice" (Simon Says), played across the Spanish-speaking world.',
+      studentLanguageUse:
+        'Each student echoes the called movement back in Spanish before traveling ("¡Correr!" - "¡Correr!"), and teammates count their team’s completed rounds aloud in Spanish while waiting in line.',
+      gradeScaling:
+        'K-1: single-word commands only, modeled by the teacher every time. 2-3: students echo the command and count rounds in Spanish. 4-5: a student leader calls the Spanish round instead of the teacher, and teams report their round count in a full sentence (Nuestro equipo hizo cinco rondas).',
     },
     tags: ['relay', 'locomotor movement', 'sub-friendly', 'full gym', 'spanish immersion', 'global connection'],
     source: 'seed',
@@ -1766,7 +2000,33 @@ export const SEED_LESSONS: Lesson[] = [
       { subject: 'english', connection: 'The catching cue uses letter shapes ("M" and "W") - talk about how your hands can form the same shapes as letters you write.' },
       { subject: 'science', connection: 'A tossed or thrown bean bag follows a curved path (an arc) because of gravity - compare a flat, hard toss to a high, arcing one.' },
     ],
-    tags: ['throwing', 'catching', 'tossing', 'bean bags', 'full gym', 'sub-friendly'],
+    globalConnection: {
+      vocabulary: [
+        { spanish: 'Lanzar', english: 'To toss / throw' },
+        { spanish: 'Atrapar', english: 'To catch' },
+        { spanish: 'Saquito de frijoles', english: 'Beanbag' },
+        { spanish: 'Aro', english: 'Hoop' },
+        { spanish: 'Blanco', english: 'Target', alternate: 'Objetivo' },
+        { spanish: 'Puntos', english: 'Points' },
+      ],
+      routinePhrases: [
+        { spanish: 'Busquen un compañero', english: 'Find a partner' },
+        { spanish: 'Cinco pasos atrás', english: 'Five steps back' },
+        { spanish: 'Tu turno', english: 'Your turn' },
+      ],
+      coachingCues: [
+        { spanish: 'Palma hacia el cielo', english: 'Palm to the sky' },
+        { spanish: 'Ojos en el objeto', english: 'Eyes on the object' },
+        { spanish: 'Manos suaves', english: 'Soft hands' },
+      ],
+      globalConnection:
+        'Baggo (toss a bag toward a target for points) is close cousins with two real traditions: "el juego del sapo," a toss-at-a-target game from Peru, Argentina, and Uruguay, and "tejo," a target-tossing game that is Colombia’s national sport.',
+      studentLanguageUse:
+        'Partners call out their running Baggo score in Spanish after every round, and students count tosses-in-a-row aloud in Spanish during partner toss.',
+      gradeScaling:
+        'K-1: count tosses in Spanish up to 10 with the teacher. 2-3: call out Baggo scores in short phrases (cinco puntos). 4-5: students keep a full score conversation in Spanish during Baggo and explain how tejo or el sapo compares to the game they just played.',
+    },
+    tags: ['throwing', 'catching', 'tossing', 'bean bags', 'full gym', 'sub-friendly', 'spanish immersion', 'global connection'],
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,

@@ -19,15 +19,29 @@ export interface CrossCurricularLink {
 export interface SpanishVocabWord {
   spanish: string;
   english: string;
+  /** Regional alternate word, when it varies by country - the difference is itself a global-connection talking point. */
+  alternate?: string;
 }
 
+/**
+ * Matches the school's "Conexión en Español / Global Connection" lesson-plan template:
+ * vocabulary, routine phrases, coaching cues, one global connection, how students produce
+ * the language themselves, and a grade-level scaling note (K-1 single words through 4-5 full
+ * sentences / student-led instruction).
+ */
 export interface GlobalConnectionNote {
-  /** Which of the magnet's global-competency gears this activity builds, e.g. "Communication", "Curiosity". */
-  competencies: string[];
-  /** Spanish vocabulary introduced or practiced during this lesson. */
+  /** 5-10 words matching this lesson's specific skills/equipment. */
   vocabulary: SpanishVocabWord[];
-  /** How this activity builds global/intercultural connection - written to be shareable with families or admin. */
-  connection: string;
+  /** Spanish routine phrases used during this lesson: start, stop, transitions, cleanup. */
+  routinePhrases: SpanishVocabWord[];
+  /** Spanish coaching cues for the lesson's main skill. */
+  coachingCues: SpanishVocabWord[];
+  /** One game, sport, dance, athlete, or tradition from a Spanish-speaking (or other) culture tied to this lesson's skill. */
+  globalConnection: string;
+  /** How students produce Spanish themselves during this lesson - counting reps, calling colors, leading warmup, exit ticket. */
+  studentLanguageUse: string;
+  /** Grade-level scaling note, e.g. K-1 single words and commands -> 4-5 full sentences and student-led instruction. */
+  gradeScaling: string;
 }
 
 export interface RubricLevel {
