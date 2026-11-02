@@ -109,7 +109,7 @@ export interface Lesson {
   needsMusic?: boolean;
   diagramNotes?: string;
   /** Selects a data-driven inline SVG to accompany diagramNotes - no external images. */
-  diagramType?: 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond';
+  diagramType?: 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond' | 'open-floor';
   standardsByGrade?: StandardsForGrade[];
   accommodations?: Accommodation[];
   crossCurricular?: CrossCurricularLink[];

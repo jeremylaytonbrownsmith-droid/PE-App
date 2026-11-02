@@ -1186,6 +1186,7 @@ export const SEED_LESSONS: Lesson[] = [
     optionalActivities: [{ id: 'oa-1', name: 'Fan Favorite Replay', description: 'Let the class vote on their favorite game from today and play it again if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'No equipment setup required beyond optional hula hoops for rest zones - just open floor space to move.',
+    diagramType: 'open-floor',
     standardsByGrade: locomotorStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [
@@ -1440,6 +1441,8 @@ export const SEED_LESSONS: Lesson[] = [
     ],
     optionalActivities: [{ id: 'oa-1', name: 'Fan Favorite Replay', description: 'Let the class vote on their favorite game from today and play it again if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
+    diagramNotes: 'Freeze Tag and Everybody’s It Tag use open floor space with no setup. Four Corners just needs one cone labeled 1-4 in each corner of the gym.',
+    diagramType: 'open-floor',
     standardsByGrade: locomotorStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [

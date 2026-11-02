@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond';
+export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond' | 'open-floor';
 
 interface DiagramSVGProps {
   variant: DiagramVariant;
@@ -48,6 +48,14 @@ function Student({ x, y }: { x: number; y: number }) {
   return (
     <text x={x} y={y} fontSize={11} fill="#374151" fontWeight={600}>
       x
+    </text>
+  );
+}
+
+function Tagger({ x, y }: { x: number; y: number }) {
+  return (
+    <text x={x} y={y} fontSize={11} fill="#F44336" fontWeight={700}>
+      T
     </text>
   );
 }
@@ -339,6 +347,43 @@ export function DiagramSVG({ variant }: DiagramSVGProps) {
         </Gym>
         <Legend items={[{ swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' }]} />
         <p className="text-xs text-gray-400 text-center mt-1">Partners spread out facing each other across the gym, an arm’s length of extra room on each side.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'open-floor') {
+    const scattered = [
+      { x: GYM.x + 30, y: GYM.y + 35 },
+      { x: GYM.x + 70, y: GYM.y + 150 },
+      { x: GYM.x + 110, y: GYM.y + 70 },
+      { x: GYM.x + 150, y: GYM.y + 160 },
+      { x: GYM.x + 250, y: GYM.y + 40 },
+      { x: GYM.x + 280, y: GYM.y + 150 },
+      { x: GYM.x + 320, y: GYM.y + 90 },
+      { x: GYM.x + 330, y: GYM.y + 170 },
+      { x: GYM.x + 200, y: GYM.y + 100 },
+    ];
+    const taggers = [
+      { x: GYM.x + 170, y: GYM.y + 50 },
+      { x: GYM.x + 100, y: GYM.y + 170 },
+    ];
+    return (
+      <div>
+        <Gym>
+          {scattered.map((p, i) => (
+            <Student key={i} x={p.x} y={p.y} />
+          ))}
+          {taggers.map((p, i) => (
+            <Tagger key={i} x={p.x} y={p.y} />
+          ))}
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700} fill="#F44336">T</text>, label: 'Tagger(s)' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700}>x</text>, label: 'Student' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">No equipment setup required - students spread out across the open floor, with a few chosen as taggers.</p>
       </div>
     );
   }
