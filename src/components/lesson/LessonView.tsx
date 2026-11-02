@@ -113,7 +113,7 @@ export function LessonView({ lesson, warmUp, schedule, seriesLessons = [] }: Les
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-lg font-semibold border-b pb-1">
+        <h2 className="text-base font-semibold border-b pb-1 text-gray-600">
           Warm-Up{lesson.warmUpMinutes ? ` (${lesson.warmUpMinutes} minutes)` : ''}
         </h2>
         {warmUp ? (
@@ -142,8 +142,13 @@ export function LessonView({ lesson, warmUp, schedule, seriesLessons = [] }: Les
         )}
       </section>
 
-      <section className="space-y-3">
-        <h2 className="text-lg font-semibold border-b pb-1">Main Activities</h2>
+      <section className="space-y-3 rounded-lg border-2 border-brand-300 bg-brand-50 p-4 print:border-black print:bg-white print:p-0">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-brand-900">
+          <span className="rounded bg-brand-700 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white print:bg-transparent print:text-black print:border print:border-black">
+            This is the lesson
+          </span>
+          Main Activities
+        </h2>
         {lesson.mainActivities.map((activity) => (
           <div key={activity.id} className="text-sm">
             <p className="font-semibold">
@@ -156,8 +161,8 @@ export function LessonView({ lesson, warmUp, schedule, seriesLessons = [] }: Les
       </section>
 
       {lesson.optionalActivities.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold border-b pb-1">Optional / If Time Allows</h2>
+        <section className="space-y-3 opacity-90">
+          <h2 className="text-base font-semibold border-b pb-1 text-gray-600">Optional / If Time Allows (not required)</h2>
           {lesson.optionalActivities.map((activity) => (
             <div key={activity.id} className="text-sm">
               <p className="font-semibold">{activity.name}</p>
