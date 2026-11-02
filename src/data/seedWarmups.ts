@@ -399,4 +399,19 @@ export const SEED_WARMUPS: WarmUp[] = [
     suggestedMinutes: 8,
     source: 'seed',
   },
+  {
+    id: 'warmup-angry-farmer-tag',
+    name: 'Angry Farmer Tag',
+    type: 'tag',
+    description: 'A classic noodle-tag game - simple to explain and a reliable favorite.',
+    rules: [
+      'A few students are chosen as "farmers," each holding a pool noodle.',
+      'Everyone else runs free in the open space.',
+      'If a farmer tags someone with the noodle, that student sits down right where they were tagged.',
+      'Play until most students are seated (or time runs out), then everyone stands back up and new farmers are chosen for the next round.',
+    ],
+    minGymSpace: 'full',
+    suggestedMinutes: 8,
+    source: 'seed',
+  },
 ];

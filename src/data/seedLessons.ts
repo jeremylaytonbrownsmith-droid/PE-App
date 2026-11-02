@@ -1180,7 +1180,7 @@ export const SEED_LESSONS: Lesson[] = [
     warmUpMinutes: 10,
     mainActivities: [
       { id: 'ma-1', name: 'Blob Tag', description: 'Two students start holding hands as "the blob." Tagged students join the blob by holding hands.', minutes: 8 },
-      { id: 'ma-2', name: 'Sharks and Minnows', description: '2-3 sharks try to tag minnows crossing from one wall to the other. Tagged minnows become seaweed.', minutes: 10 },
+      { id: 'ma-2', name: 'Angry Farmer Tag', description: 'A few students are chosen as "farmers," each holding a pool noodle. Everyone else runs free in the open space. If a farmer tags someone with the noodle, that student sits down right where they were tagged. Play until most students are seated, then everyone stands back up and new farmers are chosen.', minutes: 10 },
       { id: 'ma-3', name: 'Everybody’s It Tag', description: 'Every student tags and is tagged at the same time - no elimination, just constant movement.', minutes: 8 },
     ],
     optionalActivities: [{ id: 'oa-1', name: 'Fan Favorite Replay', description: 'Let the class vote on their favorite game from today and play it again if time allows.', minutes: 5 }],
@@ -1189,7 +1189,7 @@ export const SEED_LESSONS: Lesson[] = [
     standardsByGrade: locomotorStandards(ALL_GRADES),
     subFriendly: true,
     accommodations: [
-      { category: 'mobility', note: 'Every game already has a stationary role built in (seaweed in Sharks and Minnows, calling out in Everybody’s It) - let the student choose that role, or tag from a wheelchair/scooter.' },
+      { category: 'mobility', note: 'Every game already has a stationary role built in (sitting out once tagged in Angry Farmer, calling out in Everybody’s It) - let the student choose that role, or tag from a wheelchair/scooter.' },
       { category: 'visual', note: 'Assign a peer buddy to stay near the student and narrate who’s nearby; keep the same 2-3 taggers so voices and roles stay predictable.' },
       { category: 'sensory', note: 'These games are loud and unpredictable by nature - offer a hula hoop "safe zone" the student can step into anytime, no questions asked, and allow noise-canceling headphones.' },
       { category: 'cognitive', note: 'Play each game for a few extra rounds before switching to the next - repetition helps far more than new instructions.' },
@@ -1434,7 +1434,7 @@ export const SEED_LESSONS: Lesson[] = [
     warmUpId: 'warmup-red-light-green-light',
     warmUpMinutes: 8,
     mainActivities: [
-      { id: 'ma-1', name: 'Sharks and Minnows', description: '2-3 sharks try to tag minnows crossing from one wall to the other. Tagged minnows become seaweed.', minutes: 10 },
+      { id: 'ma-1', name: 'Freeze Tag', description: 'A few students are chosen as taggers. Tagged students freeze in place like a statue. A frozen student can be unfrozen when a teammate crawls under their legs or gives them a high-five. Switch taggers every few minutes.', minutes: 10 },
       { id: 'ma-2', name: 'Everybody’s It Tag', description: 'Every student tags and is tagged at the same time - no elimination, just constant movement.', minutes: 8 },
       { id: 'ma-3', name: 'Four Corners', description: 'Label corners 1-4. "It" calls a number, and that corner sits out for the round.', minutes: 8 },
     ],
@@ -1538,11 +1538,11 @@ export const SEED_LESSONS: Lesson[] = [
     warmUpId: 'warmup-four-corners',
     warmUpMinutes: 8,
     mainActivities: [
-      { id: 'ma-1', name: 'Musical Hoops', description: 'Multiple students can share a hoop when the music stops - no one is ever fully eliminated.', minutes: 8 },
+      { id: 'ma-1', name: 'Musical Hoops', description: 'Multiple students can share a hoop when the music stops - no one is ever fully eliminated. No speaker? No problem - the leader just calls out "Freeze!" at random instead of stopping music.', minutes: 8 },
       { id: 'ma-2', name: 'Hoop Relay', description: 'Teams of four or less relay-race rolling a hoop down and back, or hula-hoop it around their waist as long as they can before passing to the next teammate.', minutes: 8 },
       { id: 'ma-3', name: 'Rock Paper Scissors Tournament', description: '4 lines of hoops, hop through, play RPS when meeting in the middle.', minutes: 8 },
     ],
-    optionalActivities: [{ id: 'oa-1', name: 'Musical Hoops Replay', description: 'One more round of Musical Hoops if time allows.', minutes: 5 }],
+    optionalActivities: [{ id: 'oa-1', name: 'Musical Hoops Replay', description: 'One more round of Musical Hoops if time allows (with music or a called "Freeze!").', minutes: 5 }],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Hoops and cones spread out with room to move between stations.',
     diagramType: 'stations',
@@ -1582,7 +1582,7 @@ export const SEED_LESSONS: Lesson[] = [
     mainActivities: [
       { id: 'ma-1', name: 'Steal the Bacon', description: 'Two teams line up facing each other with a beanbag ("the bacon") in the middle. Call a number or name - those two students race to grab it and get back to their line without being tagged.', minutes: 10 },
       { id: 'ma-2', name: 'Partner Tag', description: 'Partners hold hands and try to tag other pairs while staying connected. A tagged pair freezes until high-fived by another pair.', minutes: 8 },
-      { id: 'ma-3', name: 'Sharks and Minnows', description: '2-3 sharks try to tag minnows crossing from one wall to the other. Tagged minnows become seaweed.', minutes: 8 },
+      { id: 'ma-3', name: 'Dinosaur Tag', description: 'Everyone is a tagger - three "dinosaurs" are in play: T. Rex (the largest meat eater), Dilophosaurus (spits venom), and Argentinosaurus (the largest of the three). Talk about each dinosaur’s diet and compare it to what humans eat. "Doctors and nurses" can tag frozen students to bring them back into the game.', minutes: 8 },
     ],
     optionalActivities: [{ id: 'oa-1', name: 'Fan Favorite Replay', description: 'Let the class vote on their favorite game from today and play it again if time allows.', minutes: 5 }],
     closure: STANDARD_CLOSURE,
@@ -2422,13 +2422,13 @@ export const SEED_LESSONS: Lesson[] = [
     gymSpace: 'full',
     equipment: [
       { id: 'eq-1', name: 'Basketballs (youth size)' },
-      { id: 'eq-2', name: 'Cones', note: 'Used for the dribbling course and to mark hoop-side "shark" spots.' },
+      { id: 'eq-2', name: 'Cones', note: 'Used for the dribbling course and to mark the Protect Your Dribble boundary.' },
       { id: 'eq-3', name: 'Hula hoops and jump ropes', note: 'Used for Target Dribble - one hoop tied to a jump rope per pair.' },
       { id: 'eq-4', name: 'Poly spots', note: 'Used for the Dribble, Pass, Shoot money game.' },
     ],
     gradeModifications: [
-      { id: 'gm-1', grades: ['K', '1', '2'], note: 'Stick to in-place and moving dribbling with the fingertip circle warm-up. Skip tricks, Red/Yellow/Green Light, and Sharks and Minnows. Use a kickball for students who struggle to control a basketball.' },
-      { id: 'gm-2', grades: ['3', '4', '5'], note: 'Add ball-control tricks, Red/Yellow/Green Light dribbling, Sharks and Minnows, Target Dribble, and the full Poly Spot Money Game.' },
+      { id: 'gm-1', grades: ['K', '1', '2'], note: 'Stick to in-place and moving dribbling with the fingertip circle warm-up. Skip tricks, Red/Yellow/Green Light, and Protect Your Dribble. Use a kickball for students who struggle to control a basketball.' },
+      { id: 'gm-2', grades: ['3', '4', '5'], note: 'Add ball-control tricks, Red/Yellow/Green Light dribbling, Protect Your Dribble, Target Dribble, and the full Poly Spot Money Game.' },
     ],
     techniqueCues: [
       'Eyes up, not down at the ball, while you dribble.',
@@ -2451,8 +2451,8 @@ export const SEED_LESSONS: Lesson[] = [
       },
       {
         id: 'ma-2',
-        name: 'Sharks and Minnows Dribbling',
-        description: 'Minnows dribble across the court using the skills just practiced, trying to keep their ball from being stolen by sharks standing in hoops along the way. If a minnow’s ball is stolen, they become a shark too. Switch after four or five rounds.',
+        name: 'Protect Your Dribble',
+        description: 'Everyone dribbles their own ball inside a defined boundary at the same time, trying to tap away other students’ balls while protecting their own - using the skills just practiced. If your ball gets knocked away or you lose control, do 5 stationary crossovers before rejoining.',
         minutes: 8,
       },
       {
@@ -2481,7 +2481,7 @@ export const SEED_LESSONS: Lesson[] = [
     diagramType: 'stations',
     standardsByGrade: manipulativeSkillStandards(ALL_GRADES, 'invasion'),
     accommodations: [
-      { category: 'mobility', note: 'Allow dribbling from a seated or wheelchair position, or roll the ball to a partner instead. In Sharks and Minnows, the shark role already works seated in a hoop.' },
+      { category: 'mobility', note: 'Allow dribbling from a seated or wheelchair position, or roll the ball to a partner instead. In Protect Your Dribble, the student can defend a smaller zone from a seated position.' },
       { category: 'visual', note: 'Use a bell or beeper ball, and give verbal cues for dribble height and hand ("switch to your left, waist level").' },
       { category: 'sensory', note: 'Reduce partner-group size and preview the day’s stations with a simple picture list.' },
       { category: 'cognitive', note: 'Teach the dribbling progression one skill at a time (in place, then moving) before adding Red/Yellow/Green Light or tricks.' },
