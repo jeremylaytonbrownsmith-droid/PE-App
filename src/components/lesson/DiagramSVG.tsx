@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond' | 'open-floor';
+export type DiagramVariant = 'goals' | 'court' | 'endzone' | 'stations' | 'circle' | 'personal-space' | 'lanes' | 'partners' | 'diamond' | 'open-floor' | 'ice-cream-tag';
 
 interface DiagramSVGProps {
   variant: DiagramVariant;
@@ -384,6 +384,55 @@ export function DiagramSVG({ variant }: DiagramSVGProps) {
           ]}
         />
         <p className="text-xs text-gray-400 text-center mt-1">No equipment setup required - students spread out across the open floor, with a few chosen as taggers.</p>
+      </div>
+    );
+  }
+
+  if (variant === 'ice-cream-tag') {
+    const waitingGroups = [
+      { x: GYM.x + 20, y: GYM.y + 35 },
+      { x: GYM.x + 20, y: GYM.y + 100 },
+      { x: GYM.x + 20, y: GYM.y + 165 },
+      { x: GYM.x + GYM.width - 20, y: GYM.y + 35 },
+      { x: GYM.x + GYM.width - 20, y: GYM.y + 100 },
+      { x: GYM.x + GYM.width - 20, y: GYM.y + 165 },
+    ];
+    const carriers = [
+      { x: GYM.x + 140, y: GYM.y + 55 },
+      { x: GYM.x + 190, y: GYM.y + 135 },
+    ];
+    const taggers = [
+      { x: GYM.x + 110, y: GYM.y + 110 },
+      { x: GYM.x + 240, y: GYM.y + 70 },
+    ];
+    return (
+      <div>
+        <Gym>
+          {waitingGroups.map((g, i) => (
+            <g key={i}>
+              <circle cx={g.x - 7} cy={g.y} r={3.5} fill="#7B1FA2" />
+              <circle cx={g.x + 7} cy={g.y} r={3.5} fill="#7B1FA2" />
+              <circle cx={g.x} cy={g.y + 9} r={3.5} fill="#7B1FA2" />
+            </g>
+          ))}
+          {carriers.map((c, i) => (
+            <g key={i}>
+              <circle cx={c.x} cy={c.y} r={5} fill="#2563eb" />
+              <Cone x={c.x} y={c.y - 11} />
+            </g>
+          ))}
+          {taggers.map((t, i) => (
+            <Tagger key={i} x={t.x} y={t.y} />
+          ))}
+        </Gym>
+        <Legend
+          items={[
+            { swatch: <circle cx={8} cy={8} r={4} fill="#7B1FA2" />, label: 'Group (waiting for their turn)' },
+            { swatch: <circle cx={8} cy={8} r={4} fill="#2563eb" />, label: 'Ice cream carrier (ball on cone)' },
+            { swatch: <text x={4} y={12} fontSize={10} fontWeight={700} fill="#F44336">T</text>, label: 'Tagger (noodle)' },
+          ]}
+        />
+        <p className="text-xs text-gray-400 text-center mt-1">Groups wait on each side of the gym. One carrier per group balances the ball on their cone and moves through the middle while taggers try to tap it off with a noodle.</p>
       </div>
     );
   }
