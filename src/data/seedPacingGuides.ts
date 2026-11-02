@@ -59,4 +59,78 @@ function buildSampleYearGuide(): PacingGuide {
   };
 }
 
-export const SEED_PACING_GUIDES: PacingGuide[] = [buildSampleYearGuide()];
+/**
+ * A ready-made backlog of every sub-friendly lesson in the library, for handing off to a
+ * substitute during an extended absence (e.g. paternity leave). Not tied to real calendar
+ * dates - the "Week" numbers and order are what matters, not the placeholder start date. A
+ * substitute just works through them in order, checking off "Taught" on the pacing guide page
+ * as they go, regardless of what the actual date is.
+ */
+const PATERNITY_LEAVE_PLAN: { unit: string; lessonId: string }[] = [
+  { unit: 'Math Tag, Cone Catch & Ice Cream Tag', lessonId: 'lesson-cone-catch-ice-cream-tag' },
+  { unit: 'Striker Ball', lessonId: 'lesson-striker-ball' },
+  { unit: 'Classic Playground Games Day', lessonId: 'lesson-classic-playground-games' },
+  { unit: 'Scoop & Cup Toss', lessonId: 'lesson-scoop-cup-toss' },
+  { unit: 'Parachute Play', lessonId: 'lesson-parachute-play' },
+  { unit: 'Red Light Rally', lessonId: 'lesson-red-light-rally' },
+  { unit: 'Rhythm & Dance', lessonId: 'lesson-rhythm-dance' },
+  { unit: 'Tag Game Mania', lessonId: 'lesson-tag-game-mania' },
+  { unit: 'Cooperative Games & Team Building', lessonId: 'lesson-cooperative-games' },
+  { unit: 'Bean Bag Toss, Throw & Catch', lessonId: 'lesson-toss-throw-catch' },
+  { unit: 'Hula Hoop Skills', lessonId: 'lesson-hula-hoop-skills' },
+  { unit: 'Fitness Fun & Games', lessonId: 'lesson-fitness-fun-and-games' },
+  { unit: 'Juggling', lessonId: 'lesson-juggling' },
+  { unit: 'Category Tag Challenge', lessonId: 'lesson-category-tag-challenge' },
+  { unit: 'Soccer Dribbling Skills', lessonId: 'lesson-soccer-dribbling-skills' },
+  { unit: 'Yoga & Mindful Movement', lessonId: 'lesson-yoga-mindful-movement' },
+  { unit: 'Hoop & Cone Games Day', lessonId: 'lesson-hoop-and-cone-games-day' },
+  { unit: 'Freeze Tag Frenzy', lessonId: 'lesson-freeze-tag-frenzy' },
+  { unit: 'Jump Rope', lessonId: 'lesson-jump-rope' },
+  { unit: 'Mellow Movement Day', lessonId: 'lesson-mellow-movement-day' },
+  { unit: 'Steal the Treasure', lessonId: 'lesson-steal-the-treasure' },
+  { unit: 'Soccer Passing & Shooting', lessonId: 'lesson-soccer-passing-shooting' },
+  { unit: 'Circle Time Classics', lessonId: 'lesson-circle-time-classics' },
+  { unit: 'Build-a-Snowman Relay', lessonId: 'lesson-build-a-snowman-relay' },
+  { unit: 'Frisbee / Disc Skills', lessonId: 'lesson-frisbee-disc' },
+  { unit: 'Partner Juggling & Steal the Tail', lessonId: 'lesson-partner-juggling-steal-the-tail' },
+  { unit: 'Scooter Safety & Games', lessonId: 'lesson-scooter-games' },
+  { unit: 'Baseball / Striking & Fielding Games', lessonId: 'lesson-baseball-striking-fielding' },
+  { unit: 'Laps & Running', lessonId: 'lesson-laps-and-running' },
+  { unit: 'Volleyball', lessonId: 'lesson-volleyball' },
+  { unit: 'Fitness Circuit', lessonId: 'lesson-fitness-circuit' },
+  { unit: 'Jump Rope Skills & Stations', lessonId: 'lesson-jump-rope-skills-stations' },
+  { unit: 'Football Throw & Catch Games', lessonId: 'lesson-football-throw-catch' },
+  { unit: 'Parachute Fitness', lessonId: 'lesson-parachute-fitness' },
+  { unit: 'Volleying & Striking Skills', lessonId: 'lesson-volleying-striking-skills' },
+  { unit: 'Games & Movement', lessonId: 'lesson-games-movement-half-gym' },
+  { unit: 'Locomotor Relay Races', lessonId: 'lesson-locomotor-relay-races' },
+  { unit: 'Scooter Fitness Circuit', lessonId: 'lesson-scooter-fitness-circuit' },
+  { unit: 'Soccer / Handball Goal Games', lessonId: 'lesson-soccer-goal-games' },
+  { unit: 'Fitness Testing & Goal Setting', lessonId: 'lesson-fitness-testing-goal-setting' },
+  { unit: 'PE Expectations & Team Building', lessonId: 'lesson-pe-expectations-team-building' },
+];
+
+const PATERNITY_PLAN_PLACEHOLDER_START_DATE = '2026-11-02';
+
+function buildPaternityLeaveWeeks(): PacingWeek[] {
+  const start = new Date(`${PATERNITY_PLAN_PLACEHOLDER_START_DATE}T00:00:00`);
+  return PATERNITY_LEAVE_PLAN.map((block, i) => {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i * 7);
+    return { weekNumber: i + 1, startDate: d.toISOString().slice(0, 10), unit: block.unit, lessonId: block.lessonId };
+  });
+}
+
+function buildPaternityLeaveGuide(): PacingGuide {
+  return {
+    id: 'pacing-paternity-leave-coverage',
+    name: 'Paternity Leave Coverage Plan',
+    schoolYear: 'As Needed - Not Date-Specific',
+    grade: 'K-5',
+    weeks: buildPaternityLeaveWeeks(),
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  };
+}
+
+export const SEED_PACING_GUIDES: PacingGuide[] = [buildSampleYearGuide(), buildPaternityLeaveGuide()];
