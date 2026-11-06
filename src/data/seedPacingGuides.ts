@@ -136,8 +136,9 @@ function buildPaternityLeaveGuide(): PacingGuide {
 /**
  * A January-through-April stretch of the year: basketball and soccer first (each run as a
  * short skill progression - dribble/pass/shoot building up to full games), then jump rope,
- * volleyball, floor hockey, and fitness circuit round out the spring before the school year's
- * later units pick back up.
+ * volleyball, gymnastics, and fitness circuit round out the spring before the school year's
+ * later units pick back up. Floor Hockey is taught separately (not in this rotation) since
+ * that's a unit the teacher runs himself.
  */
 const JAN_APRIL_PLAN: { unit: string; lessonId: string; weeks: number }[] = [
   { unit: 'Basketball', lessonId: 'lesson-basketball', weeks: 3 },
@@ -149,7 +150,7 @@ const JAN_APRIL_PLAN: { unit: string; lessonId: string; weeks: number }[] = [
   { unit: 'Jump Rope Routines & Performance', lessonId: 'lesson-jump-rope-routines-performance', weeks: 1 },
   { unit: 'Volleying & Striking Skills', lessonId: 'lesson-volleying-striking-skills', weeks: 1 },
   { unit: 'Volleyball', lessonId: 'lesson-volleyball', weeks: 1 },
-  { unit: 'Floor Hockey (Pillow Polo)', lessonId: 'lesson-floor-hockey', weeks: 3 },
+  { unit: 'Gymnastics & Tumbling', lessonId: 'lesson-gymnastics-tumbling', weeks: 3 },
   { unit: 'Fitness Circuit', lessonId: 'lesson-fitness-circuit', weeks: 2 },
 ];
 

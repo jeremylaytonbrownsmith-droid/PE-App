@@ -44,6 +44,25 @@ export function PacingGuidePage() {
     setSaving(false);
   }
 
+  const completedWeeks = guide.weeks.filter((w) => w.completed).length;
+
+  function LessonSelect({ week, className }: { week: PacingWeek; className: string }) {
+    return (
+      <select
+        className={className}
+        value={week.lessonId ?? ''}
+        onChange={(e) => updateWeek(week.weekNumber, { lessonId: e.target.value || undefined })}
+      >
+        <option value="">—</option>
+        {lessons.map((lesson) => (
+          <option key={lesson.id} value={lesson.id}>
+            {lesson.title}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -60,11 +79,16 @@ export function PacingGuidePage() {
         }
       />
 
-      <div className="no-print flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4">
-        <ProgressRing value={guide.weeks.filter((w) => w.completed).length} max={guide.weeks.length} size={48} strokeWidth={5} />
-        <p className="text-sm text-gray-600">
-          {guide.weeks.filter((w) => w.completed).length} of {guide.weeks.length} weeks marked taught
-        </p>
+      <div className="no-print flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+        <ProgressRing value={completedWeeks} max={guide.weeks.length} size={56} strokeWidth={6} />
+        <div>
+          <p className="text-sm font-semibold text-gray-900">
+            {completedWeeks} of {guide.weeks.length} weeks taught
+          </p>
+          <p className="text-xs text-gray-500 mt-0.5">
+            {guide.weeks.length - completedWeeks === 0 ? 'All caught up!' : `${guide.weeks.length - completedWeeks} weeks to go`}
+          </p>
+        </div>
       </div>
 
       <div className="no-print space-y-1.5">
@@ -74,7 +98,7 @@ export function PacingGuidePage() {
             <button
               key={week.weekNumber}
               onClick={() => updateWeek(week.weekNumber, { completed: !week.completed })}
-              className={`shrink-0 snap-start w-32 rounded-xl border p-2.5 text-left transition-colors ${
+              className={`shrink-0 snap-start w-32 rounded-xl border p-2.5 text-left shadow-sm transition hover:shadow ${
                 week.completed ? 'border-brand-400 bg-brand-50' : 'border-gray-200 bg-white'
               }`}
             >
@@ -90,7 +114,10 @@ export function PacingGuidePage() {
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+      {/* Desktop/tablet: full table. Below sm, a table this wide forces horizontal scrolling
+          through tiny truncated columns, so phones get a stacked card layout instead. Printing
+          always uses the table, regardless of the device it was printed from. */}
+      <div className="hidden sm:block print:!block overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
         <table className="w-full text-sm border-collapse">
           <thead>
             <tr className="bg-brand-100 text-left">
@@ -116,18 +143,7 @@ export function PacingGuidePage() {
                   />
                 </td>
                 <td className="border border-brand-200 px-2 py-1 no-print">
-                  <select
-                    className="w-full border-none focus:outline-none focus:ring-1 focus:ring-brand-400 rounded px-1"
-                    value={week.lessonId ?? ''}
-                    onChange={(e) => updateWeek(week.weekNumber, { lessonId: e.target.value || undefined })}
-                  >
-                    <option value="">—</option>
-                    {lessons.map((lesson) => (
-                      <option key={lesson.id} value={lesson.id}>
-                        {lesson.title}
-                      </option>
-                    ))}
-                  </select>
+                  <LessonSelect week={week} className="w-full border-none focus:outline-none focus:ring-1 focus:ring-brand-400 rounded px-1" />
                 </td>
                 <td className="border border-brand-200 px-2 py-1">
                   <input
@@ -148,6 +164,56 @@ export function PacingGuidePage() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Phone-width layout: one stacked card per week, no horizontal scrolling needed. */}
+      <div className="sm:hidden print:!hidden space-y-3">
+        {guide.weeks.map((week) => (
+          <div
+            key={week.weekNumber}
+            className={`rounded-2xl border p-4 space-y-3 shadow-sm ${
+              week.completed ? 'border-brand-300 bg-brand-50' : 'border-gray-200 bg-white'
+            }`}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <div>
+                <p className="text-xs font-semibold text-gray-500">Week {week.weekNumber}</p>
+                <p className="text-sm text-gray-700">{formatWeekDate(week.startDate)}</p>
+              </div>
+              <label className="flex items-center gap-1.5 text-xs font-medium text-gray-600 shrink-0">
+                <input
+                  type="checkbox"
+                  checked={Boolean(week.completed)}
+                  onChange={(e) => updateWeek(week.weekNumber, { completed: e.target.checked })}
+                  aria-label={`Mark week ${week.weekNumber} taught`}
+                  className="h-4 w-4"
+                />
+                Taught
+              </label>
+            </div>
+            <label className="block text-xs font-medium text-gray-500">
+              Unit
+              <input
+                className="mt-1 w-full rounded-lg border border-gray-300 px-2.5 py-2 text-sm bg-white"
+                value={week.unit ?? ''}
+                onChange={(e) => updateWeek(week.weekNumber, { unit: e.target.value })}
+                placeholder="e.g. Soccer"
+              />
+            </label>
+            <label className="block text-xs font-medium text-gray-500">
+              Linked Lesson
+              <LessonSelect week={week} className="mt-1 w-full rounded-lg border border-gray-300 px-2.5 py-2 text-sm bg-white" />
+            </label>
+            <label className="block text-xs font-medium text-gray-500">
+              Notes
+              <input
+                className="mt-1 w-full rounded-lg border border-gray-300 px-2.5 py-2 text-sm bg-white"
+                value={week.notes ?? ''}
+                onChange={(e) => updateWeek(week.weekNumber, { notes: e.target.value })}
+              />
+            </label>
+          </div>
+        ))}
       </div>
 
       <Button variant="ghost" onClick={() => navigate('/pacing')}>

@@ -48,7 +48,7 @@ export function PacingListPage() {
       />
 
       {showForm && (
-        <div className="rounded-xl border border-brand-200 bg-brand-50 p-4 space-y-3">
+        <div className="rounded-2xl border border-brand-200 bg-brand-50 p-4 space-y-3 shadow-sm">
           <div className="grid sm:grid-cols-2 gap-3">
             <label className="text-sm space-y-1">
               <span className="font-medium text-gray-700">Name</span>
@@ -111,10 +111,10 @@ export function PacingListPage() {
             const completedWeeks = guide.weeks.filter((w) => w.completed).length;
             return (
               <ScrollReveal key={guide.id} index={i}>
-                <div className="rounded-xl border border-gray-200 bg-white p-4 flex items-center gap-3">
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 flex items-center gap-3 shadow-sm transition hover:shadow-md hover:border-brand-200">
                   <ProgressRing value={completedWeeks} max={guide.weeks.length} size={48} strokeWidth={5} />
-                  <Link to={`/pacing/${guide.id}`} className="flex-1">
-                    <h3 className="font-semibold text-gray-900">{guide.name}</h3>
+                  <Link to={`/pacing/${guide.id}`} className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-gray-900 truncate">{guide.name}</h3>
                     <p className="text-sm text-gray-500">
                       {guide.grade} · {guide.schoolYear} · {completedWeeks}/{guide.weeks.length} weeks taught
                     </p>
@@ -126,7 +126,7 @@ export function PacingListPage() {
                         setGuides(await listPacingGuides());
                       }
                     }}
-                    className="text-gray-400 hover:text-red-600"
+                    className="text-gray-400 hover:text-red-600 shrink-0"
                     aria-label="Delete pacing guide"
                   >
                     <Trash2 size={16} />
