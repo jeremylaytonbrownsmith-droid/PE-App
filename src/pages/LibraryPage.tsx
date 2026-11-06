@@ -21,10 +21,18 @@ export function LibraryPage() {
   const [tab, setTab] = useState<Tab>('lessons');
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [warmUps, setWarmUps] = useState<WarmUp[]>([]);
-  const [search, setSearch] = useState('');
-  const [gradeFilter, setGradeFilter] = useState<Grade | 'all'>('all');
+  const [search, setSearch] = useState(searchParams.get('q') ?? '');
+  const [gradeFilter, setGradeFilter] = useState<Grade | 'all'>((searchParams.get('grade') as Grade | null) ?? 'all');
   const [gymFilter, setGymFilter] = useState<'all' | 'full' | 'half'>('all');
   const [subFriendlyOnly, setSubFriendlyOnly] = useState(searchParams.get('subFriendly') === 'true');
+
+  function handleGradeFilterChange(next: Grade | 'all') {
+    setGradeFilter(next);
+    const params = new URLSearchParams(searchParams);
+    if (next === 'all') params.delete('grade');
+    else params.set('grade', next);
+    setSearchParams(params, { replace: true });
+  }
   const [showAddWarmUp, setShowAddWarmUp] = useState(false);
 
   useEffect(() => {
@@ -123,7 +131,7 @@ export function LibraryPage() {
             <select
               className="rounded-lg border border-gray-300 px-2 py-2 text-sm"
               value={gradeFilter}
-              onChange={(e) => setGradeFilter(e.target.value as Grade | 'all')}
+              onChange={(e) => handleGradeFilterChange(e.target.value as Grade | 'all')}
             >
               <option value="all">All grades</option>
               {ALL_GRADES.map((g) => (

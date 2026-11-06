@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert, Search, Shuffle } from 'lucide-react';
 import type { SubHandbook, SubResource } from '../types/subHandbook';
 import type { PacingGuide } from '../types/pacing';
 import type { Lesson } from '../types/lesson';
 import { STANDARD_ARRIVAL_SETUP, STANDARD_CLOSURE } from '../types/lesson';
+import { ALL_GRADES, gradeLabel } from '../types/common';
 import { getSubHandbook, saveSubHandbook, listSubResources, addSubResource, deleteSubResource, fileToDataUrl } from '../lib/subHandbookStore';
 import { listPacingGuides } from '../lib/pacingStore';
 import { listLessons } from '../lib/lessonStore';
@@ -20,12 +21,14 @@ function inRange(dateIso: string, start?: string, end?: string): boolean {
 }
 
 export function SubHandbookPage() {
+  const navigate = useNavigate();
   const [handbook, setHandbook] = useState<SubHandbook | null>(null);
   const [resources, setResources] = useState<SubResource[]>([]);
   const [guides, setGuides] = useState<PacingGuide[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [hasSchoolSchedule, setHasSchoolSchedule] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [quickSearch, setQuickSearch] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -35,6 +38,14 @@ export function SubHandbookPage() {
     listLessons().then(setLessons);
     getSchedule().then((s) => setHasSchoolSchedule(s.rows.length > 0));
   }, []);
+
+  const quickSearchResults = useMemo(() => {
+    const q = quickSearch.trim().toLowerCase();
+    if (!q) return [];
+    return lessons
+      .filter((l) => l.title.toLowerCase().includes(q) || l.unit.toLowerCase().includes(q) || l.tags.some((t) => t.toLowerCase().includes(q)))
+      .slice(0, 8);
+  }, [lessons, quickSearch]);
 
   if (!handbook) return <p className="text-gray-400">Loading...</p>;
 
@@ -55,6 +66,13 @@ export function SubHandbookPage() {
     .flatMap((g) => g.weeks.map((w) => ({ ...w, guideName: g.name })))
     .filter((w) => inRange(w.startDate, handbook.coverageStart, handbook.coverageEnd))
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
+
+  function handleSurpriseMe() {
+    const pool = lessons.filter((l) => l.subFriendly);
+    if (!pool.length) return;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    navigate(`/library/${pick.id}`);
+  }
 
   const isUnfilled =
     !handbook.welcomeMessage && !handbook.importantContacts && !handbook.emergencyProcedures && !handbook.equipmentNotes && !handbook.coverageStart;
@@ -133,18 +151,65 @@ export function SubHandbookPage() {
         </label>
       </section>
 
-      <section className="rounded-xl border-2 border-brand-300 bg-brand-50 p-4 space-y-3">
-        <h2 className="font-semibold text-gray-900">Need a lesson right now?</h2>
-        <p className="text-sm text-gray-600">
-          If today's lesson isn't listed below, pick anything from the sub-friendly library - every one of these
-          needs no PE-specific coaching or specialized equipment know-how.
-        </p>
-        <div className="flex flex-wrap gap-2">
+      <section className="rounded-xl border-2 border-brand-300 bg-brand-50 p-4 space-y-4">
+        <div>
+          <h2 className="font-semibold text-gray-900">Need a lesson right now?</h2>
+          <p className="text-sm text-gray-600">
+            If today's lesson isn't listed below, pick anything from the sub-friendly library - every one of these
+            needs no PE-specific coaching or specialized equipment know-how.
+          </p>
+        </div>
+
+        <div className="relative no-print">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <input
+            className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-2 text-sm bg-white"
+            placeholder="Type a lesson name or activity (e.g. 'tag', 'basketball')..."
+            value={quickSearch}
+            onChange={(e) => setQuickSearch(e.target.value)}
+          />
+          {quickSearchResults.length > 0 && (
+            <div className="mt-2 rounded-lg border border-gray-200 bg-white divide-y divide-gray-100 overflow-hidden">
+              {quickSearchResults.map((lesson) => (
+                <Link
+                  key={lesson.id}
+                  to={`/library/${lesson.id}`}
+                  className="flex items-center justify-between gap-2 px-3 py-2 text-sm hover:bg-brand-50"
+                >
+                  <span className="text-gray-800">
+                    {lesson.title}
+                    {lesson.subFriendly && <span className="ml-2 text-xs text-brand-700">(sub-friendly)</span>}
+                  </span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              ))}
+            </div>
+          )}
+          {quickSearch.trim() && quickSearchResults.length === 0 && (
+            <p className="mt-2 text-sm text-gray-500">No lessons match "{quickSearch}".</p>
+          )}
+        </div>
+
+        <div className="no-print space-y-1.5">
+          <p className="text-xs font-medium text-gray-600">Grab-and-go by grade</p>
+          <div className="flex flex-wrap gap-2">
+            {ALL_GRADES.map((g) => (
+              <Link key={g} to={`/library?subFriendly=true&grade=${g}`}>
+                <Button variant="secondary">{gradeLabel(g)}</Button>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 no-print">
           <Link to="/library?subFriendly=true">
             <Button>
               <BookOpen size={16} /> Browse Sub-Friendly Lessons
             </Button>
           </Link>
+          <Button variant="secondary" onClick={handleSurpriseMe}>
+            <Shuffle size={16} /> Surprise Me
+          </Button>
           <Link to="/generator">
             <Button variant="secondary">
               <Wand2 size={16} /> Generate a Sub Lesson

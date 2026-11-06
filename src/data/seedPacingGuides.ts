@@ -133,4 +133,53 @@ function buildPaternityLeaveGuide(): PacingGuide {
   };
 }
 
-export const SEED_PACING_GUIDES: PacingGuide[] = [buildSampleYearGuide(), buildPaternityLeaveGuide()];
+/**
+ * A January-through-April stretch of the year: basketball and soccer first (each run as a
+ * short skill progression - dribble/pass/shoot building up to full games), then jump rope,
+ * volleyball, floor hockey, and fitness circuit round out the spring before the school year's
+ * later units pick back up.
+ */
+const JAN_APRIL_PLAN: { unit: string; lessonId: string; weeks: number }[] = [
+  { unit: 'Basketball', lessonId: 'lesson-basketball', weeks: 3 },
+  { unit: 'Soccer Dribbling Skills', lessonId: 'lesson-soccer-dribbling-skills', weeks: 1 },
+  { unit: 'Soccer Passing & Shooting', lessonId: 'lesson-soccer-passing-shooting', weeks: 1 },
+  { unit: 'Soccer / Handball Goal Games', lessonId: 'lesson-soccer-goal-games', weeks: 1 },
+  { unit: 'Jump Rope', lessonId: 'lesson-jump-rope', weeks: 1 },
+  { unit: 'Jump Rope Skills & Stations', lessonId: 'lesson-jump-rope-skills-stations', weeks: 1 },
+  { unit: 'Jump Rope Routines & Performance', lessonId: 'lesson-jump-rope-routines-performance', weeks: 1 },
+  { unit: 'Volleying & Striking Skills', lessonId: 'lesson-volleying-striking-skills', weeks: 1 },
+  { unit: 'Volleyball', lessonId: 'lesson-volleyball', weeks: 1 },
+  { unit: 'Floor Hockey (Pillow Polo)', lessonId: 'lesson-floor-hockey', weeks: 3 },
+  { unit: 'Fitness Circuit', lessonId: 'lesson-fitness-circuit', weeks: 2 },
+];
+
+const JAN_APRIL_START_DATE = '2027-01-04';
+
+function buildJanAprilWeeks(): PacingWeek[] {
+  const start = new Date(`${JAN_APRIL_START_DATE}T00:00:00`);
+  const weeks: PacingWeek[] = [];
+  let weekNumber = 1;
+  for (const block of JAN_APRIL_PLAN) {
+    for (let i = 0; i < block.weeks; i++) {
+      const d = new Date(start);
+      d.setDate(d.getDate() + (weekNumber - 1) * 7);
+      weeks.push({ weekNumber, startDate: d.toISOString().slice(0, 10), unit: block.unit, lessonId: block.lessonId });
+      weekNumber++;
+    }
+  }
+  return weeks;
+}
+
+function buildJanAprilGuide(): PacingGuide {
+  return {
+    id: 'pacing-jan-april',
+    name: 'January-April Pacing Guide',
+    schoolYear: '2026-2027',
+    grade: 'K-5',
+    weeks: buildJanAprilWeeks(),
+    createdAt: SEEDED_AT,
+    updatedAt: SEEDED_AT,
+  };
+}
+
+export const SEED_PACING_GUIDES: PacingGuide[] = [buildSampleYearGuide(), buildPaternityLeaveGuide(), buildJanAprilGuide()];
