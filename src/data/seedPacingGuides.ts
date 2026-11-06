@@ -134,11 +134,12 @@ function buildPaternityLeaveGuide(): PacingGuide {
 }
 
 /**
- * A January-through-April stretch of the year: basketball and soccer first (each run as a
- * short skill progression - dribble/pass/shoot building up to full games), then jump rope,
- * volleyball, gymnastics, and fitness circuit round out the spring before the school year's
- * later units pick back up. Floor Hockey is taught separately (not in this rotation) since
- * that's a unit the teacher runs himself.
+ * A January-through-April stretch of the year, built to be sub-friendly throughout: basketball
+ * and soccer first (short skill progressions - dribble/pass/shoot building up to full games),
+ * then jump rope, then fun low-equipment games a sub can run with confidence. No gymnastics
+ * (needs spotting know-how) and no volleyball (no net, and the ball needs to be pumped up) -
+ * hula hoop and cone-based games stand in instead. Floor Hockey is taught separately (not in
+ * this rotation) since that's a unit the teacher runs himself.
  */
 const JAN_APRIL_PLAN: { unit: string; lessonId: string; weeks: number }[] = [
   { unit: 'Basketball', lessonId: 'lesson-basketball', weeks: 3 },
@@ -148,9 +149,10 @@ const JAN_APRIL_PLAN: { unit: string; lessonId: string; weeks: number }[] = [
   { unit: 'Jump Rope', lessonId: 'lesson-jump-rope', weeks: 1 },
   { unit: 'Jump Rope Skills & Stations', lessonId: 'lesson-jump-rope-skills-stations', weeks: 1 },
   { unit: 'Jump Rope Routines & Performance', lessonId: 'lesson-jump-rope-routines-performance', weeks: 1 },
-  { unit: 'Volleying & Striking Skills', lessonId: 'lesson-volleying-striking-skills', weeks: 1 },
-  { unit: 'Volleyball', lessonId: 'lesson-volleyball', weeks: 1 },
-  { unit: 'Gymnastics & Tumbling', lessonId: 'lesson-gymnastics-tumbling', weeks: 3 },
+  { unit: 'Hula Hoop Skills', lessonId: 'lesson-hula-hoop-skills', weeks: 2 },
+  { unit: 'Hoop & Cone Games Day', lessonId: 'lesson-hoop-and-cone-games-day', weeks: 1 },
+  { unit: 'Striker Ball', lessonId: 'lesson-striker-ball', weeks: 1 },
+  { unit: 'Fitness Fun & Games', lessonId: 'lesson-fitness-fun-and-games', weeks: 1 },
   { unit: 'Fitness Circuit', lessonId: 'lesson-fitness-circuit', weeks: 2 },
 ];
 
