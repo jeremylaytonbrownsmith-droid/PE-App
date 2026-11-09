@@ -3,10 +3,10 @@ import { BadgeCheck, GraduationCap, ListOrdered, Languages } from 'lucide-react'
 import type { Lesson } from '../../types/lesson';
 import { gradeLabel } from '../../types/common';
 
-export function LessonCard({ lesson }: { lesson: Lesson }) {
+export function LessonCard({ lesson, linkTo }: { lesson: Lesson; linkTo?: string }) {
   return (
     <Link
-      to={`/library/${lesson.id}`}
+      to={linkTo ?? `/library/${lesson.id}`}
       className="block rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-brand-300 transition"
     >
       <div className="flex items-start justify-between gap-2">

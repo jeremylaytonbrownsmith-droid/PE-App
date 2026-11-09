@@ -6,6 +6,11 @@ export interface SubHandbook {
   equipmentNotes: string;
   coverageStart?: string;
   coverageEnd?: string;
+  /** Which single pacing guide "Today's / This Week's Plan" should pull from. Several guides
+   * can have weeks landing in the same coverage date range (a full-year guide, a term guide,
+   * a leave-coverage guide), so this picks the one that's actually meant for the sub - without
+   * it, every guide's matching weeks would get merged into one confusing list. */
+  activeGuideId?: string;
   updatedAt: number;
 }
 

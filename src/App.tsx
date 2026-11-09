@@ -13,6 +13,8 @@ import { SettingsPage } from './pages/SettingsPage';
 import { AdaptivePEPage } from './pages/AdaptivePEPage';
 import { SubHandbookPage } from './pages/SubHandbookPage';
 import { ClassTimerPage } from './pages/ClassTimerPage';
+import { SubModePage } from './pages/SubModePage';
+import { SubModeLessonPage } from './pages/SubModeLessonPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="library/:id/timer" element={<ClassTimerPage />} />
+        <Route path="sub" element={<SubModePage />} />
+        <Route path="sub/lesson/:id" element={<SubModeLessonPage />} />
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />
           <Route path="library" element={<LibraryPage />} />

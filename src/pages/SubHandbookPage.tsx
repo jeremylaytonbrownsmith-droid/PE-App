@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert, Search, Shuffle } from 'lucide-react';
+import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert, Search, Shuffle, Link2, Check } from 'lucide-react';
 import type { SubHandbook, SubResource } from '../types/subHandbook';
 import type { PacingGuide } from '../types/pacing';
 import type { Lesson } from '../types/lesson';
@@ -29,7 +29,19 @@ export function SubHandbookPage() {
   const [hasSchoolSchedule, setHasSchoolSchedule] = useState(false);
   const [saving, setSaving] = useState(false);
   const [quickSearch, setQuickSearch] = useState('');
+  const [linkCopied, setLinkCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const subLink = `${window.location.origin}/sub`;
+
+  async function handleCopyLink() {
+    try {
+      await navigator.clipboard.writeText(subLink);
+    } catch {
+      // Clipboard API unavailable - the link is still visible to select/copy manually.
+    }
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  }
 
   useEffect(() => {
     getSubHandbook().then(setHandbook);
@@ -62,10 +74,13 @@ export function SubHandbookPage() {
     setResources(await listSubResources());
   }
 
-  const coverageWeeks = guides
-    .flatMap((g) => g.weeks.map((w) => ({ ...w, guideName: g.name })))
-    .filter((w) => inRange(w.startDate, handbook.coverageStart, handbook.coverageEnd))
-    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const activeGuide = guides.find((g) => g.id === handbook.activeGuideId);
+  const coverageWeeks = activeGuide
+    ? activeGuide.weeks
+        .map((w) => ({ ...w, guideName: activeGuide.name }))
+        .filter((w) => inRange(w.startDate, handbook.coverageStart, handbook.coverageEnd))
+        .sort((a, b) => a.startDate.localeCompare(b.startDate))
+    : [];
 
   function handleSurpriseMe() {
     const pool = lessons.filter((l) => l.subFriendly);
@@ -92,11 +107,34 @@ export function SubHandbookPage() {
         }
       />
 
+      <div className="no-print rounded-xl border-2 border-brand-300 bg-brand-50 p-4 space-y-2">
+        <h2 className="flex items-center gap-1.5 font-semibold text-gray-900">
+          <Link2 size={16} className="text-brand-700" /> This is the link to give your secretary or sub
+        </h2>
+        <p className="text-xs text-gray-600">
+          This page is for you to edit. The link below is a simplified, read-only version - no editing or delete
+          buttons, just emergency info, today's plan, and a way to find a lesson - safe to hand to anyone.
+        </p>
+        <div className="flex items-center gap-2 flex-wrap">
+          <code className="flex-1 min-w-[200px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 truncate">
+            {subLink}
+          </code>
+          <Button variant="secondary" onClick={handleCopyLink}>
+            {linkCopied ? (
+              <>
+                <Check size={16} className="text-brand-600" /> Copied!
+              </>
+            ) : (
+              'Copy Link'
+            )}
+          </Button>
+        </div>
+      </div>
+
       {isUnfilled && (
         <InfoBox color="orange" title="Set this up once, then forget about it" className="no-print">
-          Fill in the sections below - your welcome note, emergency procedures, and coverage dates. Once it's saved,
-          this becomes the one link you hand to any substitute: everything they need is on this single page, in the
-          order they need it.
+          Fill in the sections below - your welcome note, emergency procedures, and coverage dates. They'll show up
+          automatically on the simplified link above once they're saved.
         </InfoBox>
       )}
 
@@ -120,7 +158,8 @@ export function SubHandbookPage() {
         </h2>
         <p className="text-xs text-gray-500 no-print">
           The first thing a substitute should read - who to call, and what to do for a fire drill, lockdown/intruder,
-          severe weather, or an injury.
+          severe weather, or an injury. "In a real emergency, call 911" is always shown automatically on the sub link
+          above - no need to type that yourself.
         </p>
         <label className="text-sm space-y-1 block">
           <span className="font-medium text-gray-700">Contacts (front office, nurse, PE department, behavior referral)</span>
@@ -227,6 +266,21 @@ export function SubHandbookPage() {
         </div>
         <div className="flex flex-wrap gap-3">
           <label className="text-sm space-y-1">
+            <span className="block font-medium text-gray-700">Which pacing guide?</span>
+            <select
+              className="rounded-lg border border-gray-300 px-3 py-2"
+              value={handbook.activeGuideId ?? ''}
+              onChange={(e) => setHandbook({ ...handbook, activeGuideId: e.target.value || undefined })}
+            >
+              <option value="">— pick one —</option>
+              {guides.map((g) => (
+                <option key={g.id} value={g.id}>
+                  {g.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="text-sm space-y-1">
             <span className="block font-medium text-gray-700">First day out</span>
             <input
               type="date"
@@ -245,7 +299,10 @@ export function SubHandbookPage() {
             />
           </label>
         </div>
-        {handbook.coverageStart && handbook.coverageEnd && (
+        {!handbook.activeGuideId && (
+          <p className="text-sm text-gray-500">Pick which pacing guide the sub should follow, so only that one shows up below.</p>
+        )}
+        {handbook.activeGuideId && handbook.coverageStart && handbook.coverageEnd && (
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
             {coverageWeeks.length ? (
               <table className="w-full text-sm border-collapse">
