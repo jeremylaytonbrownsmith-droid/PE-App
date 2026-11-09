@@ -107,16 +107,38 @@ export function SubModePage() {
           </div>
         )}
 
+        {guides.length > 0 && (
+          <section className="space-y-2">
+            <h2 className="font-semibold text-gray-900">Pacing Guide</h2>
+            {handbook.activeGuideId && guides.find((g) => g.id === handbook.activeGuideId) ? (
+              <Link
+                to={`/sub/pacing/${handbook.activeGuideId}`}
+                className="block rounded-xl border border-brand-200 bg-brand-50 p-4 hover:border-brand-400 transition"
+              >
+                <p className="text-sm font-medium text-gray-900">{guides.find((g) => g.id === handbook.activeGuideId)?.name}</p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {guides.find((g) => g.id === handbook.activeGuideId)?.weeks.length} weeks - tap to see the full plan
+                </p>
+              </Link>
+            ) : (
+              <div className="space-y-2">
+                <p className="text-xs text-gray-500">No specific guide has been picked yet - here are all of them:</p>
+                {guides.map((g) => (
+                  <Link key={g.id} to={`/sub/pacing/${g.id}`} className="block rounded-xl border border-gray-200 bg-white p-3 hover:border-brand-300 transition">
+                    <p className="text-sm font-medium text-gray-900">{g.name}</p>
+                    <p className="text-xs text-gray-500">
+                      {g.grade} · {g.schoolYear} · {g.weeks.length} weeks
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+
         {coverageWeeks.length > 0 && (
           <section className="space-y-2">
-            <div className="flex items-center justify-between gap-2">
-              <h2 className="font-semibold text-gray-900">Today's / This Week's Plan</h2>
-              {handbook.activeGuideId && (
-                <Link to={`/sub/pacing/${handbook.activeGuideId}`} className="shrink-0 text-xs font-medium text-brand-700 hover:underline">
-                  View full plan →
-                </Link>
-              )}
-            </div>
+            <h2 className="font-semibold text-gray-900">Today's / This Week's Plan</h2>
             <div className="space-y-2">
               {coverageWeeks.map((week) => {
                 const lesson = lessons.find((l) => l.id === week.lessonId);
