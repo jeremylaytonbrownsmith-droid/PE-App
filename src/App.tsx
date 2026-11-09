@@ -15,6 +15,7 @@ import { SubHandbookPage } from './pages/SubHandbookPage';
 import { ClassTimerPage } from './pages/ClassTimerPage';
 import { SubModePage } from './pages/SubModePage';
 import { SubModeLessonPage } from './pages/SubModeLessonPage';
+import { SubModePacingPage } from './pages/SubModePacingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="library/:id/timer" element={<ClassTimerPage />} />
         <Route path="sub" element={<SubModePage />} />
         <Route path="sub/lesson/:id" element={<SubModeLessonPage />} />
+        <Route path="sub/pacing/:id" element={<SubModePacingPage />} />
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />
           <Route path="library" element={<LibraryPage />} />

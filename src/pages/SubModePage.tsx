@@ -109,7 +109,14 @@ export function SubModePage() {
 
         {coverageWeeks.length > 0 && (
           <section className="space-y-2">
-            <h2 className="font-semibold text-gray-900">Today's / This Week's Plan</h2>
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="font-semibold text-gray-900">Today's / This Week's Plan</h2>
+              {handbook.activeGuideId && (
+                <Link to={`/sub/pacing/${handbook.activeGuideId}`} className="shrink-0 text-xs font-medium text-brand-700 hover:underline">
+                  View full plan →
+                </Link>
+              )}
+            </div>
             <div className="space-y-2">
               {coverageWeeks.map((week) => {
                 const lesson = lessons.find((l) => l.id === week.lessonId);
