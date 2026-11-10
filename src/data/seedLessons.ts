@@ -1252,7 +1252,7 @@ export const SEED_LESSONS: Lesson[] = [
     unit: 'Hula Hoop Skills',
     gradeLevels: ['K', '1', '2', '3', '4', '5'],
     gymSpace: 'full',
-    equipment: [{ id: 'eq-1', name: 'Hula hoops (one per student)' }],
+    equipment: [{ id: 'eq-1', name: 'Hula hoops (one per student)', note: 'Keep a few smaller and larger hoops mixed in - some students find one size easier to control than another.' }],
     gradeModifications: [
       { id: 'gm-1', grades: ['K', '1'], note: 'Focus on rolling and jump-through tricks only.' },
       { id: 'gm-2', grades: ['2', '3', '4', '5'], note: 'Add waist hooping and arm hooping tricks.' },
@@ -1261,13 +1261,20 @@ export const SEED_LESSONS: Lesson[] = [
       'Waist hoop: give it a big spin, then move your hips in a circle to keep it up.',
       'Arm hoop: spin it around your wrist or arm like a propeller.',
       'Jump-through: hold the hoop like a jump rope and hop through it like a big loop.',
+      'Still working on a trick? Try saying “I can’t do it…yet” instead of giving up - that’s a growth mindset!',
     ],
     numberOneRule: 'Keep your hoop in your own space bubble - no swinging hoops at classmates.',
     arrivalSetup: STANDARD_ARRIVAL_SETUP,
     warmUpId: 'warmup-freeze-dance',
     warmUpMinutes: 8,
     mainActivities: [
-      { id: 'ma-1', name: 'Rolling practice', description: 'Roll the hoop like a wheel and chase it, or roll it back and forth to a partner.', minutes: 8 },
+      {
+        id: 'ma-1',
+        name: 'Hoop Exploration & Rolling',
+        description:
+          'Start in personal space exploring the hoop on the ground: step one foot in/one foot out (get faster!), jump with both feet in and out, then try it on one foot. Practice standing in front of, behind, and beside your hoop (left side, right side), then pick it up and hold it in your right hand, your left hand, and overhead. Finish by rolling the hoop like a wheel and chasing it, or rolling it back and forth to a partner.',
+        minutes: 8,
+      },
       { id: 'ma-2', name: 'Waist hooping practice', description: 'Spin the hoop and try to keep it up - count how many rotations you can get.', minutes: 8 },
       { id: 'ma-3', name: 'Arm & jump-through tricks', description: 'Try arm hooping and jumping through the hoop like a big jump rope loop.', minutes: 8 },
       { id: 'ma-4', name: 'Hoop challenge stations', description: 'In groups of four or less, rotate through mini-challenges: most rotations, longest roll, best trick combo.', minutes: 10 },
@@ -1278,7 +1285,7 @@ export const SEED_LESSONS: Lesson[] = [
         id: 'oa-2',
         name: 'Electric Spaceship Recharge',
         description:
-          'Hoops are scattered around the gym as "charging stations." Students zoom around like electric spaceships using any locomotor movement. When the teacher calls "Recharge!", every spaceship finds an empty hoop and holds a silly charging pose for 5 seconds before launching off again.',
+          'Hoops are scattered around the gym as "charging stations." Students zoom around like electric spaceships using any locomotor movement. When the teacher calls "Recharge!", every spaceship finds an empty hoop and holds a silly charging pose for 5 seconds before launching off again. Mix up the theme between rounds - drag the hoop along the ground like pushing a lawn mower, or hold it out in front of you like a lion tamer.',
         minutes: 6,
       },
       {
@@ -1332,9 +1339,19 @@ export const SEED_LESSONS: Lesson[] = [
           'Lay 2-3 hoops so they overlap and use them as a human Venn diagram (see Optional Activities) - call out two categories and have students sort themselves into the right, left, or overlapping middle section.',
       },
       {
+        subject: 'math',
+        connection:
+          'Fun hoop fact: someone once hula-hooped for 73 hours straight! Have students figure out how many days that is (73 ÷ 24).',
+      },
+      {
+        subject: 'science',
+        connection:
+          'Crossing your hands or feet over the body’s midline (like reaching your right hand to your left side to grab the hoop) is called a cross-lateral movement - it makes the left and right sides of the brain build more nerve connections by working together.',
+      },
+      {
         subject: 'social-studies',
         connection:
-          'Hula hooping gets its name from the hula dance of Hawaii - talk about how a toy invented in the 1950s borrowed its name and hip-swaying motion from a much older dance tradition.',
+          'Hoop play goes back thousands of years and shows up across many cultures - including hoop dances in Native American traditions, where dancers weave in and out of multiple hoops to form shapes and patterns. The specific "hula hoop" toy and name came much later, in the 1950s, when its hip-swaying motion reminded people of Hawaii’s hula dance.',
       },
       {
         subject: 'english',
@@ -1343,7 +1360,7 @@ export const SEED_LESSONS: Lesson[] = [
       },
     ],
     tags: ['hula hoop', 'full gym', 'half gym friendly', 'sub-friendly', 'cross-curricular', 'STEM connections'],
-    contentVersion: 1,
+    contentVersion: 2,
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,

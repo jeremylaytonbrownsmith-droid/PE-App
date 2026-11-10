@@ -45,11 +45,11 @@ function healSharkReferences(lesson: Lesson, seedLesson: Lesson): Lesson {
 }
 
 /**
- * Re-syncs optionalActivities/crossCurricular/tags forward when a seed lesson gets a content
- * refresh after release (e.g. new cross-curricular connections added to an existing lesson).
- * Gated on contentVersion so it only overwrites those three fields once, the first time a
- * device catches up to a newer version - any other edit the teacher made (main activities,
- * equipment, cues, etc.) is untouched.
+ * Re-syncs a seed lesson's content fields forward when it gets a content refresh after release
+ * (e.g. new cross-curricular connections, an enriched activity description). Gated on
+ * contentVersion so it only overwrites these fields once, the first time a device catches up to
+ * a newer version - any other edit the teacher made (grade modifications, accommodations,
+ * numberOneRule, etc.) is untouched.
  */
 function healContentVersion(lesson: Lesson, seedLesson: Lesson): Lesson {
   const seedVersion = seedLesson.contentVersion ?? 0;
@@ -57,7 +57,10 @@ function healContentVersion(lesson: Lesson, seedLesson: Lesson): Lesson {
   if (seedVersion <= existingVersion) return lesson;
   return {
     ...lesson,
+    mainActivities: seedLesson.mainActivities,
     optionalActivities: seedLesson.optionalActivities,
+    techniqueCues: seedLesson.techniqueCues,
+    equipment: seedLesson.equipment,
     crossCurricular: seedLesson.crossCurricular,
     tags: seedLesson.tags,
     contentVersion: seedVersion,
@@ -69,7 +72,7 @@ function healContentVersion(lesson: Lesson, seedLesson: Lesson): Lesson {
  * existing rows - so a future app update can ship new starter lessons without clobbering
  * a teacher's own edits to the lessons they already have. Also runs two narrow one-time heals:
  * healSharkReferences (a removed shark-tag game) and healContentVersion (a versioned content
- * refresh to optionalActivities/crossCurricular/tags).
+ * refresh - see that function for which fields it covers).
  */
 export async function ensureLessonsSeeded(): Promise<void> {
   const existing = await getAll(STORE.lessons);
