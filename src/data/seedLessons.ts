@@ -1272,7 +1272,23 @@ export const SEED_LESSONS: Lesson[] = [
       { id: 'ma-3', name: 'Arm & jump-through tricks', description: 'Try arm hooping and jumping through the hoop like a big jump rope loop.', minutes: 8 },
       { id: 'ma-4', name: 'Hoop challenge stations', description: 'In groups of four or less, rotate through mini-challenges: most rotations, longest roll, best trick combo.', minutes: 10 },
     ],
-    optionalActivities: [{ id: 'oa-1', name: 'Hoop Tag', description: 'Roll hoops like wheels and try to knock over cones, or toss and catch with a partner, if time allows.', minutes: 5 }],
+    optionalActivities: [
+      { id: 'oa-1', name: 'Hoop Tag', description: 'Roll hoops like wheels and try to knock over cones, or toss and catch with a partner, if time allows.', minutes: 5 },
+      {
+        id: 'oa-2',
+        name: 'Electric Spaceship Recharge',
+        description:
+          'Hoops are scattered around the gym as "charging stations." Students zoom around like electric spaceships using any locomotor movement. When the teacher calls "Recharge!", every spaceship finds an empty hoop and holds a silly charging pose for 5 seconds before launching off again.',
+        minutes: 6,
+      },
+      {
+        id: 'oa-3',
+        name: 'Hoop Venn Diagram Sort',
+        description:
+          'Lay 2-3 hoops on the floor so they overlap, forming a human Venn diagram. Call out two categories (favorite color, what they had for breakfast, etc.) and have students sort themselves into the correct side or the overlapping middle.',
+        minutes: 5,
+      },
+    ],
     closure: STANDARD_CLOSURE,
     diagramNotes: 'Students spread out with one hoop each - enough personal space to spin without bumping a neighbor.',
     diagramType: 'personal-space',
@@ -1288,12 +1304,32 @@ export const SEED_LESSONS: Lesson[] = [
       {
         subject: 'science',
         connection:
-          'The hoop spinning around a student’s waist works like the Moon orbiting the Earth - you (in the middle) are the Earth, and the hoop is the Moon, held in its path by a force (for the Moon it’s gravity; for the hoop it’s your movement keeping it spinning).',
+          'A hula hoop is a great orbit model two ways: stand in the middle as the Sun while the hoop (with a student inside it) circles around like the Earth - then flip it, with you as the Earth and the hoop as the Moon circling you. Both are held in their path by a pulling force - gravity for real orbits, your own movement for the hoop.',
+      },
+      {
+        subject: 'science',
+        connection:
+          'Ask why the hoop doesn’t just fly off when you spin it around your waist - that’s centripetal force, the same inward pull that keeps the Moon from flying off into space and keeps a swinging hoop curving back toward you instead of flying straight.',
+      },
+      {
+        subject: 'science',
+        connection:
+          'Scattered hoops become "charging stations" for the Electric Spaceship Recharge game (see Optional Activities) - a jumping-off point for renewable resources (solar, wind, water) versus resources that run out, reusing instead of replacing (wearing a hand-me-down from a sibling instead of buying new), and picking up litter on the playground to take care of the planet.',
+      },
+      {
+        subject: 'science',
+        connection:
+          'Winding up for a trick stores potential energy in your body, just like pulling back a slingshot - the second you let go, that potential energy turns into kinetic energy (motion). It’s also a great analogy for effort in the classroom: the energy and ability you have doesn’t do anything until you actually put it into action.',
       },
       {
         subject: 'math',
         connection:
-          'A hula hoop is a circle - talk about circumference (the distance around) and diameter (the distance across), and measure a hoop with a piece of string to make it concrete.',
+          'A hula hoop is a circle - talk about radius (center to edge), diameter (all the way across, through the center), and circumference (the distance around), and measure a hoop with a piece of string to make it concrete. Comparing a few different-sized hoops side by side shows how radius and diameter change together.',
+      },
+      {
+        subject: 'math',
+        connection:
+          'Lay 2-3 hoops so they overlap and use them as a human Venn diagram (see Optional Activities) - call out two categories and have students sort themselves into the right, left, or overlapping middle section.',
       },
       {
         subject: 'social-studies',
@@ -1302,10 +1338,12 @@ export const SEED_LESSONS: Lesson[] = [
       },
       {
         subject: 'english',
-        connection: 'Practice descriptive vocabulary from today (rotate, spin, orbit, circumference) in a full sentence about a trick you tried.',
+        connection:
+          'Practice descriptive vocabulary from today (rotate, spin, orbit, circumference, radius) in a full sentence about a trick you tried, and practice positional words by describing where your hoop is - in front of you, behind you, in the middle, beside your partner.',
       },
     ],
-    tags: ['hula hoop', 'full gym', 'half gym friendly', 'sub-friendly'],
+    tags: ['hula hoop', 'full gym', 'half gym friendly', 'sub-friendly', 'cross-curricular', 'STEM connections'],
+    contentVersion: 1,
     source: 'seed',
     createdAt: SEEDED_AT,
     updatedAt: SEEDED_AT,

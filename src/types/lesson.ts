@@ -125,6 +125,14 @@ export interface Lesson {
    * multi-station meets) are left false/undefined since they're genuinely hard to run cold.
    */
   subFriendly?: boolean;
+  /**
+   * Bumped whenever a seed lesson's optionalActivities/crossCurricular/tags get a content
+   * refresh after release (e.g. new cross-curricular connections added). A device that already
+   * seeded this lesson keeps it forever otherwise - seeding is additive-by-id on purpose, so an
+   * app update never clobbers a teacher's edits. ensureLessonsSeeded re-syncs just those three
+   * fields forward when the seed's version is newer than what's stored.
+   */
+  contentVersion?: number;
   tags: string[];
   source: 'seed' | 'custom';
   createdAt: number;

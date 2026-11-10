@@ -45,10 +45,31 @@ function healSharkReferences(lesson: Lesson, seedLesson: Lesson): Lesson {
 }
 
 /**
+ * Re-syncs optionalActivities/crossCurricular/tags forward when a seed lesson gets a content
+ * refresh after release (e.g. new cross-curricular connections added to an existing lesson).
+ * Gated on contentVersion so it only overwrites those three fields once, the first time a
+ * device catches up to a newer version - any other edit the teacher made (main activities,
+ * equipment, cues, etc.) is untouched.
+ */
+function healContentVersion(lesson: Lesson, seedLesson: Lesson): Lesson {
+  const seedVersion = seedLesson.contentVersion ?? 0;
+  const existingVersion = lesson.contentVersion ?? 0;
+  if (seedVersion <= existingVersion) return lesson;
+  return {
+    ...lesson,
+    optionalActivities: seedLesson.optionalActivities,
+    crossCurricular: seedLesson.crossCurricular,
+    tags: seedLesson.tags,
+    contentVersion: seedVersion,
+  };
+}
+
+/**
  * Adds any seed lessons the device doesn't already have, keyed by id, without touching
  * existing rows - so a future app update can ship new starter lessons without clobbering
- * a teacher's own edits to the lessons they already have. Also runs a narrow one-time heal
- * (see healSharkReferences) for lessons seeded before a shark-tag game was removed from them.
+ * a teacher's own edits to the lessons they already have. Also runs two narrow one-time heals:
+ * healSharkReferences (a removed shark-tag game) and healContentVersion (a versioned content
+ * refresh to optionalActivities/crossCurricular/tags).
  */
 export async function ensureLessonsSeeded(): Promise<void> {
   const existing = await getAll(STORE.lessons);
@@ -64,7 +85,7 @@ export async function ensureLessonsSeeded(): Promise<void> {
     if (lesson.source !== 'seed') continue;
     const seedLesson = seedById.get(lesson.id);
     if (!seedLesson) continue;
-    const next = healSharkReferences(lesson, seedLesson);
+    const next = healContentVersion(healSharkReferences(lesson, seedLesson), seedLesson);
     if (JSON.stringify(next) !== JSON.stringify(lesson)) {
       healed.push(next);
     }
