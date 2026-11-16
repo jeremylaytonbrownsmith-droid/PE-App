@@ -150,3 +150,15 @@ export const STANDARD_CLOSURE = [
   'Students get a quick sip of water.',
   'Students line up on the blue line. Thank students for a great class.',
 ];
+
+/**
+ * The teacher's actual every-single-day warm-up, run before every lesson regardless of unit -
+ * distinct from each lesson's own warmUpId/custom warm-up, which varies lesson to lesson.
+ */
+export const STANDARD_WARMUP_ROUTINE = [
+  'Line up on the blue line.',
+  'Run a straight sprint to the far blue line and back.',
+  'Exception - Joyce/Colin’s combined class only (it’s an extra-large class): split into two groups at two starting lines - one group at the blue line closest to the stairs, the other at the blue line closest to the wall. One group runs to the far line and back first while the other waits, then they switch.',
+  'Find good personal space and do a few push-ups.',
+  'Then go into today’s lesson.',
+];

@@ -4,7 +4,7 @@ import { Upload, Trash2, Download, ArrowRight, Wand2, BookOpen, ShieldAlert, Sea
 import type { SubHandbook, SubResource } from '../types/subHandbook';
 import type { PacingGuide } from '../types/pacing';
 import type { Lesson } from '../types/lesson';
-import { STANDARD_ARRIVAL_SETUP, STANDARD_CLOSURE } from '../types/lesson';
+import { STANDARD_ARRIVAL_SETUP, STANDARD_CLOSURE, STANDARD_WARMUP_ROUTINE } from '../types/lesson';
 import { ALL_GRADES, gradeLabel } from '../types/common';
 import { getSubHandbook, saveSubHandbook, listSubResources, addSubResource, deleteSubResource, fileToDataUrl } from '../lib/subHandbookStore';
 import { listPacingGuides } from '../lib/pacingStore';
@@ -350,6 +350,14 @@ export function SubHandbookPage() {
           This routine is built into every single lesson in the library, so it never changes no matter what unit
           you're teaching.
         </p>
+        <div className="rounded-xl border-2 border-brand-300 bg-brand-50 p-4">
+          <p className="text-sm font-semibold text-gray-800 mb-1.5">The Warm-Up I Do Every Single Time</p>
+          <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
+            {STANDARD_WARMUP_ROUTINE.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="rounded-xl border border-gray-200 bg-white p-4">
             <p className="text-sm font-semibold text-gray-800 mb-1.5">Arrival and Setup</p>

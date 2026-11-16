@@ -5,6 +5,7 @@ import type { SubHandbook } from '../types/subHandbook';
 import type { PacingGuide } from '../types/pacing';
 import type { Lesson } from '../types/lesson';
 import { ALL_GRADES, gradeLabel, type Grade } from '../types/common';
+import { STANDARD_WARMUP_ROUTINE } from '../types/lesson';
 import { getSubHandbook } from '../lib/subHandbookStore';
 import { listPacingGuides } from '../lib/pacingStore';
 import { listLessons } from '../lib/lessonStore';
@@ -100,6 +101,11 @@ export function SubModePage() {
           </div>
         )}
 
+        <InfoBox color="blue">
+          Everything on this page - the lesson, the warm-up, the pacing guide - is just a helpful starting point, not
+          a strict script. If you've got your own favorite games or a different idea, go right ahead and use it!
+        </InfoBox>
+
         {handbook.equipmentNotes && (
           <div className="rounded-xl border border-gray-200 bg-white p-4 flex gap-2.5">
             <MapPin size={18} className="text-brand-600 shrink-0 mt-0.5" />
@@ -107,34 +113,50 @@ export function SubModePage() {
           </div>
         )}
 
-        {guides.length > 0 && (
-          <section className="space-y-2">
-            <h2 className="font-semibold text-gray-900">Pacing Guide</h2>
-            {handbook.activeGuideId && guides.find((g) => g.id === handbook.activeGuideId) ? (
-              <Link
-                to={`/sub/pacing/${handbook.activeGuideId}`}
-                className="block rounded-xl border border-brand-200 bg-brand-50 p-4 hover:border-brand-400 transition"
-              >
-                <p className="text-sm font-medium text-gray-900">{guides.find((g) => g.id === handbook.activeGuideId)?.name}</p>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {guides.find((g) => g.id === handbook.activeGuideId)?.weeks.length} weeks - tap to see the full plan
-                </p>
-              </Link>
-            ) : (
-              <div className="space-y-2">
-                <p className="text-xs text-gray-500">No specific guide has been picked yet - here are all of them:</p>
-                {guides.map((g) => (
-                  <Link key={g.id} to={`/sub/pacing/${g.id}`} className="block rounded-xl border border-gray-200 bg-white p-3 hover:border-brand-300 transition">
-                    <p className="text-sm font-medium text-gray-900">{g.name}</p>
-                    <p className="text-xs text-gray-500">
-                      {g.grade} · {g.schoolYear} · {g.weeks.length} weeks
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </section>
-        )}
+        <section className="space-y-2">
+          <h2 className="font-semibold text-gray-900">The Warm-Up I Do Every Single Time</h2>
+          <div className="rounded-xl border-2 border-brand-300 bg-brand-50 p-4">
+            <ul className="list-disc pl-5 text-sm space-y-1 text-gray-700">
+              {STANDARD_WARMUP_ROUTINE.map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {guides.length > 0 && (() => {
+          const activeGuide = guides.find((g) => g.id === handbook.activeGuideId);
+          const otherGuides = guides.filter((g) => g.id !== handbook.activeGuideId);
+          return (
+            <section className="space-y-2">
+              <h2 className="font-semibold text-gray-900">Pacing Guide</h2>
+              {activeGuide && (
+                <Link
+                  to={`/sub/pacing/${activeGuide.id}`}
+                  className="block rounded-xl border border-brand-200 bg-brand-50 p-4 hover:border-brand-400 transition"
+                >
+                  <p className="text-sm font-medium text-gray-900">{activeGuide.name}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{activeGuide.weeks.length} weeks - tap to see the full plan</p>
+                </Link>
+              )}
+              {otherGuides.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-500">
+                    {activeGuide ? 'Other guides, if you want to take a look:' : 'No specific guide has been picked yet - here are all of them:'}
+                  </p>
+                  {otherGuides.map((g) => (
+                    <Link key={g.id} to={`/sub/pacing/${g.id}`} className="block rounded-xl border border-gray-200 bg-white p-3 hover:border-brand-300 transition">
+                      <p className="text-sm font-medium text-gray-900">{g.name}</p>
+                      <p className="text-xs text-gray-500">
+                        {g.grade} · {g.schoolYear} · {g.weeks.length} weeks
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </section>
+          );
+        })()}
 
         {coverageWeeks.length > 0 && (
           <section className="space-y-2">
